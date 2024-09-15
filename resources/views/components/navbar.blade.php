@@ -1,11 +1,11 @@
-<div class="bg-white header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center px-4 py-3 gap-2 sticky top-0">
+<div class="bg-white z-40 header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center px-4 py-3 gap-2 sticky top-0">
     <img src="./images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
     <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn" class="h-6 md:h-12">
     <div class="font-bold text-md self-center md:text-2xl mt-2 md:mt-4">Pekalongan</div>
 </div>
 
 
-<nav class="bg-[#195770] bg-contain sticky top-14" style="background-image: url('./images/batik1.png')">
+<nav class="bg-[#195770] z-50 bg-contain sticky top-14 md:top-16" style="background-image: url('./images/batik1.png')">
     <div class="max-w-screen-xl flex flex-wrap justify-end mx-auto">
         <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white md:hidden mr-4 my-2 border border-gray-500 rounded-md bg-[#195770]"

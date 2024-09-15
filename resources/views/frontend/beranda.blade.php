@@ -98,4 +98,6 @@
         </div>
     </div>
 
+    <x-beranda.activities :igposts="$igPosts" />
+
 @endsection
