@@ -1,7 +1,9 @@
-<div class="bg-white z-40 header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center px-4 py-3 gap-2 sticky top-0">
-    <img src="./images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
-    <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn" class="h-6 md:h-12">
-    <div class="font-bold text-md self-center md:text-2xl mt-2 md:mt-4">Pekalongan</div>
+<div class="bg-white z-40 sticky top-0">
+    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center px-4 py-3 gap-2">
+        <img src="./images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
+        <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn" class="h-6 md:h-12">
+        <div class="font-bold text-md self-center md:text-2xl mt-2 md:mt-4">Pekalongan</div>
+    </div>
 </div>
 
 

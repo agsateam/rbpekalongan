@@ -18,7 +18,9 @@
 <body class="font-manrope">
     @include('components.navbar')
 
-    @yield('content')
+    <div class="bg-right-top bg-no-repeat" style="background-image: url('./images/batik2.png')">
+        @yield('content')
+    </div>
 
 </body>
 

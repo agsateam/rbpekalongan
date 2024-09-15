@@ -3,12 +3,12 @@
 @section('content')
 
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
-        <div class="flex flex-row items-center justify-center ">
-            <div class="flex flex-col  w-1/2">
+        <div class="flex flex-row items-center justify-center mt-10">
+            <div class="flex flex-col w-1/2">
                 <div class="">
                     <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">
                     <h3 class="font-manrope font-bold text-5xl">Kota Pekalongan</h3>
-                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, nostrum dolorem
+                    <p class="mt-2 md:mr-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, nostrum dolorem
                         dicta amet vitae
                         asperiores maxime nesciunt, consectetur quae, omnis neque a id architecto veniam. Reiciendis
                         sapiente placeat aliquid incidunt minima qui amet at illo porro. Molestias consequatur sed
