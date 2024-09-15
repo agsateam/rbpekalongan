@@ -98,6 +98,7 @@
         </div>
     </div>
 
+    <x-beranda.testimonies />
     <x-beranda.activities :igposts="$igPosts" />
 
 @endsection

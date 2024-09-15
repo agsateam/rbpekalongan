@@ -22,26 +22,32 @@
         <div class="hidden md:block w-full md:mr-20 md:w-auto" id="navbar-default">
             <ul
                 class="text-white font-medium flex flex-col md:flex-row">
-                <li class="bg-[#195770] hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
-                    <a href="#"
+                <li class="{{ request()->is('/') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
+                    <a href="/"
                         class="block py-2 px-3 rounded md:p-0"
                         aria-current="page"
                     >Beranda</a>
                 </li>
-                <li class="bg-[#195770] hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
-                    <a href="#"
+                <li class="{{ request()->is('/event') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
+                    <a href="/event"
                         class="block py-2 px-3 rounded md:p-0"
                         aria-current="page"
                     >Event</a>
                 </li>
-                <li class="bg-[#195770] hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
-                    <a href="#"
+                <li class="{{ request()->is('/booking') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
+                    <a href="/booking"
+                        class="block py-2 px-3 rounded md:p-0"
+                        aria-current="page"
+                    >Booking</a>
+                </li>
+                <li class="{{ request()->is('/product') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
+                    <a href="/product"
                         class="block py-2 px-3 rounded md:p-0"
                         aria-current="page"
                     >Produk</a>
                 </li>
-                <li class="bg-[#195770] hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
-                    <a href="#"
+                <li class="{{ request()->is('/contact') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer py-4 px-8">
+                    <a href="/contact"
                         class="block py-2 px-3 rounded md:p-0"
                         aria-current="page"
                     >Hubungi Kami</a>
