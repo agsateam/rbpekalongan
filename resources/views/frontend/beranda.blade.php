@@ -2,8 +2,8 @@
 @section('title', 'Beranda')
 @section('content')
 
-    <div class="flex justify-center w-full ">
-        <div class="w-[67%] flex flex-row items-center justify-center ">
+    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
+        <div class="flex flex-row items-center justify-center ">
             <div class="flex flex-col  w-1/2">
                 <div class="">
                     <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">
@@ -18,7 +18,6 @@
                 </div>
             </div>
             <div class="w-1/2">
-
                 <div id="default-carousel" class="relative w-full" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">

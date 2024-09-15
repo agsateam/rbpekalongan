@@ -11,6 +11,9 @@ export default {
       fontFamily: {
         manrope: ['Manrope', 'sans-serif'], 
       },
+      backgroundImage: {
+        'navbar': "url('./images/batik1.png')",
+      },
     },
   },
   plugins: [

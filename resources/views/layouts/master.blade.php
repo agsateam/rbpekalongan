@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="font-manrope pt-4">
+<body class="font-manrope">
     @include('components.navbar')
 
     @yield('content')
