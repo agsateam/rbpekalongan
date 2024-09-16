@@ -1,18 +1,17 @@
 <div class="bg-white z-40 sticky top-0">
-    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center px-4 py-3 gap-2">
+    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center py-3 gap-2">
         <img src="./images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
-        <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn"
-            class="h-6 border-r-2 md:h-12 md:border-r-2 border-black">
-        <div class="font-bold text-sm self-center sm:text-xl">Pekalongan</div>
+        <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn" class="h-6 md:h-12">
+        <div class="font-bold text-sm mt-2 md:text-xl">Pekalongan</div>
         <div
-            class="ml-auto mr-8 border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 sm:block">
+            class="ml-auto border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 md:block">
             <a href="#">Masuk</a>
         </div>
     </div>
 </div>
 
 
-<nav class="bg-[#195770] z-50 bg-contain sticky top-14 md:top-16" style="background-image: url('./images/batik1.png')">
+<nav class="bg-[#195770] z-50 bg-contain sticky top-12 md:top-16" style="background-image: url('./images/batik1.png')">
     <div class="max-w-screen-xl flex flex-wrap justify-end mx-auto">
         <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white md:hidden mr-4 my-2 border border-gray-500 rounded-md bg-[#195770]"
@@ -57,7 +56,7 @@
                         aria-current="page"
                     >Hubungi Kami</a>
                 </li>
-                <li class="hover:bg-[#1ba0db] cursor-pointer py-4 px-8 sm:hidden">
+                <li class="bg-[#195770] hover:bg-[#1ba0db] cursor-pointer py-2 md:py-4 px-8 md:hidden">
                     <a href="#" class="py-2 px-3 block rounded md:p-0 sm:hidden" aria-current="page">Masuk</a>
                 </li>
             </ul>
