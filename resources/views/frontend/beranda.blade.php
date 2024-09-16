@@ -2,13 +2,15 @@
 @section('title', 'Beranda')
 @section('content')
 
-    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
-        <div class="flex flex-row items-center justify-center mt-10">
+    <div class="w-full lg:max-w-screen-xl md:w-screen lg:mx-14 2xl:mx-auto flex justify-center">
+        <div class="flex flex-col xl:flex-row items-center justify-center mt-10">
             <div class="flex flex-col w-1/2">
                 <div class="">
                     <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">
-                    <h3 class="font-manrope font-bold text-5xl">Kota Pekalongan</h3>
-                    <p class="mt-2 md:mr-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, nostrum dolorem
+                    <h3 class="font-manrope text-center text-2xl font-bold md:text-5xl md:text-left">Kota Pekalongan</h3>
+                    <p class="text-center mt-2 md:mr-5 md:text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Voluptatem, nostrum
+                        dolorem
                         dicta amet vitae
                         asperiores maxime nesciunt, consectetur quae, omnis neque a id architecto veniam. Reiciendis
                         sapiente placeat aliquid incidunt minima qui amet at illo porro. Molestias consequatur sed
@@ -17,86 +19,39 @@
                         necessitatibus voluptatibus voluptatem odio rem.</p>
                 </div>
             </div>
-            <div class="w-1/2">
-                <div id="default-carousel" class="relative w-full" data-carousel="slide">
-                    <!-- Carousel wrapper -->
-                    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                        <!-- Item 1 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="/docs/images/carousel/carousel-1.svg"
-                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                alt="...">
+            <div class="flex justify-center items-center w-1/2">
+                <!-- Slider main container -->
+                <div class="swiper w-96 md:w-[600px] xl:w-[600px] h-full">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper mt-8">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
                         </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="/docs/images/carousel/carousel-2.svg"
-                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                alt="...">
+                        <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
                         </div>
-                        <!-- Item 3 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="/docs/images/carousel/carousel-3.svg"
-                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                alt="...">
+                        <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
                         </div>
-                        <!-- Item 4 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="/docs/images/carousel/carousel-4.svg"
-                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                alt="...">
+                        <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
                         </div>
-                        <!-- Item 5 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="/docs/images/carousel/carousel-5.svg"
-                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                alt="...">
+                        <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
                         </div>
+
                     </div>
-                    <!-- Slider indicators -->
-                    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                            data-carousel-slide-to="0"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-                            data-carousel-slide-to="1"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-                            data-carousel-slide-to="2"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
-                            data-carousel-slide-to="3"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
-                            data-carousel-slide-to="4"></button>
-                    </div>
-                    <!-- Slider controls -->
-                    <button type="button"
-                        class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-prev>
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 1 1 5l4 4" />
-                            </svg>
-                            <span class="sr-only">Previous</span>
-                        </span>
-                    </button>
-                    <button type="button"
-                        class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-next>
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 9 4-4-4-4" />
-                            </svg>
-                            <span class="sr-only">Next</span>
-                        </span>
-                    </button>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <!-- If we need scrollbar -->
+                    {{-- <div class="swiper-scrollbar"></div> --}}
                 </div>
             </div>
 
         </div>
     </div>
+
 
     <x-beranda.testimonies />
     <x-beranda.activities :igposts="$igPosts" />
