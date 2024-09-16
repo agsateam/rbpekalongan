@@ -2,40 +2,45 @@
 $events = [
     [
         'name' => 'Seminar Digital Marketing',
-        'deskripsi' => 'Pelatihan intensif mengenai strategi digital marketing untuk UMKM, membantu meningkatkan penjualan melalui platform online.',
+        'deskripsi' => 'Pelatihan intensif mengenai strategi digital marketing untuk UMKM, membantu meningkatkan penjualan melalui platform online. Pelatihan intensif mengenai strategi',
         'date' => '2024-09-20',
         'location' => 'Jakarta Convention Center, Jakarta',
-        'poster' => 'https://i.snapcdn.app/photo?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vdi90NTEuMjkzNTAtMTUvNDU5MDEwNzc5XzM4MjYwOTU4NDc4MjU1Ml8xMTQyNzM1ODk2OTQ1MTYzMDI4X24uanBnP3N0cD1kc3QtanBnX2UzNV9zNjQweDY0MF9zaDAuMDgmZWZnPWV5SjJaVzVqYjJSbFgzUmhaeUk2SW1sdFlXZGxYM1Z5YkdkbGJpNHhNRGd3ZURFd09EQXVjMlJ5TG1ZeU9UTTFNQzVrWldaaGRXeDBYMmx0WVdkbEluMCZfbmNfaHQ9c2NvbnRlbnQtZnJhMy0xLmNkbmluc3RhZ3JhbS5jb20mX25jX2NhdD0xMDgmX25jX29oYz1OV3pXSjkwMUJaUVE3a052Z0hmZEwzMCZlZG09QVBfVjEwRUJBQUFBJmNjYj03LTUmb2g9MDBfQVlEQkRFblNZa1ZQSWlxbjFvZlpiM1hwWEwzdDJPWFk3dFRTSHZmSGwyTVg1USZvZT02NkVEQUI5RCZfbmNfc2lkPTI5OTliOCIsImZpbGVuYW1lIjoiVGh1bWJuYWlsXzQ1OTAxMDc3OV8zODI2MDk1ODQ3ODI1NTJfMTE0MjczNTg5Njk0NTE2MzAyOF9uLmpwZyIsIm5iZiI6MTcyNjQ3MDAxNSwiZXhwIjoxNzI2NDczNjE1LCJpYXQiOjE3MjY0NzAwMTV9.lhf7rkMzDavG6SrilMmBxnYOIjCK0IyArL-tJTgga3A'
+        'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100)
     ],
     [
         'name' => 'Workshop Branding Produk',
         'deskripsi' => 'Workshop khusus bagi pelaku UMKM untuk membangun identitas merek yang kuat dan menarik bagi konsumen.',
         'date' => '2024-10-05',
         'location' => 'Rumah BUMN, Surabaya',
-        'poster' => 'https://i.snapcdn.app/photo?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vdi90NTEuMjkzNTAtMTUvNDU5NDAyNjYyXzE3MDQwNjU5MjM2OTAwNTFfNjM0NTAyOTc2NjE4OTY5NjI3OF9uLmpwZz9zdHA9ZHN0LWpwZ19lMzVfczY0MHg2NDBfc2gwLjA4JmVmZz1leUoyWlc1amIyUmxYM1JoWnlJNkltbHRZV2RsWDNWeWJHZGxiaTR4TURnd2VERXdPREF1YzJSeUxtWXlPVE0xTUM1a1pXWmhkV3gwWDJsdFlXZGxJbjAmX25jX2h0PXNjb250ZW50LWZyYTUtMi5jZG5pbnN0YWdyYW0uY29tJl9uY19jYXQ9MTA3Jl9uY19vaGM9MXlFdnA3OUVSOXdRN2tOdmdHU3huSkMmX25jX2dpZD1jZjBiOTI4ZTA1ZTU0NmIyODVhYzVkMTk2MTgyZWY0NiZlZG09QVBfVjEwRUJBQUFBJmNjYj03LTUmb2g9MDBfQVlEb1FZQnJoMEhTTTB6S0NlVUxnWmhpd081a21ydUh0aGVTTU0xdGZBYmpsQSZvZT02NkVEQTkzNSZfbmNfc2lkPTI5OTliOCIsImZpbGVuYW1lIjoiVGh1bWJuYWlsXzQ1OTQwMjY2Ml8xNzA0MDY1OTIzNjkwMDUxXzYzNDUwMjk3NjYxODk2OTYyNzhfbi5qcGciLCJuYmYiOjE3MjY0NzAwMTUsImV4cCI6MTcyNjQ3MzYxNSwiaWF0IjoxNzI2NDcwMDE1fQ._UoueWFXqbUpma-1IC23L91X7PYGfPad1a0PPux8pdQ'
+        'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100)
     ],
     [
         'name' => 'Expo UMKM Nasional',
         'deskripsi' => 'Pameran nasional yang menampilkan produk-produk unggulan dari berbagai UMKM, serta mempertemukan pelaku usaha dengan investor.',
         'date' => '2024-11-15',
         'location' => 'Lapangan Merdeka, Bandung',
-        'poster' => 'https://i.snapcdn.app/photo?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vdi90NTEuMjkzNTAtMTUvNDU5MDEwNzc5XzM4MjYwOTU4NDc4MjU1Ml8xMTQyNzM1ODk2OTQ1MTYzMDI4X24uanBnP3N0cD1kc3QtanBnX2UzNV9zNjQweDY0MF9zaDAuMDgmZWZnPWV5SjJaVzVqYjJSbFgzUmhaeUk2SW1sdFlXZGxYM1Z5YkdkbGJpNHhNRGd3ZURFd09EQXVjMlJ5TG1ZeU9UTTFNQzVrWldaaGRXeDBYMmx0WVdkbEluMCZfbmNfaHQ9c2NvbnRlbnQtZnJhMy0xLmNkbmluc3RhZ3JhbS5jb20mX25jX2NhdD0xMDgmX25jX29oYz1OV3pXSjkwMUJaUVE3a052Z0hmZEwzMCZlZG09QVBfVjEwRUJBQUFBJmNjYj03LTUmb2g9MDBfQVlEQkRFblNZa1ZQSWlxbjFvZlpiM1hwWEwzdDJPWFk3dFRTSHZmSGwyTVg1USZvZT02NkVEQUI5RCZfbmNfc2lkPTI5OTliOCIsImZpbGVuYW1lIjoiVGh1bWJuYWlsXzQ1OTAxMDc3OV8zODI2MDk1ODQ3ODI1NTJfMTE0MjczNTg5Njk0NTE2MzAyOF9uLmpwZyIsIm5iZiI6MTcyNjQ3MDAxNSwiZXhwIjoxNzI2NDczNjE1LCJpYXQiOjE3MjY0NzAwMTV9.lhf7rkMzDavG6SrilMmBxnYOIjCK0IyArL-tJTgga3A'
+        'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100)
     ],
     [
         'name' => 'Pelatihan Manajemen Keuangan',
         'deskripsi' => 'Pelatihan bagi UMKM untuk mengelola keuangan bisnis secara lebih profesional dan efisien, mulai dari pencatatan hingga laporan keuangan.',
         'date' => '2024-12-02',
         'location' => 'Universitas Gadjah Mada, Yogyakarta',
-        'poster' => 'https://i.snapcdn.app/photo?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vdi90NTEuMjkzNTAtMTUvNDU5NDAyNjYyXzE3MDQwNjU5MjM2OTAwNTFfNjM0NTAyOTc2NjE4OTY5NjI3OF9uLmpwZz9zdHA9ZHN0LWpwZ19lMzVfczY0MHg2NDBfc2gwLjA4JmVmZz1leUoyWlc1amIyUmxYM1JoWnlJNkltbHRZV2RsWDNWeWJHZGxiaTR4TURnd2VERXdPREF1YzJSeUxtWXlPVE0xTUM1a1pXWmhkV3gwWDJsdFlXZGxJbjAmX25jX2h0PXNjb250ZW50LWZyYTUtMi5jZG5pbnN0YWdyYW0uY29tJl9uY19jYXQ9MTA3Jl9uY19vaGM9MXlFdnA3OUVSOXdRN2tOdmdHU3huSkMmX25jX2dpZD1jZjBiOTI4ZTA1ZTU0NmIyODVhYzVkMTk2MTgyZWY0NiZlZG09QVBfVjEwRUJBQUFBJmNjYj03LTUmb2g9MDBfQVlEb1FZQnJoMEhTTTB6S0NlVUxnWmhpd081a21ydUh0aGVTTU0xdGZBYmpsQSZvZT02NkVEQTkzNSZfbmNfc2lkPTI5OTliOCIsImZpbGVuYW1lIjoiVGh1bWJuYWlsXzQ1OTQwMjY2Ml8xNzA0MDY1OTIzNjkwMDUxXzYzNDUwMjk3NjYxODk2OTYyNzhfbi5qcGciLCJuYmYiOjE3MjY0NzAwMTUsImV4cCI6MTcyNjQ3MzYxNSwiaWF0IjoxNzI2NDcwMDE1fQ._UoueWFXqbUpma-1IC23L91X7PYGfPad1a0PPux8pdQ'
+        'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100)
     ],
     [
         'name' => 'Seminar Pengembangan Produk',
         'deskripsi' => 'Seminar ini membahas teknik dan strategi untuk mengembangkan produk yang inovatif dan berkelanjutan dalam pasar kompetitif.',
         'date' => '2024-12-20',
         'location' => 'Hotel Santika, Semarang',
-        'poster' => 'https://i.snapcdn.app/photo?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vdi90NTEuMjkzNTAtMTUvNDU5MDEwNzc5XzM4MjYwOTU4NDc4MjU1Ml8xMTQyNzM1ODk2OTQ1MTYzMDI4X24uanBnP3N0cD1kc3QtanBnX2UzNV9zNjQweDY0MF9zaDAuMDgmZWZnPWV5SjJaVzVqYjJSbFgzUmhaeUk2SW1sdFlXZGxYM1Z5YkdkbGJpNHhNRGd3ZURFd09EQXVjMlJ5TG1ZeU9UTTFNQzVrWldaaGRXeDBYMmx0WVdkbEluMCZfbmNfaHQ9c2NvbnRlbnQtZnJhMy0xLmNkbmluc3RhZ3JhbS5jb20mX25jX2NhdD0xMDgmX25jX29oYz1OV3pXSjkwMUJaUVE3a052Z0hmZEwzMCZlZG09QVBfVjEwRUJBQUFBJmNjYj03LTUmb2g9MDBfQVlEQkRFblNZa1ZQSWlxbjFvZlpiM1hwWEwzdDJPWFk3dFRTSHZmSGwyTVg1USZvZT02NkVEQUI5RCZfbmNfc2lkPTI5OTliOCIsImZpbGVuYW1lIjoiVGh1bWJuYWlsXzQ1OTAxMDc3OV8zODI2MDk1ODQ3ODI1NTJfMTE0MjczNTg5Njk0NTE2MzAyOF9uLmpwZyIsIm5iZiI6MTcyNjQ3MDAxNSwiZXhwIjoxNzI2NDczNjE1LCJpYXQiOjE3MjY0NzAwMTV9.lhf7rkMzDavG6SrilMmBxnYOIjCK0IyArL-tJTgga3A'
+        'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100)
     ]
 ];
+
+function sliceText($text){
+    if(strlen($text) > 150) $text = substr($text, 0, 150).'...';
+    return $text;
+}
 @endphp
 
 <div class="bg-white my-16 py-16">
@@ -51,7 +56,7 @@ $events = [
                             <img src="{{ $item['poster'] }}" class="w-full md:w-64 rounded-md">
                             <div class="flex flex-col mt-5 md:mt-0 md:ml-10 px-5 md:px-0">
                                 <span class="text-2xl md:text-4xl font-bold mb-3">{{ $item['name'] }}</span>
-                                <p class="text-lg">{{ $item['deskripsi'] }}</p>
+                                <p class="text-lg">{{ sliceText($item['deskripsi']) }}</p>
                                 <span class="font-semibold mt-3 flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-3">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
