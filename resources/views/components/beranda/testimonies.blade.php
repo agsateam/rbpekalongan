@@ -39,7 +39,7 @@ $testi = [
         </div>
     
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
-            <div class="relative overflow-hidden rounded-lg h-96 lg:h-56 bg-white shadow-md">
+            <div class="relative overflow-hidden rounded-lg h-[500px] lg:h-56 bg-white shadow-md">
                 @foreach ($testi as $t)
                     <div class="hidden duration-1000 ease-in-out" data-carousel-item>
                         <div class="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -48,7 +48,7 @@ $testi = [
                                     <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
                                 </svg>
                                 <div class="flex flex-col ml-5 text-lg">
-                                    {{$t['pesan']}}
+                                    <span class="">{{$t['pesan']}}</span>
                                     <div class="mt-3">
                                         <span class="font-bold">{{ $t['name'] }}</span>
                                         <span class="mx-2">|</span>
