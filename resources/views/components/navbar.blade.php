@@ -5,7 +5,7 @@
             class="h-6 border-r-2 md:h-12 md:border-r-2 border-black">
         <div class="font-bold text-sm self-center sm:text-xl">Pekalongan</div>
         <div
-            class="ml-auto mr-8 border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 sm:block">
+            class="ml-auto border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 sm:block">
             <a href="#">Masuk</a>
         </div>
     </div>
