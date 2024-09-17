@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@example.com',
         ]);
+
+        $this->call([
+            EventSeeder::class
+        ]);
     }
 }
