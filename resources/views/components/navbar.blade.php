@@ -5,7 +5,7 @@
         <div class="font-bold text-sm mt-2 md:text-xl">Pekalongan</div>
         <div
             class="ml-auto border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 md:block">
-            <a href="#">Masuk</a>
+            <a href="/login">Masuk</a>
         </div>
     </div>
 </div>
