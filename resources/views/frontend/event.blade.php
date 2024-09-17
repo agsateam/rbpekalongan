@@ -16,11 +16,11 @@ function toDate($date){
 
 <div class="py-16">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
-        <h4 class="text-xl md:text-5xl font-bold mb-5">Event</h4>
+        <h4 class="text-4xl md:text-5xl font-bold mb-5">Event</h4>
 
         <form method="get">
-        <div class="grid grid-cols-6 gap-3">
-            <input type="text" name="keyword" placeholder="Kata kunci ..." class="col-span-3 input input-bordered w-full" />
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+            <input type="text" name="keyword" placeholder="Cari event ..." class="col-span-2 md:col-span-3 input input-bordered w-full" />
             <select class="select select-bordered w-full" name="type">
                 <option selected>Semua event</option>
                 <option>Akan datang</option>
@@ -34,15 +34,15 @@ function toDate($date){
                 onfocus="(this.type='date')"
                 onblur="(this.type='text')"
             />
-            <button class="btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
+            <button class="col-span-2 md:col-span-1 btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
         </div>
         </form>
 
         <div class="grid grid-cols-1 gap-5 mt-10">
             @foreach ($events as $item)
-            <div class="border rounded-md flex p-5">
-                <img src="{{ $item['poster'] }}" class="w-56 rounded-md">
-                <div class="flex flex-col ml-10">
+            <div class="bg-white border rounded-md flex flex-col md:flex-row p-5">
+                <img src="{{ $item['poster'] }}" class="w-full md:w-56 rounded-md">
+                <div class="flex flex-col md:ml-10 mt-3 md:mt-0">
                     <span class="text-3xl">{{ $item['name'] }}</span>
                     <span class="mt-2">{{ $item['deskripsi'] }}</span>
                     <span class="font-semibold mt-3 flex">
@@ -61,12 +61,12 @@ function toDate($date){
 
                     @if ($item['status'] == "upcoming")
                         <div class="mt-5">
-                            <button class="btn btn-sm bg-[#195770] text-white">Daftar Event</button>
+                            <a href="{{ route('event.regist') . '/1' }}" class="btn btn-sm bg-[#195770] text-white">Daftar Event</a>
                         </div>
                     @else
-                        <div class="mt-5">
+                        <div class="flex flex-col md:flex-row mt-5">
                             <span class="rounded-md px-3 py-1 bg-emerald-700 text-white">Event Telah Selesai</span>
-                            <span class="rounded-md px-3 py-1 bg-gray-200 ml-3">20 Peserta Mengikuti</span>
+                            <span class="rounded-md px-3 py-1 bg-gray-200 md:ml-3 mt-2 md:mt-0">20 Peserta Mengikuti</span>
                         </div>
                     @endif
                 </div>
