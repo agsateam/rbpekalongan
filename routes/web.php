@@ -22,4 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // Manage Event
     Route::get('/manage-event', [ManageEventController::class, 'index'])->name('manage.event');
+    Route::get('/manage-event/data', [ManageEventController::class, 'getData'])->name('manage.event.data');
+    Route::get('/manage-event/edit/{id?}', [ManageEventController::class, 'index'])->name('manage.event.edit');
 });
