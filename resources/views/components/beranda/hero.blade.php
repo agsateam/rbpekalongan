@@ -1,4 +1,4 @@
-<div class="w-full lg:max-w-screen-xl md:w-screen lg:mx-14 2xl:mx-auto flex justify-center">
+<div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
     <div class="flex flex-col xl:flex-row items-center justify-center mt-10">
         <div class="flex flex-col w-1/2">
             <div class="">
