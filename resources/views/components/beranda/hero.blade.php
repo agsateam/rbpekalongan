@@ -1,5 +1,5 @@
 <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
-    <div class="flex flex-col xl:flex-row items-center justify-between mt-10">
+    <div class="flex flex-col w-80 md:w-full xl:flex-row items-center justify-between mt-10">
         <div class="flex flex-col w-full px-14 lg:w-1/3 lg:px-0">
             <div class="w-full flex flex-col lg:justify-start">
                 <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">
