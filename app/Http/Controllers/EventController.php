@@ -59,4 +59,28 @@ class EventController extends Controller
             "events" => $events
         ]);
     }
+
+    public function regist($id = null){
+        $data = [
+            'name' => 'Seminar Pengembangan Produk',
+            'deskripsi' => 'Seminar ini membahas teknik dan strategi untuk mengembangkan produk yang inovatif dan berkelanjutan dalam pasar kompetitif.',
+            'date' => '2024-12-20',
+            'time' => '10.00',
+            'location' => 'Rumah BUMN Kota Pekalongan',
+            'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
+            'status' => 'done'
+        ];
+
+        return view('frontend.event_regist', [
+            "data" => $data
+        ]);
+    }
+
+    public function registPost(Request $req){
+        return redirect(route('event.regist.success'));
+    }
+
+    public function registSuccess(){
+        return view('frontend.event_regist_success');
+    }
 }

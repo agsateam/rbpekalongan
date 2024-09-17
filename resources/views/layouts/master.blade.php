@@ -19,7 +19,7 @@
 <body class="font-manrope">
     @include('components.navbar')
 
-    <div class="bg-right-top bg-no-repeat" style="background-image: url('./images/batik2.png')">
+    <div class="bg-right-top bg-no-repeat" style="background-image: url('{{url('/')}}/images/batik2.png')">
         @yield('content')
     </div>
 
@@ -28,7 +28,7 @@
             <div class="flex flex-col items-start">
                 <div class="flex flex-col md:flex-row md:justify-center md:items-center">
                     <div class="md:border-r-2 border-white pr-0 mr-0 md:pr-5 md:mr-5">
-                        <img src="./images/logo-light.png" alt="Logo Rumah Bumn" class="w-48">
+                        <img src="{{url('/')}}/images/logo-light.png" alt="Logo Rumah Bumn" class="w-48">
                     </div>
                     <div class="ml-2 mt-3 md:ml-0 md:mt-0 font-bold text-md text-xl md:text-5xl text-white">Pekalongan</div>
                 </div>
@@ -51,7 +51,7 @@
                 </a>
             </div>
         </div>
-        <div class="w-full h-14 bg-contain" style="background-image: url('./images/batik1.png')"></div>
+        <div class="w-full h-14 bg-contain" style="background-image: url('{{url('/')}}/images/batik1.png')"></div>
     </div>
 
     @yield('script')
