@@ -2,8 +2,8 @@
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <div class="flex flex-col lg:flex-row w-full justify-between items-center">
 
-            <div class="text-white font-bold text-3xl text-center md:text-left md:text-5xl mb-8 lg:mb-0 w-1/2">
-                <h3>Informasi Pembinaan Rumah BUMN</h3>
+            <div class="text-white font-bold text-3xl text-center md:text-left md:text-5xl mb-8 lg:mb-0 w-1/2 line">
+                <h3 class="leading-normal">Informasi Pembinaan Rumah BUMN</h3>
 
             </div>
 
