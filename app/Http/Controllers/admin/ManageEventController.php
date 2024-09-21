@@ -19,11 +19,31 @@ class ManageEventController extends Controller
     }
 
     public function store(Request $req){
-        dd($req->all());
+        $imageName = time().'.'.$req->poster->extension();
+        $req->poster->move(public_path('uploaded/event'), $imageName);
+
+        $data = [
+            "name" => $req->nama,
+            "deskripsi" => $req->deskripsi,
+            "date" => explode("T", $req->date)[0],
+            "time" => explode("T", $req->date)[1],
+            "location" => $req->location,
+            "poster" => url('uploaded/event') ."/". $imageName,
+            "status" => "upcoming"
+        ];
+
+        Event::create($data);
+
+        return redirect(route('manage.event'))->with('success', 'Data event berhasil dibuat.');
     }
 
     public function destroy($id){
-        dd($id);
+        Event::where('id', $id)->delete();
+        return redirect(route('manage.event'))->with('success', 'Data event berhasil dihapus.');
+    }
+
+    public function done(Request $req){
+        dd($req->all());
     }
 
     public function getData()

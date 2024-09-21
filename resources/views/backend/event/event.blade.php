@@ -14,6 +14,8 @@
     </div>
 
     <a href="{{route('manage.event.new')}}" class="btn bg-[#195770] text-white mb-5">+ Buat Event</a>
+    
+    @include('components.backend.alert')
 
     <table id="event-table" class="w-full table table-auto border border-gray-200 rounded-md">
         <thead class="bg-gray-100">

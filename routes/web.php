@@ -27,4 +27,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-event/data', [ManageEventController::class, 'getData'])->name('manage.event.data');
     Route::get('/manage-event/edit/{id?}', [ManageEventController::class, 'index'])->name('manage.event.edit');
     Route::get('/manage-event/delete/{id?}', [ManageEventController::class, 'destroy'])->name('manage.event.delete');
+    Route::post('/manage-event/done', [ManageEventController::class, 'done'])->name('manage.event.done');
 });

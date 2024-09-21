@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <form class="flex flex-col mt-10 md:mt-0" action="{{route('manage.event.save')}}" method="post">
+    <form class="flex flex-col mt-10 md:mt-0" action="{{route('manage.event.save')}}" method="post" enctype="multipart/form-data">
         @csrf
         <label class="form-control w-full">
             <div class="label">
