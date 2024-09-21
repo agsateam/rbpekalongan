@@ -7,7 +7,7 @@
 
             </div>
 
-            <div class="text-white flex flex-wrap w-1/2 gap-16 justify-end">
+            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-16">
 
                 <div class="card flex flex-row items-center gap-4">
                     <div class="bg-white rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none"

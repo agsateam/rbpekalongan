@@ -4,10 +4,10 @@
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
 
 
-        <div class="flex flex-wrap gap-8 md:justify-center xl:justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <div
-                class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center ">
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center ">
 
                 <div class="bg-[#195770] rounded-full mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -17,18 +17,15 @@
                     </svg>
 
                 </div>
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Menjadi UMKM Binaan
-                        Rumah BUMN Pekalongan</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bimbingan intensif bagi UMKM untuk
-                    pengembangan usaha dan peningkatan kualitas produk.</p>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Ingin menjadi UMKM Binaan Rumah BUMN Pekalongan?</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bimbingan intensif bagi UMKM untuk pengembangan usaha dan peningkatan kualitas produk.</p>
+                <a href="#" class="btn btn-sm text-white bg-[#195770] mt-2">Daftar Disini</a>
 
             </div>
 
 
             <div
-                class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center ">
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center ">
 
                 <div class="bg-[#195770] rounded-full mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -38,19 +35,13 @@
                     </svg>
 
                 </div>
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mengikuti Event
-                        Yang
-                        Diselenggarakan Oleh Rumah
-                        BUMN Pekalongan</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Kesempatan mengikuti pelatihan dan workshop
-                    bisnis eksklusif dari Rumah BUMN.</p>
-
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Ingin Ikut Event Yang Diselenggarakan Rumah BUMN Pekalongan?</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Kesempatan mengikuti pelatihan dan workshop bisnis eksklusif dari Rumah BUMN.</p>
+                <a href="{{route('event')}}" class="btn btn-sm text-white bg-[#195770] mt-2">Daftar Disini</a>
             </div>
 
             <div
-                class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center ">
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center ">
 
                 <div class="bg-[#195770] rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-20 p-3 text-white">
@@ -58,15 +49,9 @@
                             d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                     </svg>
                 </div>
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Booking Tempat
-                        Untuk
-                        Aktivitas Produktif Anda</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Manfaatkan fasilitas ruang publik yang
-                    nyaman untuk
-                    mendukung kreativitas dan Pekerjaan anda.</p>
-
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Ingin Booking Tempat Untuk Aktivitas Produktif Anda?</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Manfaatkan fasilitas ruang publik yang nyaman untuk mendukung kreativitas dan Pekerjaan anda.</p>
+                <a href="#" class="btn btn-sm text-white bg-[#195770] mt-2">Booking Disini</a>
             </div>
 
 

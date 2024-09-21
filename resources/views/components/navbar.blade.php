@@ -1,8 +1,8 @@
 <div class="bg-white z-40 sticky top-0">
     <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center py-3 gap-2">
 
-        <img src="./images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
-        <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn" class="h-6 md:h-12 border-r-2 border-black">
+        <img src="{{url('/')}}/images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
+        <img src="{{url('/')}}/images/logorumahbumn.png" alt="Logo Rumah Bumn" class="h-6 md:h-12 border-r-2 border-black">
 
         <div class="font-bold text-sm mt-2 md:text-xl">Pekalongan</div>
         <div

@@ -19,7 +19,7 @@
 
     <div class="bg-right-top bg-no-repeat" style="background-image: url('{{url('/')}}/images/batik2.png')">
         <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto py-16">
-            <div class="grid grid-cols-2 md:gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 md:gap-10">
                 <form action="{{ route('login.auth') }}" method="post">
                     @csrf
                     <h4 class="text-3xl md:text-4xl font-bold mb-5">Login</h4>
@@ -47,7 +47,7 @@
                     </label>
                     <button type="submit" class="btn bg-[#195770] hover:bg-[#1ba0db] text-white mt-5 w-full">Masuk</button>
                 </form>
-                <div class="flex items-center justify-center">
+                <div class="hidden md:flex items-center justify-center">
                     <img src="{{url('/images/login-image.svg')}}" class="w-3/4">
                 </div>
             </div>

@@ -104,12 +104,13 @@
                 </div>
 
             </header>
-            <div class="w-full p-5 bg-right-top bg-no-repeat" style="background-image: url('{{url('/')}}/images/batik2.png')">
+            <div class="w-full h-full p-5 bg-right-top bg-no-repeat" style="background-image: url('{{url('/')}}/images/batik2.png')">
                 @yield('content')
             </div>
         </section>
     </main>
 
     @yield('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
