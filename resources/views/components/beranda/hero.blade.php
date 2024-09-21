@@ -1,7 +1,7 @@
 <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
 
-    <div class="flex flex-col w-80 md:w-full xl:flex-row items-center justify-between mt-10">
-        <div class="flex flex-col w-full px-14 lg:w-1/3 lg:px-0">
+    <div class="flex flex-col w-full md:gap-10 md:flex-row items-center justify-between mt-10">
+        <div class="flex flex-col w-full px-5 lg:w-1/3 lg:px-0">
             <div class="w-full flex flex-col lg:justify-start">
 
                 <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">
@@ -14,22 +14,20 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center items-center w-2/3">
+        <div class="flex justify-center items-center w-4/5 lg:w-2/3">
             <!-- Slider main container -->
             <div class="swiper w-96 md:w-[600px] xl:w-[700px] h-full">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper mt-8">
                     <!-- Slides -->
-                    <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1"
-                            class="object-cover">
+                    <div class="swiper-slide flex justify-center">
+                        <img src="https://i.ibb.co.com/fCLC6cN/image.png" alt="fofo 1" class="rounded-lg w-11/12 lg:h-96">
                     </div>
-                    <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
+                    <div class="swiper-slide flex justify-center">
+                        <img src="https://i.ibb.co.com/LS0gGmz/image.png" alt="fofo 1" class="rounded-lg w-11/12 lg:h-96">
                     </div>
-                    <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
-                    </div>
-                    <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
-                    </div>
-                    <div class="swiper-slide"><img src="https://random.imagecdn.app/v1/image?" alt="fofo 1">
+                    <div class="swiper-slide flex justify-center">
+                        <img src="https://i.ibb.co.com/z2VdqPt/image.png" alt="fofo 1" class="rounded-lg w-11/12 lg:h-96">
                     </div>
 
                 </div>
