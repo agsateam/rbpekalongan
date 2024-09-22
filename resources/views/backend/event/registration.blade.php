@@ -139,7 +139,7 @@
         document.getElementById('umur').innerHTML = umur;
         document.getElementById('phone').innerHTML = phone;
         document.getElementById('alamat').innerHTML = alamat;
-        document.getElementById('umkm').innerHTML = umkm;
+        document.getElementById('umkm').innerHTML = (umkm == "") ? "-" : umkm;
     }
 
     function confirmReject(href){

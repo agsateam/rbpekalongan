@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="md:px-5">
-    <div class="flex justify-between">
+    <div class="flex flex-col md:flex-row justify-between">
         <h4 class="text-2xl md:text-3xl font-bold mb-5">Buat Event</h4>
         <div class="breadcrumbs text-sm">
             <ul>

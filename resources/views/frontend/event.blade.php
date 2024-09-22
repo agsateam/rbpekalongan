@@ -16,15 +16,20 @@ function toDate($date){
 
 <div class="py-16">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
-        <h4 class="text-4xl md:text-5xl font-bold mb-5">Event</h4>
+        <div class="flex justify-between items-center mb-5">
+            <h4 class="text-4xl md:text-5xl font-bold">Event</h4>
+            @if ($isFiltered)
+            <a href="{{route('event')}}" class="btn btn-sm md:btn-md btn-error text-white">Clear Filter</a>
+            @endif
+        </div>
 
         <form method="get">
         <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
             <input type="text" name="keyword" placeholder="Cari event ..." class="col-span-2 md:col-span-3 input input-bordered w-full" />
             <select class="select select-bordered w-full" name="type">
-                <option selected>Semua event</option>
-                <option>Akan datang</option>
-                <option>Selesai</option>
+                <option value="all" selected>Semua event</option>
+                <option value="upcoming">Akan datang</option>
+                <option value="done">Selesai</option>
             </select>
             <input
                 name="date"
@@ -39,6 +44,9 @@ function toDate($date){
         </form>
 
         <div class="grid grid-cols-1 gap-5 mt-10">
+            @if (count($events) < 1)
+                <span class="text-center md:text-left">Tidak ada event yang tersedia</span>
+            @endif
             @foreach ($events as $item)
             <div class="bg-white border rounded-md flex flex-col md:flex-row p-5">
                 <img src="{{ $item['poster'] }}" class="w-full md:w-56 rounded-md">
@@ -66,7 +74,7 @@ function toDate($date){
                     @else
                         <div class="flex flex-col md:flex-row mt-5">
                             <span class="rounded-md px-3 py-1 bg-emerald-700 text-white">Event Telah Selesai</span>
-                            <span class="rounded-md px-3 py-1 bg-gray-200 md:ml-3 mt-2 md:mt-0">20 Peserta Mengikuti</span>
+                            <span class="rounded-md px-3 py-1 bg-gray-200 md:ml-3 mt-2 md:mt-0">{{$item->participant}} Peserta Mengikuti</span>
                         </div>
                     @endif
                 </div>

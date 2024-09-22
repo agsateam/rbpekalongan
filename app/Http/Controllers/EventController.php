@@ -4,16 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\EventRegistration;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class EventController extends Controller
 {
-    public function front(){
-        $events = Event::orderBy('date', 'desc')->get();
+    public function front(Request $req){
+        $events = Event::orderBy('date', 'desc');
 
+        $filterStatus = $req->has('type') ? ($req->type == "all" ? ["upcoming", "done"] : [$req->type]) : ["upcoming", "done"];
+        $filterDate = [];
+        if ($req->has("date") && $req->date != "") {
+            $filterDate = [
+                Carbon::createFromDate($req->date)->subDay()->endOfDay(),
+                Carbon::createFromDate($req->date)->endOfDay()
+            ];
+        } else {
+            $filterDate = [
+                Carbon::today()->subYear(1)->startOfDay(),
+                Carbon::today()->addMonth(6)->endOfDay()
+            ];
+        }
+
+        $events = $events->whereIn('status', $filterStatus)->whereBetween('date', $filterDate);
+
+        if($req->has('keyword')){
+            $events = $events->whereLike('name', '%' . $req->keyword . '%')->get();
+        }else{
+            $events = $events->get();
+        }
+        
+        $isFiltered = $req->has('keyword') || $req->has('type') || $req->has('date');
         return view('frontend.event', [
-            "events" => $events
+            "events" => $events,
+            "isFiltered" => $isFiltered
         ]);
     }
 
