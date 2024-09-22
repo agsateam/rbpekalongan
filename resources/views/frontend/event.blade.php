@@ -61,7 +61,7 @@ function toDate($date){
 
                     @if ($item['status'] == "upcoming")
                         <div class="mt-5">
-                            <a href="{{ route('event.regist') . '/1' }}" class="btn btn-sm bg-[#195770] text-white">Daftar Event</a>
+                            <a href="{{ route('event.regist') . '/' . $item->id }}" class="btn btn-sm bg-[#195770] text-white">Daftar Event</a>
                         </div>
                     @else
                         <div class="flex flex-col md:flex-row mt-5">

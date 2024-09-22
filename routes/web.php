@@ -32,4 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/manage-event/update', [ManageEventController::class, 'update'])->name('manage.event.update');
     Route::get('/manage-event/delete/{id?}', [ManageEventController::class, 'destroy'])->name('manage.event.delete');
     Route::post('/manage-event/done', [ManageEventController::class, 'done'])->name('manage.event.done');
+    // Manage Event
+    Route::get('/manage-regist', [EventController::class, 'index'])->name('manage.eventregist');
+    Route::get('/manage-regist/data', [EventController::class, 'getData'])->name('manage.eventregist.data');
+    Route::get('/manage-regist/accept/{id?}', [EventController::class, 'accept'])->name('manage.eventregist.accept');
+    Route::get('/manage-regist/reject/{id?}', [EventController::class, 'reject'])->name('manage.eventregist.reject');
 });

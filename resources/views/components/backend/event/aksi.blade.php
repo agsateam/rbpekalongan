@@ -16,19 +16,3 @@
         </svg>                 
     </button>
 </div>
-
-<script>
-    function confirmDelete(href){
-        Swal.fire({
-            title: 'Konfirmasi',
-            text: 'Yakin akan menghapus data ini?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: "#195770",
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya',
-        }).then((val) => {
-            val['isConfirmed'] && (window.location.href = href)
-        })
-    }
-</script>

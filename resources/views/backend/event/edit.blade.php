@@ -22,6 +22,7 @@
         <form class="flex flex-col" action="{{route('manage.event.update')}}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$data->id}}"/>
+            <input type="hidden" name="old_poster" value="{{$data->poster}}"/>
             <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text text-base font-semibold">Nama Event <span class="text-red-600 font-bold">*</span></span>
@@ -51,7 +52,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
                 <label class="form-control w-full mt-2">
                     <div class="label">
-                      <span class="label-text text-base font-semibold">Poster <span class="text-red-600 font-bold">*</span></span>
+                      <span class="label-text text-base font-semibold">Poster</span>
                     </div>
                     <input type="file" accept="image/*" onchange="loadFile(event)" name="poster" class="input input-bordered w-full">
                 </label>

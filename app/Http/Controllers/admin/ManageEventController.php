@@ -15,32 +15,13 @@ class ManageEventController extends Controller
     }
 
     public function detail($id){
-        $data = Event::where('id', $id)->first();
+        $data = Event::where('id', $id)->with('registration')->first();
 
-        $fakeParticipants = [
-            [
-                "name" => "Andi",
-                "gender" => "Laki-Laki",
-                "age" => 23,
-                "number" => "08150021000",
-                "address" => "Padukuhan Kraton",
-                "is_have_umkm" => false,
-                "umkm" => null,
-            ],
-            [
-                "name" => "Yono",
-                "gender" => "Laki-Laki",
-                "age" => 23,
-                "number" => "08150021000",
-                "address" => "Degayu",
-                "is_have_umkm" => true,
-                "umkm" => "Tahu Bakso Yono",
-            ],
-        ];
+        $participants = collect($data->registration)->sortByDesc('created_at');
 
         return view('backend.event.detail', [
             "data" => $data,
-            "participants" => $fakeParticipants
+            "participants" => $data->status == "done" ? $participants->where('status', 'accepted') : $participants
         ]);
     }
 
@@ -57,29 +38,29 @@ class ManageEventController extends Controller
     }
 
     public function update(Request $req){
-        // dd($req->all(), $req->has('poster'));
-        
         $data = [
             "name" => $req->nama,
             "deskripsi" => $req->deskripsi,
             "date" => explode("T", $req->date)[0],
             "time" => explode("T", $req->date)[1],
             "location" => $req->location,
-            "status" => "upcoming"
+            "poster" => $req->old_poster,
         ];
 
         if($req->has('poster')){
+            // remove old poster
+            $path = explode("uploaded/event", $req->old_poster);
+            unlink(public_path('uploaded/event') . $path[1]);
+            // upload new poster
             $imageName = time().'.'.$req->poster->extension();
             $req->poster->move(public_path('uploaded/event'), $imageName);
-
+            // update data
             $data['poster'] = url('uploaded/event') ."/". $imageName;
         }
 
-        dd($data);
+        Event::where('id', $req->id)->update($data);
 
-        Event::create($data);
-
-        return redirect(route('manage.event'))->with('success', 'Data event berhasil dibuat.');
+        return redirect(route('manage.event'))->with('success', 'Data event berhasil diperbarui.');
     }
 
     public function store(Request $req){
@@ -107,15 +88,18 @@ class ManageEventController extends Controller
     }
 
     public function done(Request $req){
-        dd($req->all());
+        Event::where('id', $req->id)->update(["status" => "done", "participant" => $req->participant]);
+
+        return back()->with('success', 'Event berhasil diperbarui');
     }
 
+    // Datatable
     public function getData()
     {
-        $events = Event::select(['id', 'name', 'date', 'time', 'location', 'status'])->orderBy('date', 'desc');
+        $events = Event::select(['id', 'name', 'date', 'time', 'location', 'status']);
 
         return DataTables::of($events)
-            ->editColumn('date', '{{ Carbon\Carbon::createFromDate($date)->format("d M Y") }}')
+            ->editColumn('date', '{{ Carbon\Carbon::createFromDate($date)->format("d/m/Y") }}')
             ->editColumn('status', function ($data) {
                 return view('components.backend.event.status', [
                     "data" => $data
