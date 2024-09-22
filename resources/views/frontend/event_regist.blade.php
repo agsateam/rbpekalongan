@@ -5,7 +5,7 @@ function toDate($date){
 @endphp
 
 @extends('layouts.master')
-@section('title', 'Regist Event')
+@section('title', 'Registrasi Event')
 @section('content')
 
 <div class="py-16">
@@ -36,14 +36,18 @@ function toDate($date){
                     </span>
                 </div>
 
-                <form class="flex flex-col mt-10 md:mt-0" action="{{route('event.regist.send')}}" method="post">
+                <form class="flex flex-col mt-10 md:mt-0" action="{{route('event.regist.send')}}" method="post" id="form-regist">
                     @csrf
+                    <input type="hidden" name="event_id" value="{{$data->id}}">
                     <span class="text-2xl font-semibold mb-5">Form Data Diri</span>
                     <label class="form-control w-full">
                         <div class="label">
                           <span class="label-text text-base font-semibold">Nama anda <span class="text-red-600 font-bold">*</span></span>
                         </div>
-                        <input type="text" name="nama" placeholder="Nama" class="input input-bordered w-full" required/>
+                        <input type="text" name="name" placeholder="Nama" value="{{old('name')}}" class="input input-bordered w-full" required/>
+                        @error('name')
+                        <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                        @enderror
                     </label>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
                         <label class="form-control w-full">
@@ -59,7 +63,7 @@ function toDate($date){
                             <div class="label">
                               <span class="label-text text-base font-semibold">Umur</span>
                             </div>
-                            <input type="number" name="umur" placeholder="Umur" class="input input-bordered w-full">
+                            <input type="number" name="age" placeholder="Umur" value="{{old('age')}}" class="input input-bordered w-full">
                         </label>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
@@ -67,13 +71,19 @@ function toDate($date){
                             <div class="label">
                               <span class="label-text text-base font-semibold">Alamat</span>
                             </div>
-                            <input type="text" name="alamat" placeholder="Alamat" class="input input-bordered w-full">
+                            <input type="text" name="address" placeholder="Alamat" value="{{old('address')}}" class="input input-bordered w-full" required>
+                            @error('address')
+                            <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                            @enderror
                         </label>
                         <label class="form-control w-full">
                             <div class="label">
                               <span class="label-text text-base font-semibold">Nomor HP/WA <span class="text-red-600 font-bold">*</span></span>
                             </div>
-                            <input type="text" name="phone" placeholder="Nomor" class="input input-bordered w-full" required>
+                            <input type="text" name="phone" placeholder="Nomor" value="{{old('phone')}}" class="input input-bordered w-full" required>
+                            @error('phone')
+                            <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                            @enderror
                         </label>
                     </div>
                     <label class="form-control w-full mt-2">
@@ -91,7 +101,7 @@ function toDate($date){
                         </div>
                         <input id="umkm" type="text" name="umkm" placeholder="UMKM" class="input input-bordered w-full" disabled/>
                     </label>
-                    <button type="submit" class="btn bg-[#195770] text-white mt-5">Daftar</button>
+                    <button type="button" onClick="regist(this.form)" class="btn bg-[#195770] text-white mt-5">Daftar</button>
                 </form>
             </div>
         </div>
@@ -114,5 +124,19 @@ function toDate($date){
                 umkmName.required = false;
             }
         }
+
+        function regist(form){
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Pastikan data anda sudah benar.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: "#195770",
+                cancelButtonText: 'Cek Ulang',
+                confirmButtonText: 'Benar',
+            }).then((val) => {
+                val['isConfirmed'] && form.submit();
+            })
+        };
     </script>
 @endsection

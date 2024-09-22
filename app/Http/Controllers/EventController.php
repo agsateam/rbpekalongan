@@ -2,74 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\EventRegistration;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class EventController extends Controller
 {
-    public function front(){
-        $events = [
-            [
-                'name' => 'Seminar Digital Marketing',
-                'deskripsi' => 'Pelatihan intensif mengenai strategi digital marketing untuk UMKM, membantu meningkatkan penjualan melalui platform online. Pelatihan intensif mengenai strategi',
-                'date' => '2024-09-20',
-                'time' => '10.00',
-                'location' => 'Rumah BUMN Kota Pekalongan',
-                'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
-                'status' => 'upcoming'
-            ],
-            [
-                'name' => 'Workshop Branding Produk',
-                'deskripsi' => 'Workshop khusus bagi pelaku UMKM untuk membangun identitas merek yang kuat dan menarik bagi konsumen.',
-                'date' => '2024-10-05',
-                'time' => '10.00',
-                'location' => 'Rumah BUMN Kota Pekalongan',
-                'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
-                'status' => 'upcoming'
-            ],
-            [
-                'name' => 'Expo UMKM Nasional',
-                'deskripsi' => 'Pameran nasional yang menampilkan produk-produk unggulan dari berbagai UMKM, serta mempertemukan pelaku usaha dengan investor.',
-                'date' => '2024-11-15',
-                'time' => '10.00',
-                'location' => 'Rumah BUMN Kota Pekalongan',
-                'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
-                'status' => 'done'
-            ],
-            [
-                'name' => 'Pelatihan Manajemen Keuangan',
-                'deskripsi' => 'Pelatihan bagi UMKM untuk mengelola keuangan bisnis secara lebih profesional dan efisien, mulai dari pencatatan hingga laporan keuangan.',
-                'date' => '2024-12-02',
-                'time' => '10.00',
-                'location' => 'Rumah BUMN Kota Pekalongan',
-                'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
-                'status' => 'done'
-            ],
-            [
-                'name' => 'Seminar Pengembangan Produk',
-                'deskripsi' => 'Seminar ini membahas teknik dan strategi untuk mengembangkan produk yang inovatif dan berkelanjutan dalam pasar kompetitif.',
-                'date' => '2024-12-20',
-                'time' => '10.00',
-                'location' => 'Rumah BUMN Kota Pekalongan',
-                'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
-                'status' => 'done'
-            ]
-        ];
+    public function front(Request $req){
+        $events = Event::orderBy('date', 'desc');
 
+        $filterStatus = $req->has('type') ? ($req->type == "all" ? ["upcoming", "done"] : [$req->type]) : ["upcoming", "done"];
+        $filterDate = [];
+        if ($req->has("date") && $req->date != "") {
+            $filterDate = [
+                Carbon::createFromDate($req->date)->subDay()->endOfDay(),
+                Carbon::createFromDate($req->date)->endOfDay()
+            ];
+        } else {
+            $filterDate = [
+                Carbon::today()->subYear(1)->startOfDay(),
+                Carbon::today()->addMonth(6)->endOfDay()
+            ];
+        }
+
+        $events = $events->whereIn('status', $filterStatus)->whereBetween('date', $filterDate);
+
+        if($req->has('keyword')){
+            $events = $events->whereLike('name', '%' . $req->keyword . '%')->get();
+        }else{
+            $events = $events->get();
+        }
+        
+        $isFiltered = $req->has('keyword') || $req->has('type') || $req->has('date');
         return view('frontend.event', [
-            "events" => $events
+            "events" => $events,
+            "isFiltered" => $isFiltered
         ]);
     }
 
     public function regist($id = null){
-        $data = [
-            'name' => 'Seminar Pengembangan Produk',
-            'deskripsi' => 'Seminar ini membahas teknik dan strategi untuk mengembangkan produk yang inovatif dan berkelanjutan dalam pasar kompetitif.',
-            'date' => '2024-12-20',
-            'time' => '10.00',
-            'location' => 'Rumah BUMN Kota Pekalongan',
-            'poster' => 'https://random.imagecdn.app/640/640?a=' . rand(1,100),
-            'status' => 'done'
-        ];
+        $data = Event::where('id', $id)->first();
+
+        if($data->status == "done"){
+            return redirect(route('event'));
+        }
 
         return view('frontend.event_regist', [
             "data" => $data
@@ -77,10 +55,69 @@ class EventController extends Controller
     }
 
     public function registPost(Request $req){
+        $req->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required|min:10',
+        ], [
+            'name.required' => 'Nama harus diisi!',
+            'address.required' => 'Alamat harus diisi!',
+            'phone.required' => 'Nomor HP/WA harus diisi!',
+            'phone.min' => 'Nomor HP/WA minimal 10 karakter!'
+        ]);
+
+        $data = $req->all();
+        $data['is_have_umkm'] = $data['is_have_umkm'] ? true : false;
+
+        EventRegistration::create($data);
         return redirect(route('event.regist.success'));
     }
 
     public function registSuccess(){
         return view('frontend.event_regist_success');
+    }
+
+    // BackEnd
+    public function index(){
+        return view('backend.event.registration');
+    }
+
+    public function accept($id){
+        EventRegistration::where('id', $id)->update(['status' => 'accepted']);
+        
+        return back()->with('success', 'Berhasil disetujui.');
+    }
+
+    public function reject($id){
+        EventRegistration::where('id', $id)->update(['status' => 'rejected']);
+        
+        return back();
+    }
+
+    // Datatable
+    public function getData()
+    {
+        $registration = EventRegistration::with('event')->orderBy('created_at', 'desc');
+
+        return DataTables::of($registration)
+            ->addColumn('event', function ($data) {
+                return view('components.backend.registration.link_event', [
+                    "data" => $data
+                ]);
+            })
+            ->editColumn('umkm', function ($data) {
+                return $data->is_have_umkm ? $data->umkm : "-";
+            })
+            ->editColumn('status', function ($data) {
+                return view('components.backend.registration.status', [
+                    "data" => $data
+                ]);
+            })
+            ->addColumn('action', function ($data) {
+                return view('components.backend.registration.aksi', [
+                    "data" => $data
+                ]);
+            })
+            ->toJson();
     }
 }

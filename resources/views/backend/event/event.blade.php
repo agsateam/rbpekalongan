@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="md:px-5">
-    <div class="flex justify-between">
+    <div class="flex flex-col md:flex-row justify-between">
         <h4 class="text-2xl md:text-3xl font-bold mb-5">Kelola Event</h4>
         <div class="breadcrumbs text-sm">
             <ul>
@@ -45,6 +45,7 @@
             serverSide: true,
             lengthChange: false,
             info: false,
+            order: [[ 1, 'desc' ]],
             ajax: '{{ route('manage.event.data') }}',
             columns: [
                 { data: 'name', name: 'name' },
@@ -86,6 +87,20 @@
     function wrap(el, wrapper) {
         el.parentNode.insertBefore(wrapper, el);
         wrapper.appendChild(el);
+    }
+
+    function confirmDelete(href){
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Yakin akan menghapus data ini?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: "#195770",
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya',
+        }).then((val) => {
+            val['isConfirmed'] && (window.location.href = href)
+        })
     }
 </script>
 @endsection

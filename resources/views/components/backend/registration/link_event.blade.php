@@ -1,0 +1,1 @@
+<a href="{{route('manage.event.detail') . "/" . $data->event->id}}" class="font-bold">{{$data->event->name}}</a>
