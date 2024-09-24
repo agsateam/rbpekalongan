@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,8 @@ Route::get('/event', [EventController::class, 'front'])->name('event');
 Route::get('/event/regist/{id?}', [EventController::class, 'regist'])->name('event.regist');
 Route::post('/event/regist', [EventController::class, 'registPost'])->name('event.regist.send');
 Route::get('/event/regist-success', [EventController::class, 'registSuccess'])->name('event.regist.success');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/umkm/regist', [ContactController::class, 'regist'])->name('umkm.regist');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
