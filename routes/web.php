@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FungsiController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-regist/data', [EventController::class, 'getData'])->name('manage.eventregist.data');
     Route::get('/manage-regist/accept/{id?}', [EventController::class, 'accept'])->name('manage.eventregist.accept');
     Route::get('/manage-regist/reject/{id?}', [EventController::class, 'reject'])->name('manage.eventregist.reject');
+    // Web Content
+
+    // Fungsi
+    Route::get('/webcontent/fungsi', [FungsiController::class, 'index'])->name('webcontent.fungsi');
 });
