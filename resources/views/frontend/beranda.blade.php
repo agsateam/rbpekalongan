@@ -7,6 +7,7 @@
     <x-beranda.services />
     <x-beranda.statistik />
     <x-beranda.video />
+    <x-beranda.fungsi />
     
     @if (count($events) > 0)
     <x-beranda.upcomingEvent :events="$events" />

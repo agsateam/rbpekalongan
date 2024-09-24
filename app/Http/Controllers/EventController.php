@@ -97,7 +97,7 @@ class EventController extends Controller
     // Datatable
     public function getData()
     {
-        $registration = EventRegistration::with('event')->orderBy('created_at', 'desc');
+        $registration = EventRegistration::whereIn('status', ['registered', 'rejected'])->with('event')->orderBy('created_at', 'desc');
 
         return DataTables::of($registration)
             ->addColumn('event', function ($data) {

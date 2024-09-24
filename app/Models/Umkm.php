@@ -12,7 +12,7 @@ class Umkm extends Model
     
     protected $guarded = ['id'];
 
-    public function certification() : BelongsTo
+    public function fasilitator() : BelongsTo
     {
         return $this->belongsTo(Fasilitator::class);
     }

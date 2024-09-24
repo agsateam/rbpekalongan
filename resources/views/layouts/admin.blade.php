@@ -1,6 +1,8 @@
 @php
     use App\Models\EventRegistration;
+    use App\Models\Umkm;
     $eventRegistCount = EventRegistration::where('status', 'registered')->count();
+    $umkmRegistCount = Umkm::where('status', 'registered')->count();
 @endphp
 
 <!DOCTYPE html>
