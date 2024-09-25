@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class BerandaController extends Controller
 {
     public function index(){
+        $events = Event::where('status', 'upcoming')->orderBy('date', 'desc')->get();
+
         return view('frontend.beranda', [
-            'igPosts' => $this->getInstagramPosts() ?? ["data" => []]
+            'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
+            'events' => $events
         ]);
     }
 
