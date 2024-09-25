@@ -83,9 +83,26 @@
                 <td id="umkm"></td>
             </tr>
             <tr>
+                <td>Fasilitator yang dipilih</td>
+                <td>:</td>
+                <td id="mentor"></td>
+            </tr>
+            <tr>
                 <td>Owner</td>
                 <td>:</td>
                 <td id="owner"></td>
+            </tr>
+            </tr>
+            <tr>
+                <td>Jeni Usaha</td>
+                <td>:</td>
+                <td id="type"></td>
+            </tr>
+            </tr>
+            <tr>
+                <td>Jeni Usaha</td>
+                <td>:</td>
+                <td id="desc"></td>
             </tr>
             <tr>
                 <td>HP/Whatsapp</td>
@@ -93,30 +110,65 @@
                 <td id="phone"></td>
             </tr>
             <tr>
-                <td>NPWP</td>
-                <td>:</td>
-                <td id="npwp"></td>
-            </tr>
-            <tr>
                 <td>Alamat</td>
                 <td>:</td>
                 <td id="address"></td>
             </tr>
             <tr>
-                <td>Fasilitator yang dipilih</td>
+                <td>Instagram</td>
                 <td>:</td>
-                <td id="mentor"></td>
+                <td id="instagram"></td>
             </tr>
             <tr>
-                <td>Alasan/Harapan bergabung</td>
+                <td>Facebook</td>
                 <td>:</td>
-                <td id="reason"></td>
+                <td id="facebook"></td>
+            </tr>
+            <tr>
+                <td>Nama Toko di Matketplace</td>
+                <td>:</td>
+                <td id="marketplace"></td>
+            </tr>
+            <tr>
+                <td>Link Marketplace</td>
+                <td>:</td>
+                <td id="marketplace_link"></td>
+            </tr>
+            <tr>
+                <td>Nomor KTP</td>
+                <td>:</td>
+                <td id="ktp"></td>
+            </tr>
+            <tr>
+                <td>KTP</td>
+                <td>:</td>
+                <td>
+                    <a target="_blank" rel="noopener noreferrer" id="ktp_image_link">
+                        <img src="{{url('images/preview-image.jpg')}}" id="ktp_image" class="w-1/2">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>Nomor NPWP</td>
+                <td>:</td>
+                <td id="npwp"></td>
+            </tr>
+            <tr>
+                <td>NPWP</td>
+                <td>:</td>
+                <td>
+                    <a target="_blank" rel="noopener noreferrer" id="npwp_image_link">
+                        <img src="{{url('images/preview-image.jpg')}}" id="npwp_image" class="w-1/2">
+                    </a>
+                </td>
             </tr>
             <tr>
                 <td>Logo</td>
                 <td>:</td>
                 <td>
-                    <img src="{{url('images/preview-image.jpg')}}" id="logo" class="w-1/2">
+                    <a target="_blank" rel="noopener noreferrer" id="logo_link">
+                        <img src="{{url('images/preview-image.jpg')}}" id="logo" class="w-1/2">
+                    </a>
                 </td>
             </tr>
         </table>
@@ -129,13 +181,24 @@
     function detail(data){
         modalDetail.showModal();
         document.getElementById('umkm').innerHTML = data.name;
-        document.getElementById('owner').innerHTML = data.owner;
-        document.getElementById('phone').innerHTML = data.phone;
-        document.getElementById('npwp').innerHTML = data.npwp;
-        document.getElementById('address').innerHTML = data.address;
         document.getElementById('mentor').innerHTML = data.fasilitator.name;
-        document.getElementById('reason').innerHTML = data.join_reason;
-        document.getElementById('logo').src = data.logo;
+        document.getElementById('owner').innerHTML = data.owner;
+        document.getElementById('type').innerHTML = data.type;
+        document.getElementById('desc').innerHTML = data.desc;
+        document.getElementById('phone').innerHTML = data.phone;
+        document.getElementById('address').innerHTML = data.address;
+        document.getElementById('instagram').innerHTML = data.instagram ?? "-";
+        document.getElementById('facebook').innerHTML = data.facebook ?? "-";
+        document.getElementById('marketplace').innerHTML = data.marketplace ?? "-";
+        document.getElementById('marketplace_link').innerHTML = data.marketplace_link ?? "-";
+        document.getElementById('ktp').innerHTML = data.ktp;
+        document.getElementById('ktp_image').src = data.ktp_image;
+        document.getElementById('ktp_image_link').href = data.ktp_image;
+        document.getElementById('npwp').innerHTML = data.npwp ?? "-";
+        document.getElementById('npwp_image').src = data.npwp_image ?? '{{ url('images/preview-image.jpg') }}';
+        document.getElementById('npwp_image_link').href = data.npwp_image ?? '{{ url('images/preview-image.jpg') }}';
+        document.getElementById('logo').src = data.logo ?? '{{ url('images/preview-image.jpg') }}';
+        document.getElementById('logo_link').href = data.logo ?? '{{ url('images/preview-image.jpg') }}';
     }
 
     function confirmReject(href){

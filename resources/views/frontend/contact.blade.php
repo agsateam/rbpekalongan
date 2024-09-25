@@ -43,7 +43,7 @@
                         3. Nama Sertifikasi Satu <br>
                         4. Nama Sertifikasi Satu <br>
                     </p>
-                    <button class="mt-2 btn bg-[#195770] text-white" onclick="selected(1, 'Vina Panduwinata')">Pilih</button>
+                    <a href="#form-regist" class="mt-2 btn bg-[#195770] text-white" onclick="selected(1, 'Vina Panduwinata')">Pilih</a>
                 </div>
             </div>
             <div class="flex flex-col md:flex-row md:grid-cols-5 p-5 border-4 shadow-md rounded-md">
@@ -57,19 +57,19 @@
                         3. Nama Sertifikasi Satu <br>
                         4. Nama Sertifikasi Satu <br>
                     </p>
-                    <button class="mt-2 btn bg-[#195770] text-white" onclick="selected(2, 'Dewi')">Pilih</button>
+                    <button class="mt-2 btn bg-[#195770] text-white" onclick="selected(1, 'Dewi')">Pilih</button>
                 </div>
             </div>
         </div>
 
-        <form class="hidden flex-col mt-16" action="{{route('umkm.regist')}}" method="post" enctype="multipart/form-data" id="form-regist">
+        <form class="hidden flex-col pt-32" action="{{route('umkm.regist')}}" method="post" enctype="multipart/form-data" id="form-regist">
             <span class="text-2xl mb-3 font-semibold">Form Registrasi UMKM</span>
             @csrf
             <input type="hidden" name="mentor_id" id="mentor_id">
-            <div class="grid grid-cols-1 md:grid-cols-4 md:md:gap-5">
-                <label class="form-control w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+                <label class="form-control w-full lg:col-span-2">
                     <div class="label">
-                      <span class="label-text text-base font-semibold">Nama UMKM <span class="text-red-600 font-bold">*</span></span>
+                      <span class="label-text text-base font-semibold">Nama Usaha <span class="text-red-600 font-bold">*</span></span>
                     </div>
                     <input type="text" name="umkm" placeholder="Nama UMKM" value="{{old('umkm')}}" class="input input-bordered w-full" required/>
                 </label>
@@ -91,39 +91,112 @@
                     </div>
                     <input id="mentor" type="text" name="mentor" placeholder="Mentor" value="{{old('mentor')}}" class="input input-bordered w-full" readonly required/>
                 </label>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-5 mt-3">
                 <label class="form-control w-full">
                     <div class="label">
-                      <span class="label-text text-base font-semibold">NPWP <span class="text-red-600 font-bold">*</span></span>
+                        <span class="label-text text-base font-semibold">Jenis Usaha <span class="text-red-600 font-bold">*</span></span>
                     </div>
-                    <input type="text" name="npwp" placeholder="NPWP" value="{{old('npwp')}}" class="input input-bordered w-full" required/>
+                    <select name="type" class="input input-bordered w-full" required>
+                        <option value="Fashion" {{ old("type") == "Fashion" ? "selected" : "" }}>Fashion</option>
+                        <option value="Kuliner" {{ old("type") == "Kuliner" ? "selected" : "" }}>Kuliner</option>
+                        <option value="Kerajinan" {{ old("type") == "Kerajinan" ? "selected" : "" }}>Kerajinan</option>
+                        <option value="Jasa" {{ old("type") == "Jasa" ? "selected" : "" }}>Jasa</option>
+                    </select>
                 </label>
-                <label class="form-control w-full col-span-3">
+                <label class="form-control w-full lg:col-span-2">
                     <div class="label">
-                      <span class="label-text text-base font-semibold">Alamat <span class="text-red-600 font-bold">*</span></span>
+                        <span class="label-text text-base font-semibold">Deskripsi Usaha <span class="text-red-600 font-bold">*</span></span>
+                    </div>
+                    <input type="text" name="desc" placeholder="Contoh : usaha jual beli batik / produksi aneka olahan kerupuk ikan dll" value="{{old('desc')}}" class="input input-bordered w-full" required/>
+                </label>
+                <label class="form-control w-full lg:col-span-2">
+                    <div class="label">
+                        <span class="label-text text-base font-semibold">Alamat Lengkap <span class="text-red-600 font-bold">*</span></span>
                     </div>
                     <input type="text" name="address" placeholder="Alamat" value="{{old('address')}}" class="input input-bordered w-full" required/>
                 </label>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-5 mt-3">
-                <label class="form-control w-full col-span-2">
+                <label class="form-control w-full">
                     <div class="label">
-                      <span class="label-text text-base font-semibold">Tujuan/Harapan Bergabung <span class="text-red-600 font-bold">*</span></span>
+                        <span class="label-text text-base font-semibold">Nama Instagram</span>
                     </div>
-                    <textarea name="join_reason" placeholder="Tujuan/Harapan ..." value="{{old('join_reason')}}" class="input input-bordered w-full h-28 md:h-64" required></textarea>
+                    <input type="text" name="instagram" placeholder="Instagram (Opsional)" value="{{old('instagram')}}" class="input input-bordered w-full"/>
                 </label>
-                <div class="w-full flex flex-col col-span-2">
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text text-base font-semibold">Nama Facebook</span>
+                    </div>
+                    <input type="text" name="facebook" placeholder="Facebook (Opsional)" value="{{old('facebook')}}" class="input input-bordered w-full"/>
+                </label>
+                <label class="form-control w-full">
+                    <div class="label">
+                        <span class="label-text text-base font-semibold">Nama Toko Marketplace</span>
+                    </div>
+                    <input type="text" name="marketplace" placeholder="Nama Toko di Shopee/Tokopedia/Gofood/Grabfood (Opsional)" value="{{old('marketplace')}}" class="input input-bordered w-full"/>
+                </label>
+                <label class="form-control w-full lg:col-span-2">
+                    <div class="label">
+                        <span class="label-text text-base font-semibold">Link Toko Marketplace</span>
+                    </div>
+                    <input type="text" name="marketplace_link" placeholder="Link Shopee/Tokopedia/Gofood/Grabfood (Opsional)" value="{{old('marketplace_link')}}" class="input input-bordered w-full"/>
+                </label>
+                <label class="form-control w-full lg:col-span-2">
+                    <div class="label">
+                      <span class="label-text text-base font-semibold">Nomor KTP <span class="text-red-600 font-bold">*</span></span>
+                    </div>
+                    <input type="text" name="ktp" placeholder="Nomor KTP" value="{{old('ktp')}}" class="input input-bordered w-full" required/>
+                </label>
+                <label class="form-control w-full lg:col-span-3">
+                    <div class="label">
+                      <span class="label-text text-base font-semibold">Nomor NPWP</span>
+                    </div>
+                    <input type="text" name="npwp" placeholder="Nomor NPWP (Opsional)" value="{{old('npwp')}}" class="input input-bordered w-full"/>
+                </label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 md:gap-5 mt-3">
+                <div class="w-full flex flex-col">
                     <label class="form-control w-full">
                         <div class="label">
-                          <span class="label-text text-base font-semibold">Logo UMKM <span class="text-red-600 font-bold">*</span></span>
+                          <span class="label-text text-base font-semibold">Upload KTP <span class="text-red-600 font-bold">*</span></span>
                         </div>
-                        <input type="file" accept="image/*" onchange="loadFile(event)" name="logo" class="input input-bordered w-full h-10" required/>
+                        <input type="file" accept="image/*" onchange="loadFile(event, 'ktp')" name="ktp_image" class="input input-bordered w-full h-10" required/>
+                        @error('ktp_image')
+                        <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                        @enderror
                     </label>
-                    <img id="output" src="{{url('images/preview-image.jpg')}}" class="rounded-md w-1/2 md:w-1/3 mt-3">
+                    <img id="output_ktp" src="{{url('images/preview-image.jpg')}}" class="rounded-md w-2/3 mt-3">
+                </div>
+                <div class="w-full flex flex-col">
+                    <label class="form-control w-full">
+                        <div class="label">
+                          <span class="label-text text-base font-semibold">Upload NPWP <span class="text-gray-500 font-normal ml-2">* opsional</span></span>
+                        </div>
+                        <input type="file" accept="image/*" onchange="loadFile(event, 'npwp')" name="npwp_image" class="input input-bordered w-full h-10"/>
+                        @error('npwp_image')
+                        <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <img id="output_npwp" src="{{url('images/preview-image.jpg')}}" class="rounded-md w-2/3 mt-3">
+                </div>
+                <div class="w-full flex flex-col">
+                    <label class="form-control w-full">
+                        <div class="label">
+                          <span class="label-text text-base font-semibold">Logo UMKM <span class="text-gray-500 font-normal ml-2">* opsional</span></span>
+                        </div>
+                        <input type="file" accept="image/*" onchange="loadFile(event, 'logo')" name="logo" class="input input-bordered w-full h-10"/>
+                        @error('logo')
+                        <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <img id="output_logo" src="{{url('images/preview-image.jpg')}}" class="rounded-md w-2/3 mt-3">
                 </div>
             </div>
-            <button type="submit" class="btn btn-lg bg-[#195770] text-white md:w-1/3 mt-5">Daftar UMKM Binaan</button>
+            <div class="w-full inline-flex justify-center mt-10">
+                <button type="submit" class="btn btn-lg bg-[#195770] text-white w-full md:w-1/3">
+                    Kirim Pendaftaran
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </button>
+            </div>
         </form>
     </div>    
 </div>
@@ -145,8 +218,8 @@
         form.classList.add('flex');
     }
 
-    var loadFile = function(event) {
-        var output = document.getElementById('output');
+    var loadFile = function(event, output) {
+        var output = document.getElementById('output_' + output);
         output.src = URL.createObjectURL(event.target.files[0]);
         output.onload = function() {
             URL.revokeObjectURL(output.src) // free memory
