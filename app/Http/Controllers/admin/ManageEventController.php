@@ -84,7 +84,13 @@ class ManageEventController extends Controller
     }
 
     public function destroy($id){
-        Event::where('id', $id)->delete();
+        $data = Event::where('id', $id)->first();
+        // remove poster
+        $path = explode("uploaded/event", $data->poster);
+        unlink(public_path('uploaded/event') . $path[1]);
+
+        $data->delete();
+
         return redirect(route('manage.event'))->with('success', 'Data event berhasil dihapus.');
     }
 

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('fasilitators', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('photo');
+            $table->text('certification');
             $table->timestamps();
         });
     }

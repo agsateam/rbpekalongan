@@ -31,35 +31,23 @@
     <div class="flex flex-col max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <h4 class="text-3xl font-bold">Bergabung Bersama Kami</h4>
         <span class="text-xl my-5">Ingin bergabung menjadi UMKM binaan Rumah BUMN Pekalongan? fasilitator berikut akan membimbing anda.</span>
+        @if(count($facilitators) < 1) <span class="text-2xl font-semibold">Belum ada data fasilitator</span> @endif
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            @foreach ($facilitators as $item)
             <div class="flex flex-col md:flex-row md:grid-cols-5 p-5 border-4 shadow-md rounded-md">
-                <img src="https://iili.io/dsiNrCX.png" class="w-full md:w-1/3 md:h-fit">
+                <img src="{{$item->photo}}" class="w-full md:w-1/3 md:h-fit">
                 <div class="md:w-2/3 flex flex-col md:ml-5 mt-3 md:mt-0">
-                    <span class="text-3xl font-bold">Vina Panduwinata</span>
+                    <span class="text-3xl font-bold">{{$item->name}}</span>
                     <span class="text-xl font-bold mt-1">Sertifikasi</span>
                     <p>
-                        1. Nama Sertifikasi Satu <br>
-                        2. Nama Sertifikasi Satu <br>
-                        3. Nama Sertifikasi Satu <br>
-                        4. Nama Sertifikasi Satu <br>
+                        @foreach (explode(",", $item->certification) as $cert)
+                            {{$cert}} <br>
+                        @endforeach
                     </p>
-                    <a href="#form-regist" class="mt-2 btn bg-[#195770] text-white" onclick="selected(1, 'Vina Panduwinata')">Pilih</a>
+                    <a href="#form-regist" class="mt-2 btn bg-[#195770] text-white" onclick="selected('{{$item->id}}', '{{$item->name}}')">Pilih</a>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row md:grid-cols-5 p-5 border-4 shadow-md rounded-md">
-                <img src="https://iili.io/dsiNrCX.png" class="w-full md:w-1/3 md:h-fit">
-                <div class="md:w-2/3 flex flex-col md:ml-5 mt-3 md:mt-0">
-                    <span class="text-3xl font-bold">Dewi</span>
-                    <span class="text-xl font-bold mt-1">Sertifikasi</span>
-                    <p>
-                        1. Nama Sertifikasi Satu <br>
-                        2. Nama Sertifikasi Satu <br>
-                        3. Nama Sertifikasi Satu <br>
-                        4. Nama Sertifikasi Satu <br>
-                    </p>
-                    <button class="mt-2 btn bg-[#195770] text-white" onclick="selected(1, 'Dewi')">Pilih</button>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <form class="hidden flex-col pt-32" action="{{route('umkm.regist')}}" method="post" enctype="multipart/form-data" id="form-regist">
@@ -67,7 +55,7 @@
             @csrf
             <input type="hidden" name="mentor_id" id="mentor_id">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
-                <label class="form-control w-full lg:col-span-2">
+                <label class="form-control w-full">
                     <div class="label">
                       <span class="label-text text-base font-semibold">Nama Usaha <span class="text-red-600 font-bold">*</span></span>
                     </div>
@@ -81,18 +69,6 @@
                 </label>
                 <label class="form-control w-full">
                     <div class="label">
-                      <span class="label-text text-base font-semibold">Nomor WhatsApp <span class="text-red-600 font-bold">*</span></span>
-                    </div>
-                    <input type="text" name="whatsapp" placeholder="Nomor" value="{{old('whatsapp')}}" class="input input-bordered w-full" required/>
-                </label>
-                <label class="form-control w-full">
-                    <div class="label">
-                      <span class="label-text text-base font-semibold">Pilih Fasilitator</span>
-                    </div>
-                    <input id="mentor" type="text" name="mentor" placeholder="Mentor" value="{{old('mentor')}}" class="input input-bordered w-full" readonly required/>
-                </label>
-                <label class="form-control w-full">
-                    <div class="label">
                         <span class="label-text text-base font-semibold">Jenis Usaha <span class="text-red-600 font-bold">*</span></span>
                     </div>
                     <select name="type" class="input input-bordered w-full" required>
@@ -102,13 +78,25 @@
                         <option value="Jasa" {{ old("type") == "Jasa" ? "selected" : "" }}>Jasa</option>
                     </select>
                 </label>
+                <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text text-base font-semibold">Nomor WhatsApp <span class="text-red-600 font-bold">*</span></span>
+                    </div>
+                    <input type="text" name="whatsapp" placeholder="Nomor" value="{{old('whatsapp')}}" class="input input-bordered w-full" required/>
+                </label>
+                <label class="form-control w-full">
+                    <div class="label">
+                      <span class="label-text text-base font-semibold">Fasilitator yang dipilih</span>
+                    </div>
+                    <input id="mentor" type="text" name="mentor" placeholder="Mentor" value="{{old('mentor')}}" class="input input-bordered w-full" readonly required/>
+                </label>
                 <label class="form-control w-full lg:col-span-2">
                     <div class="label">
                         <span class="label-text text-base font-semibold">Deskripsi Usaha <span class="text-red-600 font-bold">*</span></span>
                     </div>
                     <input type="text" name="desc" placeholder="Contoh : usaha jual beli batik / produksi aneka olahan kerupuk ikan dll" value="{{old('desc')}}" class="input input-bordered w-full" required/>
                 </label>
-                <label class="form-control w-full lg:col-span-2">
+                <label class="form-control w-full lg:col-span-3">
                     <div class="label">
                         <span class="label-text text-base font-semibold">Alamat Lengkap <span class="text-red-600 font-bold">*</span></span>
                     </div>
