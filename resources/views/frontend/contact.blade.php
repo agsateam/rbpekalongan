@@ -41,7 +41,7 @@
                     <span class="text-xl font-bold mt-1">Sertifikasi</span>
                     <p>
                         @foreach (explode(",", $item->certification) as $cert)
-                            {{$cert}} <br>
+                            <li>{{$cert}}</li>
                         @endforeach
                     </p>
                     <a href="#form-regist" class="mt-2 btn bg-[#195770] text-white" onclick="selected('{{$item->id}}', '{{$item->name}}')">Pilih</a>
