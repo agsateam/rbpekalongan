@@ -59,11 +59,13 @@ class EventController extends Controller
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required|min:10',
+            'g-recaptcha-response' => 'required|captcha',
         ], [
             'name.required' => 'Nama harus diisi!',
             'address.required' => 'Alamat harus diisi!',
             'phone.required' => 'Nomor HP/WA harus diisi!',
-            'phone.min' => 'Nomor HP/WA minimal 10 karakter!'
+            'phone.min' => 'Nomor HP/WA minimal 10 karakter!',
+            'g-recaptcha-response.required' => 'Konfirmasi captcha diatas.',
         ]);
 
         $data = $req->all();
@@ -97,7 +99,7 @@ class EventController extends Controller
     // Datatable
     public function getData()
     {
-        $registration = EventRegistration::with('event')->orderBy('created_at', 'desc');
+        $registration = EventRegistration::whereIn('status', ['registered', 'rejected'])->with('event')->orderBy('created_at', 'desc');
 
         return DataTables::of($registration)
             ->addColumn('event', function ($data) {

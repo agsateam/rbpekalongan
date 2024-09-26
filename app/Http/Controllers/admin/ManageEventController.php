@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\EventRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -83,12 +84,19 @@ class ManageEventController extends Controller
     }
 
     public function destroy($id){
-        Event::where('id', $id)->delete();
+        $data = Event::where('id', $id)->first();
+        // remove poster
+        $path = explode("uploaded/event", $data->poster);
+        unlink(public_path('uploaded/event') . $path[1]);
+
+        $data->delete();
+
         return redirect(route('manage.event'))->with('success', 'Data event berhasil dihapus.');
     }
 
     public function done(Request $req){
         Event::where('id', $req->id)->update(["status" => "done", "participant" => $req->participant]);
+        EventRegistration::where('event_id', $req->id)->whereIn('status', ['registered', 'rejected'])->delete();
 
         return back()->with('success', 'Event berhasil diperbarui');
     }
