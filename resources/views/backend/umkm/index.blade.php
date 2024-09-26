@@ -162,11 +162,15 @@
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        let urlParams = new URLSearchParams(window.location.search);
         $('#umkm-table').DataTable({
             processing: true,
             serverSide: true,
             lengthChange: false,
             info: false,
+            search: {
+                search: urlParams.get('search')
+            },
             ajax: '{{ route('manage.umkm.data') }}',
             columns: [
                 { data: 'name', name: 'name' },

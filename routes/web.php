@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\BerandaController;
@@ -34,6 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-umkm/regist', [ManageUmkmController::class, 'manageRegist'])->name('manage.umkm.regist');
     Route::get('/manage-umkm/accept/{id?}', [ManageUmkmController::class, 'accept'])->name('manage.umkm.accept');
     Route::get('/manage-umkm/reject/{id?}', [ManageUmkmController::class, 'reject'])->name('manage.umkm.reject');
+    // Manage Fasilitator
+    Route::get('/manage-fasilitator', [FasilitatorController::class, 'index'])->name('manage.fasilitator');
+    Route::get('/manage-fasilitator/add', [FasilitatorController::class, 'create'])->name('manage.fasilitator.add');
+    Route::post('/manage-fasilitator/add', [FasilitatorController::class, 'store'])->name('manage.fasilitator.save');
+    Route::get('/manage-fasilitator/edit/{id?}', [FasilitatorController::class, 'edit'])->name('manage.fasilitator.edit');
+    Route::post('/manage-fasilitator/update', [FasilitatorController::class, 'update'])->name('manage.fasilitator.update');
+    Route::get('/manage-fasilitator/delete/{id?}', [FasilitatorController::class, 'destroy'])->name('manage.fasilitator.delete');
     // Manage Event
     Route::get('/manage-event', [ManageEventController::class, 'index'])->name('manage.event');
     Route::get('/manage-event/data', [ManageEventController::class, 'getData'])->name('manage.event.data');

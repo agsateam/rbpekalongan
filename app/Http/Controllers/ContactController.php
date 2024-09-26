@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitator;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -10,7 +11,10 @@ use Illuminate\Validation\Rules\File;
 class ContactController extends Controller
 {
     public function index(){
-        return view('frontend.contact');
+        $facilitators = Fasilitator::all();
+        return view('frontend.contact', [
+            "facilitators" => $facilitators
+        ]);
     }
 
     public function regist(Request $request){
@@ -18,10 +22,12 @@ class ContactController extends Controller
             'ktp_image' => ['required', File::image()->max('2mb')],
             'npwp_image' => [File::image()->max('2mb')],
             'logo' => [File::image()->max('2mb')],
+            'g-recaptcha-response' => 'required|captcha',
         ], [
             'ktp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
             'npwp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
             'logo.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
+            'g-recaptcha-response.required' => 'Konfirmasi captcha diatas.',
         ]);
 
         $ktp_image = null;

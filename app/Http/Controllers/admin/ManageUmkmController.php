@@ -31,9 +31,19 @@ class ManageUmkmController extends Controller
 
     public function reject($id){
         $umkm = Umkm::where('id', $id)->first();
-        // remove logo from storage
-        $path = explode("uploaded/umkm", $umkm->logo);
-        unlink(public_path('uploaded/umkm') . $path[1]);
+        // remove umkm files from storage
+        if($umkm->ktp_image != null){
+            $ktp = explode("uploaded/umkm", $umkm->ktp_image);
+            unlink(public_path('uploaded/umkm') . $ktp[1]);
+        }
+        if($umkm->npwp_image != null){
+            $npwp = explode("uploaded/umkm", $umkm->npwp_image);
+            unlink(public_path('uploaded/umkm') . $npwp[1]);
+        }
+        if($umkm->logo != null){
+            $logo = explode("uploaded/umkm", $umkm->logo);
+            unlink(public_path('uploaded/umkm') . $logo[1]);
+        }
         // delete data
         $umkm->delete();
         

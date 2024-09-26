@@ -12,8 +12,8 @@ class Fasilitator extends Model
     
     protected $guarded = ['id'];
 
-    public function certification() : HasMany
+    public function umkm() : HasMany
     {
-        return $this->hasMany(CertificationOfFasilitator::class);
+        return $this->hasMany(Umkm::class);
     }
 }

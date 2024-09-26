@@ -101,6 +101,13 @@ function toDate($date){
                         </div>
                         <input id="umkm" type="text" name="umkm" placeholder="UMKM" class="input input-bordered w-full" disabled/>
                     </label>
+                    <label class="w-full flex flex-col items-center mt-5">
+                        {!! NoCaptcha::renderJs() !!}
+                        {!! NoCaptcha::display() !!}
+                        @error('g-recaptcha-response')
+                        <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
+                        @enderror
+                    </label>
                     <button type="button" onClick="regist(this.form)" class="btn bg-[#195770] text-white mt-5">Daftar</button>
                 </form>
             </div>
