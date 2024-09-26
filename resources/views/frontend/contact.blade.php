@@ -44,16 +44,16 @@
                             <li>{{$cert}}</li>
                         @endforeach
                     </p>
-                    <a href="#form-regist" class="mt-2 btn bg-[#195770] text-white" onclick="selected('{{$item->id}}', '{{$item->name}}')">Pilih</a>
+                    <a href="#form-regist" class="mt-2 btn bg-[#195770] text-white" onclick="selected('{{$item->id}}', '{{$item->name}}')">Pilih Fasilitator Ini</a>
                 </div>
             </div>
             @endforeach
         </div>
 
-        <form class="hidden flex-col pt-32" action="{{route('umkm.regist')}}" method="post" enctype="multipart/form-data" id="form-regist">
+        <form class="{{$errors->any() ? 'block' : 'hidden'}} flex-col pt-32" action="{{route('umkm.regist')}}" method="post" enctype="multipart/form-data" id="form-regist">
             <span class="text-2xl mb-3 font-semibold">Form Registrasi UMKM</span>
             @csrf
-            <input type="hidden" name="mentor_id" id="mentor_id">
+            <input type="hidden" value="{{old('mentor_id')}}" name="mentor_id" id="mentor_id">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
                 <label class="form-control w-full">
                     <div class="label">
@@ -176,6 +176,13 @@
                     </label>
                     <img id="output_logo" src="{{url('images/preview-image.jpg')}}" class="rounded-md w-2/3 mt-3">
                 </div>
+            </div>
+            <div class="w-full flex flex-col items-center justify-center mt-10">
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
+                @error('g-recaptcha-response')
+                <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
+                @enderror
             </div>
             <div class="w-full inline-flex justify-center mt-10">
                 <button type="submit" class="btn btn-lg bg-[#195770] text-white w-full md:w-1/3">
