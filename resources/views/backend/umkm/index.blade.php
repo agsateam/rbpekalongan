@@ -27,24 +27,7 @@
                     <th class="py-3 text-left font-medium uppercase">#</th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                {{-- @foreach ($data as $item)
-                <tr>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->owner}}</td>
-                    <td>{{$item->phone}}</td>
-                    <td>{{$item->fasilitator->name}}</td>
-                    <td class="flex gap-1">
-                        <button onclick="detail({{ json_encode($item) }})" class="btn btn-sm bg-[#195770] text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
-                @endforeach --}}
-            </tbody>
+            <tbody class="bg-white divide-y divide-gray-200"></tbody>
         </table>
 </div>
 
@@ -54,68 +37,11 @@
 @section('script')
 <dialog id="modal_detail" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box pb-16 md:pb-8">
-        <div class="w-full flex justify-between">
-            <h3 class="text-lg font-bold">Detail UMKM</h3>
+        <div class="w-full flex justify-between sticky top-0">
+            <h3 class="text-lg font-bold">Berkas Pendukung</h3>
             <button type="button" onclick="modalDetail.close()" class="btn btn-sm bg-gray-500 text-white">Tutup</button>
         </div>
         <table class="table mt-5">
-            <tr>
-                <td>Nama UMKM</td>
-                <td>:</td>
-                <td id="umkm"></td>
-            </tr>
-            <tr>
-                <td>Fasilitator yang dipilih</td>
-                <td>:</td>
-                <td id="mentor"></td>
-            </tr>
-            <tr>
-                <td>Owner</td>
-                <td>:</td>
-                <td id="owner"></td>
-            </tr>
-            </tr>
-            <tr>
-                <td>Jeni Usaha</td>
-                <td>:</td>
-                <td id="type"></td>
-            </tr>
-            </tr>
-            <tr>
-                <td>Jeni Usaha</td>
-                <td>:</td>
-                <td id="desc"></td>
-            </tr>
-            <tr>
-                <td>HP/Whatsapp</td>
-                <td>:</td>
-                <td id="phone"></td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td>:</td>
-                <td id="address"></td>
-            </tr>
-            <tr>
-                <td>Instagram</td>
-                <td>:</td>
-                <td id="instagram"></td>
-            </tr>
-            <tr>
-                <td>Facebook</td>
-                <td>:</td>
-                <td id="facebook"></td>
-            </tr>
-            <tr>
-                <td>Nama Toko di Matketplace</td>
-                <td>:</td>
-                <td id="marketplace"></td>
-            </tr>
-            <tr>
-                <td>Link Marketplace</td>
-                <td>:</td>
-                <td id="marketplace_link"></td>
-            </tr>
             <tr>
                 <td>Nomor KTP</td>
                 <td>:</td>
@@ -219,17 +145,6 @@
     const modalDetail = document.getElementById('modal_detail');
     function detail(data){
         modalDetail.showModal();
-        document.getElementById('umkm').innerHTML = data.name;
-        document.getElementById('mentor').innerHTML = data.fasilitator.name;
-        document.getElementById('owner').innerHTML = data.owner;
-        document.getElementById('type').innerHTML = data.type;
-        document.getElementById('desc').innerHTML = data.desc;
-        document.getElementById('phone').innerHTML = data.phone;
-        document.getElementById('address').innerHTML = data.address;
-        document.getElementById('instagram').innerHTML = data.instagram ?? "-";
-        document.getElementById('facebook').innerHTML = data.facebook ?? "-";
-        document.getElementById('marketplace').innerHTML = data.marketplace ?? "-";
-        document.getElementById('marketplace_link').innerHTML = data.marketplace_link ?? "-";
         document.getElementById('ktp').innerHTML = data.ktp;
         document.getElementById('ktp_image').src = data.ktp_image;
         document.getElementById('ktp_image_link').href = data.ktp_image;

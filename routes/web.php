@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\ManageEventController;
+use App\Http\Controllers\admin\ManageProductController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ContactController;
@@ -32,9 +33,19 @@ Route::middleware('auth')->group(function () {
     // Manage UMKM
     Route::get('/manage-umkm', [ManageUmkmController::class, 'index'])->name('manage.umkm');
     Route::get('/manage-umkm/data', [ManageUmkmController::class, 'getData'])->name('manage.umkm.data');
+    Route::get('/manage-umkm/detail/{id?}', [ManageUmkmController::class, 'detail'])->name('manage.umkm.detail');
     Route::get('/manage-umkm/regist', [ManageUmkmController::class, 'manageRegist'])->name('manage.umkm.regist');
     Route::get('/manage-umkm/accept/{id?}', [ManageUmkmController::class, 'accept'])->name('manage.umkm.accept');
     Route::get('/manage-umkm/reject/{id?}', [ManageUmkmController::class, 'reject'])->name('manage.umkm.reject');
+    // Manage UMKM Product
+    Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
+    Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');
+    Route::get('/manage-umkm/products/detail/{id?}', [ManageProductController::class, 'detail'])->name('manage.product.detail');
+    Route::get('/manage-umkm/products/add', [ManageProductController::class, 'create'])->name('manage.product.add');
+    Route::post('/manage-umkm/products/add', [ManageProductController::class, 'store'])->name('manage.product.save');
+    Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
+    Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
+    Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
     // Manage Fasilitator
     Route::get('/manage-fasilitator', [FasilitatorController::class, 'index'])->name('manage.fasilitator');
     Route::get('/manage-fasilitator/add', [FasilitatorController::class, 'create'])->name('manage.fasilitator.add');
