@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-umkm/regist', [ManageUmkmController::class, 'manageRegist'])->name('manage.umkm.regist');
     Route::get('/manage-umkm/accept/{id?}', [ManageUmkmController::class, 'accept'])->name('manage.umkm.accept');
     Route::get('/manage-umkm/reject/{id?}', [ManageUmkmController::class, 'reject'])->name('manage.umkm.reject');
+    Route::get('/manage-umkm/edit/{id?}', [ManageUmkmController::class, 'edit'])->name('manage.umkm.edit');
+    Route::post('/manage-umkm/update', [ManageUmkmController::class, 'update'])->name('manage.umkm.update');
+    Route::get('/manage-umkm/delete/{id?}', [ManageUmkmController::class, 'destroy'])->name('manage.umkm.delete');
     // Manage UMKM Product
     Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
     Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');

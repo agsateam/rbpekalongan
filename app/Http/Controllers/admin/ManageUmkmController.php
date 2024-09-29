@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fasilitator;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class ManageUmkmController extends Controller
 {
     public function index(){
-        // $data = Umkm::where('status', 'join')->with('fasilitator')->get();
-        return view('backend.umkm.index', [
-            // "data" => $data
-        ]);
+        return view('backend.umkm.index');
     }
 
     public function detail($id){
@@ -21,6 +21,108 @@ class ManageUmkmController extends Controller
         return view('backend.umkm.detail', [
             "data" => $data
         ]);
+    }
+
+    public function edit($id){
+        $data = Umkm::where('id', $id)->with(['fasilitator'])->first();
+        $facilitators = Fasilitator::all();
+        return view('backend.umkm.edit', [
+            "data" => $data,
+            "facilitators" => $facilitators,
+        ]);
+    }
+
+    public function update(Request $request){
+        $request->validate([
+            'ktp_image' => [File::image()->max('2mb')],
+            'npwp_image' => [File::image()->max('2mb')],
+            'logo' => [File::image()->max('2mb')],
+        ], [
+            'ktp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
+            'npwp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
+            'logo.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
+        ]);
+
+        $data = [
+            "name" => $request->umkm,
+            "owner" => $request->owner,
+            "phone" => $request->whatsapp,
+            "fasilitator_id" => $request->fasilitator_id,
+            "type" => $request->type,
+            "desc" => $request->desc,
+            "address" => $request->address,
+            "instagram" => $request->instagram,
+            "facebook" => $request->facebook,
+            "marketplace" => $request->marketplace,
+            "marketplace_link" => $request->marketplace_link,
+            "ktp" => $request->ktp,
+            "npwp" => $request->npwp,
+        ];
+
+        $ktp_image = $request->old_ktp;
+        $npwp_image = $request->old_npwp;
+        $logo = $request->old_logo;
+        if($request->has('ktp_image')){
+            // remove old image
+            if($ktp_image != null){
+                $path = explode("uploaded/umkm", $ktp_image);
+                unlink(public_path('uploaded/umkm') . $path[1]);
+            }
+            // upload new image
+            $ktp_image = "ktp-" . Str::slug($request->umkm) .'.'. $request->ktp_image->extension();
+            $request->ktp_image->move(public_path('uploaded/umkm/ktp'), $ktp_image);
+            $data['ktp_image'] = url('uploaded/umkm/ktp') ."/". $ktp_image;
+        }
+        if($request->has('npwp_image')){
+            // remove old image
+            if($npwp_image != null){
+                $path = explode("uploaded/umkm", $npwp_image);
+                unlink(public_path('uploaded/umkm') . $path[1]);
+            }
+            // upload new image
+            $npwp_image = "npwp-" . Str::slug($request->umkm) .'.'. $request->npwp_image->extension();
+            $request->npwp_image->move(public_path('uploaded/umkm/npwp'), $npwp_image);
+            $data['npwp_image'] = url('uploaded/umkm/npwp') ."/". $npwp_image;
+        }
+        if($request->has('logo')){
+            // remove old image
+            if($logo != null){
+                $path = explode("uploaded/umkm", $logo);
+                unlink(public_path('uploaded/umkm') . $path[1]);
+            }
+            // upload new image
+            $logo = "logo-" . Str::slug($request->umkm) .'.'. $request->logo->extension();
+            $request->logo->move(public_path('uploaded/umkm/logo'), $logo);
+            $data['logo'] = url('uploaded/umkm/logo') ."/". $logo;
+        }
+
+        Umkm::where('id', $request->id)->update($data);
+
+        return redirect(route('manage.umkm.detail') ."/". $request->id)->with('success', 'Data UMKM berhasil diperbarui.');
+    }
+
+    public function destroy($id){
+        $umkm = Umkm::where('id', $id)->first();
+
+        dd($umkm);
+
+        // remove umkm files from storage
+        if($umkm->ktp_image != null){
+            $ktp = explode("uploaded/umkm", $umkm->ktp_image);
+            unlink(public_path('uploaded/umkm') . $ktp[1]);
+        }
+        if($umkm->npwp_image != null){
+            $npwp = explode("uploaded/umkm", $umkm->npwp_image);
+            unlink(public_path('uploaded/umkm') . $npwp[1]);
+        }
+        if($umkm->logo != null){
+            $logo = explode("uploaded/umkm", $umkm->logo);
+            unlink(public_path('uploaded/umkm') . $logo[1]);
+        }
+        // delete data
+        $umkm->delete();
+        
+        return back()->with('success', 'Data UMKM dihapus.');
     }
  
     public function manageRegist(){
