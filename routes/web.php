@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FungsiController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // FrontEnd
@@ -21,6 +22,8 @@ Route::get('/event/regist-success', [EventController::class, 'registSuccess'])->
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/umkm/regist', [ContactController::class, 'regist'])->name('umkm.regist');
 Route::get('/umkm/regist-success', [ContactController::class, 'registSuccess'])->name('umkm.regist.success');
+Route::get('/product', [ProductController::class, 'index'])->name('product');
+Route::get('/umkm-binaan', [ProductController::class, 'umkm'])->name('umkm-binaan');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
