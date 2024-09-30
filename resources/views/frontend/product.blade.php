@@ -41,15 +41,13 @@
                 <span class="text-center md:text-left">Belum ada produk yang tersedia</span>
             @endif
             @foreach ($products as $p)
-            <div class="bg-white border rounded-md flex flex-col p-2 pb-5">
+            <a target="_blank" href="{{ route('product.detail') ."/". $p->id }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">
                 <img src="{{ $p->photo ?? url('images/noimage.jpg') }}" class="w-full">
 
-                <a target="_blank" href="{{ route('home') ."/". $p->id }}" class="mt-3 text-base md:text-xl font-bold text-[#195770]">
-                    {{ $p->name }}
-                </a>
+                <span class="mt-3 text-base md:text-xl font-bold text-[#195770]">{{ $p->name }}</span>
                 <span class="mt-1 text-base text-gray-500">Rp {{ number_format($p->price) }}</span>
                 <span class="mt-1 text-sm text-gray-600 font-semibold">{{ $p->umkm->name }}</span>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>

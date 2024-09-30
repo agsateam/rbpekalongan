@@ -24,6 +24,8 @@ Route::post('/umkm/regist', [ContactController::class, 'regist'])->name('umkm.re
 Route::get('/umkm/regist-success', [ContactController::class, 'registSuccess'])->name('umkm.regist.success');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/umkm-binaan', [ProductController::class, 'umkm'])->name('umkm-binaan');
+Route::get('/product/{id?}', [ProductController::class, 'productDetail'])->name('product.detail');
+Route::get('/umkm/detail/{id?}', [ProductController::class, 'umkmDetail'])->name('umkm.detail');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

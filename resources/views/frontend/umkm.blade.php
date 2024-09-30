@@ -37,17 +37,15 @@
                 <span class="text-center md:text-left">Belum ada UMKM yang dapat ditampilkan</span>
             @endif
             @foreach ($umkm as $d)
-            <div class="bg-white border rounded-md flex flex-col p-2 pb-5">
+            <a target="_blank" href="{{ route('umkm.detail') ."/". $d->id }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">
                 <div class="w-full h-56 flex items-center justify-center">
                     <img src="{{ $d->logo ?? url('images/noimage.jpg') }}" class="w-4/5">
                 </div>
 
-                <a target="_blank" href="{{ route('home') ."/". $d->id }}" class="mt-3 text-base md:text-xl font-bold text-[#195770]">
-                    {{ $d->name }}
-                </a>
+                <span class="mt-3 text-base md:text-xl font-bold text-[#195770]">{{ $d->name }}</span>
                 <span class="mt-1 text-base text-gray-500">{{$d->type}}</span>
                 <span class="mt-1 text-sm text-gray-600 font-semibold">{{ $d->products->count() }} Produk</span>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>
