@@ -3,12 +3,14 @@
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\ManageEventController;
+use App\Http\Controllers\admin\ManageProductController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FungsiController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // FrontEnd
@@ -20,6 +22,10 @@ Route::get('/event/regist-success', [EventController::class, 'registSuccess'])->
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/umkm/regist', [ContactController::class, 'regist'])->name('umkm.regist');
 Route::get('/umkm/regist-success', [ContactController::class, 'registSuccess'])->name('umkm.regist.success');
+Route::get('/product', [ProductController::class, 'index'])->name('product');
+Route::get('/umkm-binaan', [ProductController::class, 'umkm'])->name('umkm-binaan');
+Route::get('/product/{id?}', [ProductController::class, 'productDetail'])->name('product.detail');
+Route::get('/umkm/detail/{id?}', [ProductController::class, 'umkmDetail'])->name('umkm.detail');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -32,9 +38,22 @@ Route::middleware('auth')->group(function () {
     // Manage UMKM
     Route::get('/manage-umkm', [ManageUmkmController::class, 'index'])->name('manage.umkm');
     Route::get('/manage-umkm/data', [ManageUmkmController::class, 'getData'])->name('manage.umkm.data');
+    Route::get('/manage-umkm/detail/{id?}', [ManageUmkmController::class, 'detail'])->name('manage.umkm.detail');
     Route::get('/manage-umkm/regist', [ManageUmkmController::class, 'manageRegist'])->name('manage.umkm.regist');
     Route::get('/manage-umkm/accept/{id?}', [ManageUmkmController::class, 'accept'])->name('manage.umkm.accept');
     Route::get('/manage-umkm/reject/{id?}', [ManageUmkmController::class, 'reject'])->name('manage.umkm.reject');
+    Route::get('/manage-umkm/edit/{id?}', [ManageUmkmController::class, 'edit'])->name('manage.umkm.edit');
+    Route::post('/manage-umkm/update', [ManageUmkmController::class, 'update'])->name('manage.umkm.update');
+    Route::get('/manage-umkm/delete/{id?}', [ManageUmkmController::class, 'destroy'])->name('manage.umkm.delete');
+    // Manage UMKM Product
+    Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
+    Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');
+    Route::get('/manage-umkm/products/detail/{id?}', [ManageProductController::class, 'detail'])->name('manage.product.detail');
+    Route::get('/manage-umkm/products/add', [ManageProductController::class, 'create'])->name('manage.product.add');
+    Route::post('/manage-umkm/products/add', [ManageProductController::class, 'store'])->name('manage.product.save');
+    Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
+    Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
+    Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
     // Manage Fasilitator
     Route::get('/manage-fasilitator', [FasilitatorController::class, 'index'])->name('manage.fasilitator');
     Route::get('/manage-fasilitator/add', [FasilitatorController::class, 'create'])->name('manage.fasilitator.add');

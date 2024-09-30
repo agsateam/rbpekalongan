@@ -71,7 +71,10 @@ class FasilitatorController extends Controller
     }
 
     public function destroy($id){
-        $data = Fasilitator::where('id', $id)->first();
+        $data = Fasilitator::where('id', $id)->with('umkm')->first();
+        if($data->umkm->count() > 0){
+            return redirect(route('manage.fasilitator'))->with('error', 'Fasilitator ini memiliki UMKM binaan, tidak bisa dihapus.');
+        }
         // remove photo from storage
         $path = explode("uploaded/fasilitator", $data->photo);
         unlink(public_path('uploaded/fasilitator') . $path[1]);
