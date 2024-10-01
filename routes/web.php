@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
+use App\Http\Controllers\admin\ManageTestiController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ContactController;
@@ -26,6 +27,8 @@ Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/umkm-binaan', [ProductController::class, 'umkm'])->name('umkm-binaan');
 Route::get('/product/{id?}', [ProductController::class, 'productDetail'])->name('product.detail');
 Route::get('/umkm/detail/{id?}', [ProductController::class, 'umkmDetail'])->name('umkm.detail');
+Route::get('/testimoni/send', [ManageTestiController::class, 'create'])->name('testi.add');
+Route::post('/testimoni/send', [ManageTestiController::class, 'store'])->name('testi.send');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -75,6 +78,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-event/regist/data', [EventController::class, 'getData'])->name('manage.eventregist.data');
     Route::get('/manage-event/regist/accept/{id?}', [EventController::class, 'accept'])->name('manage.eventregist.accept');
     Route::get('/manage-event/regist/reject/{id?}', [EventController::class, 'reject'])->name('manage.eventregist.reject');
+    // Manage Event
+    Route::get('/manage-testi', [ManageTestiController::class, 'index'])->name('manage.testi');
+    Route::get('/manage-testi/verify', [ManageTestiController::class, 'verify'])->name('manage.testi.verify');
+    Route::get('/manage-testi/accept/{id?}', [ManageTestiController::class, 'accept'])->name('manage.testi.accept');
+    Route::get('/manage-testi/reject/{id?}', [ManageTestiController::class, 'reject'])->name('manage.testi.reject');
+    Route::get('/manage-testi/delete/{id?}', [ManageTestiController::class, 'delete'])->name('manage.testi.delete');
     // Web Content
 
     // Fungsi

@@ -1,8 +1,10 @@
 @php
     use App\Models\EventRegistration;
     use App\Models\Umkm;
+    use App\Models\Testimoni;
     $eventRegistCount = EventRegistration::where('status', 'registered')->count();
     $umkmRegistCount = Umkm::where('status', 'registered')->count();
+    $testiSendedCount = Testimoni::where('status', 'send')->count();
 @endphp
 
 <!DOCTYPE html>
