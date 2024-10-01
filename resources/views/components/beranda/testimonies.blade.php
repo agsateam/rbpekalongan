@@ -13,6 +13,7 @@ $testi = Testimoni::where('status', 'accepted')->get();
             </div>
         </div>
     
+        @if ($testi->count() > 0)
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
             <div class="relative overflow-hidden rounded-lg h-[500px] lg:h-80 bg-white shadow-md">
                 @foreach ($testi as $t)
@@ -54,6 +55,9 @@ $testi = Testimoni::where('status', 'accepted')->get();
                 </span>
             </button>
         </div>
+        @else
+        <span class="text-xl">Testimoni belum tersedia.</span>
+        @endif
 
         <div class="md:hidden flex items-center mt-8">
             <span class="text-lg mr-3">Punya testimoni untuk kami?</span>
