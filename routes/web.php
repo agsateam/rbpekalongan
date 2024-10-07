@@ -87,5 +87,9 @@ Route::middleware('auth')->group(function () {
     // Web Content
 
     // Fungsi
-    Route::get('/webcontent/fungsi', [FungsiController::class, 'index'])->name('webcontent.fungsi');
+
+    Route::prefix('webcontent')->group(function () {
+        Route::get('fungsi', [FungsiController::class, 'index'])->name('webcontent.fungsi');
+        Route::post('fungsi', [FungsiController::class, 'store'])->name('webcontent.fungsiupdate');
+    });
 });
