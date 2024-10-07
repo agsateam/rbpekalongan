@@ -12,11 +12,14 @@ class FungsiForm extends Component
      * Create a new component instance.
      */
 
+
     public $fungsi;
     public $deskripsi;
 
+
     public function __construct($fungsi, $deskripsi)
     {
+
         $this->fungsi = $fungsi;
         $this->deskripsi = $deskripsi;
     }
