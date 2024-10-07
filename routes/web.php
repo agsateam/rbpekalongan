@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\ManageEventController;
@@ -38,6 +39,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middl
 // BackEnd
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/password', [AdminController::class, 'changePassword'])->name('admin.password');
+    Route::post('/admin/password', [AdminController::class, 'updatePassword'])->name('admin.password.save');
     // Manage UMKM
     Route::get('/manage-umkm', [ManageUmkmController::class, 'index'])->name('manage.umkm');
     Route::get('/manage-umkm/data', [ManageUmkmController::class, 'getData'])->name('manage.umkm.data');
