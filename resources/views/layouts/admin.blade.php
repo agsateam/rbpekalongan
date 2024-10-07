@@ -79,7 +79,9 @@
                             </div>
                             <ul tabindex="0"
                                 class="dropdown-content menu bg-[#195770] rounded-md z-[1] w-52 p-2 shadow">
-                                <li><a href="{{ route('logout') }}">Logout</a></li>
+                                <li><a class="rounded-none border border-white mb-1" href="{{ route('admin.profile') ."/". Auth::user()->id }}">Profil</a></li>
+                                <li><a class="rounded-none border border-white mb-1" href="{{ route('admin.password') }}">Ubah Password</a></li>
+                                <li><a class="rounded-none border border-white" href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </div>
                     </div>
