@@ -21,6 +21,34 @@ class AdminController extends Controller
         ]);
     }
 
+    public function create(){
+        return view('backend.users.add');
+    }
+
+    public function store(Request $req){
+        $req->validate(
+            [
+                'email' => [Rule::unique('users')->ignore($req->id)],
+                'phone' => 'min_digits:11|max_digits:14|numeric'
+            ],
+            [
+                'email.unique' => 'Email sudah terdaftar di sistem.',
+                'phone.min' => 'Nomor minimal 11 karakter.',
+                'phone.max' => 'Nomor maksimal 14 karakter.',
+                'phone.numeric' => 'Nomor harus berupa angka.',
+            ]
+        );
+
+        User::create([
+            "name" => $req->name,
+            "email" => $req->email,
+            "phone" => $req->phone,
+            "password" => Hash::make($req->password),
+        ]);
+
+        return redirect(route('admin'))->with("success", "Berhasil menambahkan data.");
+    }
+
     public function edit($id){
         $data = User::where('id', $id)->first();
 

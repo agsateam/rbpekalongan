@@ -7,7 +7,8 @@
         <div class="breadcrumbs text-sm">
             <ul>
                 <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                <li>Pengguna</li>
+                <li><a href="{{route('admin')}}">Pengguna</a></li>
+                <li>Info</li>
             </ul>
         </div>
     </div>
@@ -16,7 +17,7 @@
         <a href="{{route('admin')}}" class="btn btn-sm bg-gray-500 text-white">Kembali</a>
     </div>
 
-    <div class="mt-10 mb-5">
+    <div class="mt-5 mb-5">
         @include('components.backend.alert')
     </div>
 
@@ -36,9 +37,9 @@
                 <div class="label"><span class="label-text text-base font-semibold">Telepon/WA</span></div>
                 <input type="text" id="input" name="phone" placeholder="08 ..." class="w-full focus:ring-0 border-none pl-1" value="{{$data->phone}}" required disabled/>
             </label>
-            <div class="hidden justify-between gap-3" id="buttonSubmit">
-                <button type="submit" class="submit btn bg-[#195770] hover:bg-[#195770] mt-5 text-white w-2/3" disabled>Simpan</button>
-                <button type="button" onclick="edit(false)" class="btn bg-gray-500 hover:bg-gray-500 mt-5 text-white w-1/3">Batal</button>
+            <div class="hidden flex-col md:flex-row justify-between gap-3" id="buttonSubmit">
+                <button type="submit" class="submit btn bg-[#195770] hover:bg-[#195770] mt-5 text-white md:w-2/3" disabled>Simpan</button>
+                <button type="button" onclick="edit(false)" class="btn bg-gray-500 hover:bg-gray-500 md:mt-5 text-white md:w-1/3">Batal</button>
             </div>
         </form>
 
@@ -55,7 +56,7 @@
     function resetPw(href){
         Swal.fire({
             title: 'Reset Password',
-            text: 'Password baru akan dikirim ke nomor administrator, konfirmasi tindakan ini?',
+            text: 'Password baru akan dikirim ke nomor pengguna, konfirmasi tindakan ini?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: "#195770",
@@ -81,13 +82,13 @@
                 element.classList.remove("border-none");
                 element.classList.add("pl-3");
                 element.classList.add("rounded-md");
-                element.classList.add("border-[#195770]");
+                element.classList.add("border-gray-300");
             }else{
                 element.classList.add("pl-1");
                 element.classList.add("border-none");
                 element.classList.remove("pl-3");
                 element.classList.remove("rounded-md");
-                element.classList.remove("border-[#195770]");
+                element.classList.remove("border-gray-300");
             }
         });
     }

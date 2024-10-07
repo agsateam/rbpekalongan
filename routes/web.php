@@ -39,6 +39,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middl
 // BackEnd
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Manage Users
     Route::get('/admin/password', [AdminController::class, 'changePassword'])->name('admin.password');
     Route::post('/admin/password', [AdminController::class, 'updatePassword'])->name('admin.password.save');
     Route::get('/admin/password/{id?}', [AdminController::class, 'resetPassword'])->name('admin.password.reset');
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-admin/profile/{id?}', [AdminController::class, 'edit'])->name('admin.profile');
     Route::post('/manage-admin/profile', [AdminController::class, 'update'])->name('admin.profile.update');
     Route::get('/manage-admin/delete/{id?}', [AdminController::class, 'destroy'])->name('admin.delete');
+    Route::get('/manage-admin/add', [AdminController::class, 'create'])->name('admin.add');
+    Route::post('/manage-admin/add', [AdminController::class, 'store'])->name('admin.save');
     // Manage UMKM
     Route::get('/manage-umkm', [ManageUmkmController::class, 'index'])->name('manage.umkm');
     Route::get('/manage-umkm/data', [ManageUmkmController::class, 'getData'])->name('manage.umkm.data');

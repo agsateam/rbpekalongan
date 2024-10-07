@@ -1,14 +1,14 @@
 @extends('layouts.admin')
-@section('title', 'Ubah Password')
+@section('title', 'Tambah Data Admin')
 @section('content')
 <div class="md:px-5">
     <div class="flex flex-col md:flex-row justify-between">
-        <h4 class="text-2xl md:text-3xl font-bold mb-5">Ubah Password</h4>
+        <h4 class="text-2xl md:text-3xl font-bold mb-5">Tambah Data Admin</h4>
         <div class="breadcrumbs text-sm">
             <ul>
                 <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                <li>Profil</li>
-                <li>Ubah Password</li>
+                <li>Pengguna</li>
+                <li>Tambah</li>
             </ul>
         </div>
     </div>
@@ -18,25 +18,43 @@
     </div>
 
     <div class="flex flex-col border rounded-md p-5 mt-5">
-        <form class="flex flex-col" action="{{route('admin.password.save')}}" method="post" enctype="multipart/form-data">
+        <form class="flex flex-col" action="{{route('admin.save')}}" method="post">
             @csrf
             <label class="form-control w-full">
-                <div class="label"><span class="label-text text-base font-semibold">Password Lama</span></div>
-                <input id="password" type="password" name="password" placeholder="Password" class="input input-bordered w-full" required/>
-                <span class="text-sm ml-1 mt-1 text-red-600">{{ session()->get('error') }}</span>
+                <div class="label"><span class="label-text text-base font-semibold">Nama</span></div>
+                <input type="text" name="name" value="{{old('name')}}" placeholder="Nama" class="input input-rounded border border-gray-300" required/>
+                @error('name')
+                <span class="text-sm ml-1 mt-1 text-red-600">{{$message}}</span>
+                @enderror
             </label>
             <label class="form-control w-full">
-                <div class="label"><span class="label-text text-base font-semibold">Password Baru</span></div>
-                <input id="password" type="password" name="newpassword" placeholder="Password" class="input input-bordered w-full" required/>
-                <span id="confirmpw1" class="hidden text-sm ml-1 mt-1 text-red-600">Password tidak cocok!</span>
+                <div class="label"><span class="label-text text-base font-semibold">Email</span></div>
+                <input type="text" name="email" value="{{old('email')}}" placeholder="Email" class="input input-rounded border border-gray-300" required/>
+                @error('email')
+                <span class="text-sm ml-1 mt-1 text-red-600">{{$message}}</span>
+                @enderror    
             </label>
             <label class="form-control w-full">
-                <div class="label"><span class="label-text text-base font-semibold">Ulangi Password Baru</span></div>
-                <input id="password" type="password" name="confirmpassword" placeholder="Password" class="input input-bordered w-full" required/>
-                <span id="confirmpw2" class="hidden text-sm ml-1 mt-1 text-red-600">Password tidak cocok!</span>
+                <div class="label"><span class="label-text text-base font-semibold">Telepon/WA</span></div>
+                <input type="text" name="phone" value="{{old('phone')}}" placeholder="08 ..." class="input input-rounded border border-gray-300" required/>
+                @error('phone')
+                <span class="text-sm ml-1 mt-1 text-red-600">{{$message}}</span>
+                @enderror    
             </label>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-2">
+                <label class="form-control w-full">
+                    <div class="label"><span class="label-text text-base font-semibold">Password</span></div>
+                    <input id="password" type="password" name="password" placeholder="Password" class="input input-rounded border border-gray-300" required/>
+                    <span id="confirmpw1" class="hidden text-sm ml-1 mt-1 text-red-600">Password tidak cocok!</span>
+                </label>
+                <label class="form-control w-full">
+                    <div class="label"><span class="label-text text-base font-semibold">Ulangi Password</span></div>
+                    <input id="password" type="password" name="confirmpassword" placeholder="Ulangi Password" class="input input-rounded border border-gray-300" required/>
+                    <span id="confirmpw2" class="hidden text-sm ml-1 mt-1 text-red-600">Password tidak cocok!</span>
+                </label>
+            </div>
             <div class="flex justify-between gap-1 md:gap-3">
-                <button type="submit" id="buttonSubmit" class="btn bg-[#195770] hover:bg-[#195770] mt-10 text-white grow" disabled>Simpan</button>
+                <button type="submit" id="buttonSubmit" class="btn bg-[#195770] hover:bg-[#195770] mt-10 text-white grow">Simpan</button>
                 <button type="button" class="btn bg-[#195770] hover:bg-[#195770] mt-10 text-white w-fit" id="toggleEye" onclick="showPassword()"></button>
             </div>
         </form>
@@ -77,10 +95,9 @@
         }
     }
     
-    
-    const repeatPass = passwords[2];
+    const repeatPass = passwords[1];
     repeatPass.addEventListener('input', (event) => {
-        newPass1 = passwords[1];
+        newPass1 = passwords[0];
         newPass2 = repeatPass;
         
         if(newPass1.value == newPass2.value){
