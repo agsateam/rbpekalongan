@@ -14,7 +14,7 @@
     </div>
     
     <div class="flex justify-end mt-5">
-        <a href="{{route('dashboard')}}" class="btn btn-sm bg-gray-500 text-white">Kembali</a>
+        <a href="{{route('admin')}}" class="btn btn-sm bg-gray-500 text-white">Kembali</a>
     </div>
 
     <div class="flex flex-col border rounded-md p-5 mt-5">

@@ -41,6 +41,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/admin/password', [AdminController::class, 'changePassword'])->name('admin.password');
     Route::post('/admin/password', [AdminController::class, 'updatePassword'])->name('admin.password.save');
+    Route::get('/admin/password/{id?}', [AdminController::class, 'resetPassword'])->name('admin.password.reset');
+    Route::get('/manage-admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/manage-admin/profile/{id?}', [AdminController::class, 'edit'])->name('admin.profile');
+    Route::post('/manage-admin/profile', [AdminController::class, 'update'])->name('admin.profile.update');
+    Route::get('/manage-admin/delete/{id?}', [AdminController::class, 'destroy'])->name('admin.delete');
     // Manage UMKM
     Route::get('/manage-umkm', [ManageUmkmController::class, 'index'])->name('manage.umkm');
     Route::get('/manage-umkm/data', [ManageUmkmController::class, 'getData'])->name('manage.umkm.data');

@@ -7,9 +7,54 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    public function index(){
+        $data = User::all();
+        
+        return view('backend.users.index', [
+            "data" => $data
+        ]);
+    }
+
+    public function edit($id){
+        $data = User::where('id', $id)->first();
+
+        return view('backend.users.profile', [
+            "data" => $data
+        ]);
+    }
+
+    public function update(Request $req){
+        $validator = Validator::make(
+            $req->all(),
+            ['email' => [Rule::unique('users')->ignore($req->id)]],
+            ['email.unique' => 'Email sudah terdaftar di sistem.']
+        );
+        if ($validator->fails()) {
+            return back()->with("error", $validator->errors()->messages()['email'][0]);
+        }
+
+        $data = [
+            "name" => $req->name,
+            "email" => $req->email,
+            "phone" => $req->phone,
+        ];
+        User::where('id', $req->id)->update($data);
+
+        return back()->with("success", "Data pengguna berhasil diperbarui");
+    }
+
+    public function destroy($id){
+        User::where('id', $id)->delete();
+        return back()->with('success', 'Data pengguna dihapus');
+    }
+
+    // Manage Password
     public function changePassword(){
         $data = Auth::user();
 
@@ -29,5 +74,12 @@ class AdminController extends Controller
         } else {
             return back()->with('error', 'Password lama yang anda inputkan salah!');
         }
+    }
+
+    public function resetPassword($id)
+    {
+        dd($id, Str::password(8, true, true, false, false));
+        User::where('id', $id)->update(['password' => Hash::make(Str::password(8, true, true, false, false))]);
+        return back()->with('success', 'Password pengguna berhasil direset');
     }
 }
