@@ -41,7 +41,7 @@
             <div class="card bg-white flex-shrink-0 w-3/4 p-5">
                 <h3 class="text-4xl font-bold mb-4">BASECAMP MILENIAL</h3>
                 <div class="flex flex-row gap-1">
-                    <div class="w-1/4"><img src="./images/fungsi/fungsi1.jpg" alt=""></div>
+                    <div class="w-1/4"><img src="./images/fungsi/fungsi2.jpg" alt=""></div>
                     <div class="flex flex-col w-3/4 px-3">
                         <div class="flex flex-row 2xl:justify-between">
                             <div class="w-40">
@@ -72,7 +72,7 @@
             <div class="card bg-white flex-shrink-0 w-3/4 p-5">
                 <h3 class="text-4xl font-bold mb-4">COWORKING SPACE</h3>
                 <div class="flex flex-row gap-1">
-                    <div class="w-1/4"><img src="./images/fungsi/fungsi1.jpg" alt=""></div>
+                    <div class="w-1/4"><img src="./images/fungsi/fungsi3.jpg" alt=""></div>
                     <div class="flex flex-col w-3/4 px-3">
                         <div class="flex flex-row 2xl:justify-between">
                             <div class="w-40">
@@ -102,7 +102,7 @@
         @foreach ($fungsi4 as $f4)
             <div class="card bg-white flex-shrink-0 w-3/4 p-5">BENCANA</h3>
                 <div class="flex flex-row gap-1">
-                    <div class="w-1/4"><img src="./images/fungsi/fungsi1.jpg" alt=""></div>
+                    <div class="w-1/4"><img src="./images/fungsi/fungsi4.jpg" alt=""></div>
                     <div class="flex flex-col w-3/4 px-3">
                         <div class="flex flex-row 2xl:justify-between">
                             <div class="w-40">
@@ -133,7 +133,7 @@
             <div class="card bg-white flex-shrink-0 w-3/4 p-5">
                 <h3 class="text-4xl font-bold mb-4">PENYALURAN PK/BL & KUR</h3>
                 <div class="flex flex-row gap-1">
-                    <div class="w-1/4"><img src="./images/fungsi/fungsi1.jpg" alt=""></div>
+                    <div class="w-1/4"><img src="./images/fungsi/fungsi5.jpg" alt=""></div>
                     <div class="flex flex-col w-3/4 px-3">
                         <div class="flex flex-row 2xl:justify-between">
                             <div class="w-40">
@@ -160,36 +160,7 @@
             </div>
         @endforeach
 
-        @foreach ($fungsi1 as $f1)
-            <div class="card bg-white flex-shrink-0 w-3/4 p-5">
-                <h3 class="text-4xl font-bold mb-4">PENGEMBANGAN UMKM</h3>
-                <div class="flex flex-row gap-1">
-                    <div class="w-1/4"><img src="./images/fungsi/fungsi1.jpg" alt=""></div>
-                    <div class="flex flex-col w-3/4 px-3">
-                        <div class="flex flex-row 2xl:justify-between">
-                            <div class="w-40">
-                                <img src="{{ $f1->foto1 }}" class="aspect-square">
-                            </div>
-                            <div class="w-40">
-                                <img src="{{ $f1->foto2 }}" class="aspect-square">
-                            </div>
-                            <div class="w-40">
-                                <img src="{{ $f1->foto3 }}" class="aspect-square">
-                            </div>
-                            <div class="w-40">
-                                <img src="{{ $f1->foto4 }}" class="aspect-square">
-                            </div>
-                            <div class="w-40">
-                                <img src="{{ $f1->foto5 }}" class="aspect-square">
-                            </div>
-                        </div>
-                        <div class="mt-4 w-full">
-                            {{ $f1->deskripsi }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+
     </div>
 
 
