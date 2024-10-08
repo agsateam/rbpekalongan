@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('webcontent')->group(function () {
         Route::get('fungsi', [FungsiController::class, 'index'])->name('webcontent.fungsi');
-        Route::post('fungsi', [FungsiController::class, 'store'])->name('webcontent.fungsiupdate');
+        Route::get('fungsi/{id?}', [FungsiController::class, 'edit'])->name('webcontent.fungsiedit');
+        Route::post('fungsi', [FungsiController::class, 'update'])->name('webcontent.fungsiupdate');
     });
 });
