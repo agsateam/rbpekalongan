@@ -36,17 +36,49 @@ class FungsiController extends Controller
             "fungsi5" => $fungsi5,
         ];
 
-        // dd($data);
 
-
-        return view('backend.webcontent.fungsi.viewfungsi', $data);
+        return view('backend.webcontent.fungsi.jenisfungsi', $data);
     }
 
-    public function store(Request $request)
+    public function edit($id)
+    {
+        switch ($id) {
+            case 1:
+                $fungsi = Fungsi1::all();
+                break;
+            case 2:
+                $fungsi = Fungsi2::all();
+                break;
+            case 3:
+                $fungsi = Fungsi3::all();
+                break;
+            case 4:
+                $fungsi = Fungsi4::all();
+                break;
+            case 5:
+                $fungsi = Fungsi5::all();
+                break;
+            default:
+                return redirect()->back()->with('error', 'Fungsi ID tidak valid.');
+        }
+
+        // Jika model tidak ditemukan
+        if (!$fungsi) {
+            return redirect()->back()->with('error', 'Fungsi tidak ditemukan.');
+        }
+
+        $data = [
+            "fungsi" => $fungsi,
+        ];
+
+        return view('backend.webcontent.fungsi.editfungsi', $data);
+    }
+
+    public function update(Request $request)
     {
         // Validasi data
         $request->validate([
-            'fungsi_id' => 'required|exists:fungsis,id',
+            'fungsi_id' => 'required|integer|between:1,5', // Menggunakan range untuk ID yang valid
             'deskripsi' => 'required|string',
             'foto1' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'foto2' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -55,27 +87,31 @@ class FungsiController extends Controller
             'foto5' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Pilih model yang sesuai berdasarkan fungsi_id
-        switch ($request->fungsi_id) {
+        $id = $request->fungsi_id;
+
+        // dd($id);
+        // Temukan fungsi berdasarkan fungsi_id
+        switch ($id) {
             case 1:
-                $fungsi = Fungsi1::find($request->fungsi_id);
+                $fungsi = Fungsi1::first();
                 break;
             case 2:
-                $fungsi = Fungsi2::find($request->fungsi_id);
+                $fungsi = Fungsi2::first();
                 break;
             case 3:
-                $fungsi = Fungsi3::find($request->fungsi_id);
+                $fungsi = Fungsi3::first();
                 break;
             case 4:
-                $fungsi = Fungsi4::find($request->fungsi_id);
+                $fungsi = Fungsi4::first();
                 break;
             case 5:
-                $fungsi = Fungsi5::find($request->fungsi_id);
+                $fungsi = Fungsi5::first();
                 break;
             default:
                 return redirect()->back()->with('error', 'Fungsi ID tidak valid.');
         }
 
+        // dd($id, $fungsi);
         // Jika model tidak ditemukan
         if (!$fungsi) {
             return redirect()->back()->with('error', 'Fungsi tidak ditemukan.');
@@ -106,11 +142,11 @@ class FungsiController extends Controller
         uploadImage($request, 'foto4', $fungsi, 'foto4');
         uploadImage($request, 'foto5', $fungsi, 'foto5');
 
+        // dd($fungsi);
         // Simpan perubahan ke database
-
         $fungsi->save();
 
         // Redirect kembali ke halaman dengan pesan sukses
-        return redirect()->back()->with('success', 'Data fungsi berhasil diperbarui.');
+        return redirect()->route('webcontent.fungsi')->with('success', 'Data fungsi berhasil diperbarui.');
     }
 }
