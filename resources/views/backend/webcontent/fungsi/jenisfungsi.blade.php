@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Pendaftaran Event')
+@section('title', 'Jenis Fungsi')
 @section('content')
 
     <div class="flex flex-wrap gap-4">

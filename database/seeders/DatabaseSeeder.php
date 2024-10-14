@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             Fungsi3Seeder::class,
             Fungsi4Seeder::class,
             Fungsi5Seeder::class,
-
+            MitraSeeder::class
         ]);
     }
 }

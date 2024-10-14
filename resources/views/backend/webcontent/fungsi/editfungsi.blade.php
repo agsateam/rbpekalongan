@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Pendaftaran Event')
+@section('title', 'Edit Fungsi')
 @section('content')
 
     @foreach ($fungsi as $f)
