@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fungsi3 extends Model
+class FungsiRB extends Model
 {
     use HasFactory;
 
-    protected $table = 'fungsi3';
+    protected $table = 'fungsi_rbs';
 
     protected $fillable = [
-        'fungsi_id',
+        'nama_fungsi',
         'deskripsi',
         'foto1',
         'foto2',
@@ -20,10 +20,4 @@ class Fungsi3 extends Model
         'foto4',
         'foto5',
     ];
-
-
-    public function fungsi()
-    {
-        return $this->belongsTo(Fungsi::class, 'fungsi_id');
-    }
 }

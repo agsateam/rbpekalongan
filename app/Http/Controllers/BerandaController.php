@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Product;
-use App\Models\Fungsi1;
-use App\Models\Fungsi2;
-use App\Models\Fungsi3;
-use App\Models\Fungsi4;
-use App\Models\Fungsi5;
+
+use App\Models\FungsiRB;
+
 
 
 use Illuminate\Http\Request;
@@ -20,23 +18,16 @@ class BerandaController extends Controller
     {
         $events = Event::where('status', 'upcoming')->orderBy('date', 'desc')->get();
         $products = Product::orderBy('created_date', 'desc')->with('umkm')->limit(4)->get();
-        $fungsi1 = Fungsi1::all();
-        $fungsi2 = Fungsi2::all();
-        $fungsi3 = Fungsi3::all();
-        $fungsi4 = Fungsi4::all();
-        $fungsi5 = Fungsi5::all();
+
+        $fungsirb = FungsiRB::all();
 
 
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
             'events' => $events,
             'products' => $products,
-            'fungsi1' => $fungsi1,
-            'fungsi2' => $fungsi2,
-            'fungsi3' => $fungsi3,
-            'fungsi4' => $fungsi4,
-            'fungsi5' => $fungsi5,
 
+            'fungsirb' => $fungsirb
         ]);
     }
 
