@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\Product;
 
 use App\Models\FungsiRB;
+use App\Models\Mitra;
+
 
 
 
@@ -20,14 +22,14 @@ class BerandaController extends Controller
         $products = Product::orderBy('created_date', 'desc')->with('umkm')->limit(4)->get();
 
         $fungsirb = FungsiRB::all();
-
+        $mitra = Mitra::all();
 
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
             'events' => $events,
             'products' => $products,
-
-            'fungsirb' => $fungsirb
+            'fungsirb' => $fungsirb,
+            'mitra' => $mitra,
         ]);
     }
 

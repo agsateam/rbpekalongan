@@ -15,7 +15,7 @@
     <x-beranda.testimonies />
     <x-beranda.activities :igposts="$igPosts" />
 
-    <x-beranda.mitra />
+    <x-beranda.mitra :mitra="$mitra" />
 
 
     @if (count($products) > 0)
