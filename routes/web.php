@@ -3,16 +3,20 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
+use App\Http\Controllers\admin\FungsiRBController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
 use App\Http\Controllers\admin\ManageTestiController;
 use App\Http\Controllers\admin\ManageUmkmController;
+use App\Http\Controllers\admin\MitraController;
+// use App\Http\Controllers\admin\MitraController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FungsiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 // FrontEnd
@@ -100,8 +104,15 @@ Route::middleware('auth')->group(function () {
     // Fungsi
 
     Route::prefix('webcontent')->group(function () {
-        Route::get('fungsi', [FungsiController::class, 'index'])->name('webcontent.fungsi');
-        Route::get('fungsi/{id?}', [FungsiController::class, 'edit'])->name('webcontent.fungsiedit');
-        Route::post('fungsi', [FungsiController::class, 'update'])->name('webcontent.fungsiupdate');
+        Route::get('fungsi', [FungsiRBController::class, 'index'])->name('webcontent.fungsi');
+        Route::get('fungsi/{id?}', [FungsiRBController::class, 'edit'])->name('webcontent.fungsiedit');
+        Route::put('fungsi/{id?}', [FungsiRBController::class, 'update'])->name('webcontent.fungsiupdate');
+
+        Route::get('mitra', [MitraController::class, 'index'])->name('webcontent.mitra');
+        Route::get('mitra/create', [MitraController::class, 'create'])->name('webcontent.mitra.create');
+        Route::post('mitra/create', [MitraController::class, 'store'])->name('webcontent.mitra.save');
+        Route::get('mitra/edit/{id?}', [MitraController::class, 'edit'])->name('webcontent.mitra.edit');
+        Route::put('mitra/update/{id?}', [MitraController::class, 'update'])->name('webcontent.mitra.update');
+        Route::delete('mitra/delete/{id}', [MitraController::class, 'destroy'])->name('webcontent.mitra.delete');
     });
 });

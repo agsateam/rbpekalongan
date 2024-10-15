@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FungsiRB;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -27,13 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductCategorySeeder::class,
             // EventSeeder::class
-            FungsiSeeder::class,
-            Fungsi1Seeder::class,
-            Fungsi2Seeder::class,
-            Fungsi3Seeder::class,
-            Fungsi4Seeder::class,
-            Fungsi5Seeder::class,
-
+            FungsiRBSeeder::class,
+            MitraSeeder::class
         ]);
     }
 }

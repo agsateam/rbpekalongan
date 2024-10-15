@@ -7,7 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class Fungsi4Seeder extends Seeder
+
+class MitraSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +17,11 @@ class Fungsi4Seeder extends Seeder
     {
         $data = [
             [
-                'fungsi_id' => 4,
-                'deskripsi' => 'Deskripsi untuk Fungsi 4 di tabel fungsi1',
+                'nama_mitra' => 'Google',
+                'link' => 'www.google.com',
 
             ],
         ];
-        DB::table('fungsi4')->insert($data);
+        DB::table('mitras')->insert($data);
     }
 }
