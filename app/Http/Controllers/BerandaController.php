@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Product;
-
+use App\Models\Umkm;
 use App\Models\FungsiRB;
 use App\Models\Mitra;
 
 
-
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -21,8 +21,22 @@ class BerandaController extends Controller
         $events = Event::where('status', 'upcoming')->orderBy('date', 'desc')->get();
         $products = Product::orderBy('created_date', 'desc')->with('umkm')->limit(4)->get();
 
+        //statistik
+        $gomodern = Umkm::count();
+        $godigital = DB::table('umkms')->where(function ($query) {
+            $query->whereNotNull('instagram')
+                ->orWhereNotNull('facebook');
+        })
+            ->count();
+        $goonline = DB::table('umkms')->where(function ($query) {
+            $query->whereNotNull('marketplace');
+        })->count();
+        $jumlahevent = Event::count();
+
+
         $fungsirb = FungsiRB::all();
         $mitra = Mitra::all();
+
 
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
@@ -30,6 +44,10 @@ class BerandaController extends Controller
             'products' => $products,
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
+            'gomodern' => $gomodern,
+            'godigital' => $godigital,
+            'goonline' => $goonline,
+            'jumlahevent' => $jumlahevent
         ]);
     }
 
