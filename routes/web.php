@@ -36,6 +36,7 @@ Route::get('/umkm/detail/{id?}', [ProductController::class, 'umkmDetail'])->name
 Route::get('/testimoni/send', [ManageTestiController::class, 'create'])->name('testi.add');
 Route::post('/testimoni/send', [ManageTestiController::class, 'store'])->name('testi.send');
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.send');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
