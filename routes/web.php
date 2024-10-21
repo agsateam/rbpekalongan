@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\admin\MitraController;
 // use App\Http\Controllers\admin\MitraController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FungsiController;
@@ -35,6 +36,7 @@ Route::get('/product/{id?}', [ProductController::class, 'productDetail'])->name(
 Route::get('/umkm/detail/{id?}', [ProductController::class, 'umkmDetail'])->name('umkm.detail');
 Route::get('/testimoni/send', [ManageTestiController::class, 'create'])->name('testi.add');
 Route::post('/testimoni/send', [ManageTestiController::class, 'store'])->name('testi.send');
+Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
