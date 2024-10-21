@@ -13,7 +13,7 @@
                 @endif
 
                 <a target="_blank" href="{{ $post['permalink'] }}" class="mt-3 text-xl font-bold text-[#195770]">
-                    {{ Str::limit(Str::replace("\n", ' ', $post['caption']), 70, preserveWords: true) }}
+                    {{ Str::limit(Str::replace("\n", ' ', $post['caption'] ?? ""), 70, preserveWords: true) }}
                 </a>
                 <span class="mt-1 text-sm text-gray-500">
                     {{ Carbon\Carbon::createFromTimeString($post['timestamp'])->format('d M Y') }}
