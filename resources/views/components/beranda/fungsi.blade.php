@@ -11,11 +11,13 @@
 
         @foreach ($fungsirb as $f1)
             <div class="card bg-white flex-shrink-0 w-3/4 p-5">
-                <h3 class="text-4xl font-bold mb-4">{{ $f1->nama_fungsi }}</h3>
-                <div class="flex flex-row gap-1">
-                    <div class="w-1/4"><img src="./images/fungsi/fungsi{{ $no++ }}.jpg" alt=""></div>
-                    <div class="flex flex-col w-3/4 px-3">
-                        <div class="flex flex-row 2xl:justify-between">
+                <h3 class="text-xl md:text-4xl font-bold mb-4">{{ $f1->nama_fungsi }}</h3>
+                <div class="flex flex-col md:flex-row gap-1 items-center">
+                    <div class="w-full md:w-1/4 "><img class="object-cover"
+                            src="./images/fungsi/fungsi{{ $no++ }}.jpg" alt="">
+                    </div>
+                    <div class="flex flex-col-reverse md:flex-col w-3/4 px-3">
+                        <div class="flex flex-col items-center md:flex-row mt-4 md:mt-0 2xl:justify-between">
                             <div class="w-40">
                                 <img src="{{ $f1->foto1 }}" class="aspect-square">
                             </div>
@@ -32,7 +34,7 @@
                                 <img src="{{ $f1->foto5 }}" class="aspect-square">
                             </div>
                         </div>
-                        <div class="mt-4 w-full">
+                        <div class="mt-2 md:mt-4 w-full">
                             {{ $f1->deskripsi }}
                         </div>
                     </div>

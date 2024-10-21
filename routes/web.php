@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\FungsiRBController;
+use App\Http\Controllers\admin\InformasiController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
 use App\Http\Controllers\admin\ManageTestiController;
