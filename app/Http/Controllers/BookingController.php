@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\File;
 
 class BookingController extends Controller
 {
@@ -12,65 +13,155 @@ class BookingController extends Controller
             [
                 "id" => 1,
                 "name" => "AREA RUANG TAMU",
-                "kursi" => 5,
+                "seat" => 5,
                 "booked" => 0,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 2,
                 "name" => "CO WORKING SPACE",
-                "kursi" => 6,
+                "seat" => 6,
                 "booked" => 3,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 3,
                 "name" => "BASECAMP MILENIAL",
-                "kursi" => 12,
+                "seat" => 12,
                 "booked" => 0,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 4,
                 "name" => "AREA DISPLAY PRODUK",
-                "kursi" => 6,
+                "seat" => 6,
                 "booked" => 0,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 5,
                 "name" => "FRONT OFFICE",
-                "kursi" => 3,
+                "seat" => 3,
                 "booked" => 0,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 6,
                 "name" => "RUANG PODCAST",
-                "kursi" => 3,
+                "seat" => 6,
                 "booked" => 0,
-                "isMustFullBooking" => true
+                "isMustFullBooking" => true,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 7,
                 "name" => "MINI STUDIO",
-                "kursi" => 3,
+                "seat" => 10,
                 "booked" => 0,
-                "isMustFullBooking" => true
+                "isMustFullBooking" => true,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 8,
                 "name" => "RUANG PELATIHAN",
-                "kursi" => 20,
+                "seat" => 20,
                 "booked" => 0,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
             [
                 "id" => 9,
                 "name" => "SMART OFFICE",
-                "kursi" => 3,
+                "seat" => 3,
                 "booked" => 0,
-                "isMustFullBooking" => false
+                "isMustFullBooking" => false,
+                "times" => [
+                    [
+                        "id" => 1,
+                        "time" => "09.00 - 11.00 WIB",
+                    ],
+                    [
+                        "id" => 2,
+                        "time" => "13.00 - 15.00 WIB",
+                    ],
+                ]
             ],
         ];
 
@@ -80,6 +171,37 @@ class BookingController extends Controller
     }
 
     public function store(Request $req){
-        dd($req->all());
+        $req->validate([
+            'jumlah_kursi' => 'required|numeric|max:' . $req->kursi_ready,
+            'name' => 'required',
+            'whatsapp' => 'required',
+            'tujuan' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
+        ], [
+            'jumlah_kursi.required' => 'Isi kolom yang diperlukan.',
+            'jumlah_kursi.max' => 'Jumlah kursi yang tersedia hanya ' . $req->kursi_ready,
+            'name.required' => 'Isi kolom yang diperlukan.',
+            'whatsapp.required' => 'Isi kolom yang diperlukan.',
+            'tujuan.required' => 'Isi kolom yang diperlukan.',
+            'g-recaptcha-response.required' => 'Konfirmasi captcha diatas.',
+        ]);
+
+        $data = [
+            "room_id" => $req->room_id,
+            "booking_time" => $req->room_time,
+            "booking_seat" => $req->jumlah_kursi,
+            "booking_name" => $req->name,
+            "whatsapp" => $req->whatsapp,
+            "purpose" => $req->tujuan,
+        ];
+
+        return redirect(route('booking.success') . "?room=" . $req->room_name . "&time=" . "13.00 - 15.00 WIB");
+    }
+
+    public function success(Request $req){
+        return view('frontend.booking_success', [
+            "room" => $req->room,
+            "time" => $req->time,
+        ]);
     }
 }
