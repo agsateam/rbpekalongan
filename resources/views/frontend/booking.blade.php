@@ -40,7 +40,7 @@
                     <input type="hidden" value="{{old('kursi_ready')}}" name="kursi_ready" id="kursi_ready"/>
                     <div class="text-3xl font-bold md:col-span-2">Form Booking Ruangan</div>
                     
-                    <label class="form-control w-full col-span-2">
+                    <label class="form-control w-full md:col-span-2">
                         <div class="label">
                           <span class="label-text text-base font-semibold">Ruangan</span>
                         </div>
