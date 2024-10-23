@@ -2,7 +2,7 @@
 @section('title', 'Beranda')
 @section('content')
 
-    <x-beranda.hero />
+    <x-beranda.hero :hero="$hero" />
     <x-beranda.services />
     <x-beranda.statistik :gomodern="$gomodern" :godigital="$godigital" :goonline="$goonline" :jumlahevent="$jumlahevent" />
     <x-beranda.video />
