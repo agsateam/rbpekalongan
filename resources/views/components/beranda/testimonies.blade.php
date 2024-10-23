@@ -61,7 +61,7 @@ $testi = Testimoni::where('status', 'accepted')->get();
 
         <div class="md:hidden flex items-center mt-8">
             <span class="text-lg mr-3">Punya testimoni untuk kami?</span>
-            <a href="#" class="btn btn-sm text-white bg-[#195770] hover:bg-[#1ba0db]">Tulis Disini!</a>
+            <a href="{{route('testi.add')}}" class="btn btn-sm text-white bg-[#195770] hover:bg-[#1ba0db]">Tulis Disini!</a>
         </div>
     </div>
 </div>
