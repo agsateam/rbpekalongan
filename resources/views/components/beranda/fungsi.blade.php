@@ -16,7 +16,7 @@
                     <div class="w-full md:w-1/4 "><img class="object-cover"
                             src="./images/fungsi/fungsi{{ $no++ }}.jpg" alt="">
                     </div>
-                    <div class="flex flex-col-reverse md:flex-col w-3/4 px-3">
+                    <div class="flex flex-col-reverse md:flex-col w-full md:w-3/4 px-3">
                         <div class="flex flex-col items-center md:flex-row mt-4 md:mt-0 2xl:justify-between">
                             <div class="w-40">
                                 <img src="{{ $f1->foto1 }}" class="aspect-square">

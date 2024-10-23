@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Umkm;
 use App\Models\FungsiRB;
 use App\Models\Mitra;
+use App\Models\Hero;
 
 
 use Illuminate\Support\Facades\DB;
@@ -36,6 +37,9 @@ class BerandaController extends Controller
 
         $fungsirb = FungsiRB::all();
         $mitra = Mitra::all();
+        $hero = Hero::all();
+
+        // dd($hero);
 
 
         return view('frontend.beranda', [
@@ -47,7 +51,8 @@ class BerandaController extends Controller
             'gomodern' => $gomodern,
             'godigital' => $godigital,
             'goonline' => $goonline,
-            'jumlahevent' => $jumlahevent
+            'jumlahevent' => $jumlahevent,
+            'hero' => $hero,
         ]);
     }
 
