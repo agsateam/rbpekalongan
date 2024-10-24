@@ -57,7 +57,7 @@ class MitraController extends Controller
             $mitra->logo = url('uploaded/mitra/' . $imageName);
         }
 
-        // dd($mitra);
+
         // Simpan data ke database
         $mitra->save();
 

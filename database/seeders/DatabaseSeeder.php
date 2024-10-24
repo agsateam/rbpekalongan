@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductCategorySeeder::class,
             // EventSeeder::class,
-
+            HeroSeeder::class,
             FungsiRBSeeder::class,
             MitraSeeder::class
         ]);

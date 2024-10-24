@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\FungsiRBController;
+use App\Http\Controllers\admin\HeroController;
 use App\Http\Controllers\admin\InformasiController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
@@ -123,5 +124,9 @@ Route::middleware('auth')->group(function () {
         // IG Token
         Route::get('igtoken', [BerandaController::class, 'igTokenEdit'])->name('webcontent.igtoken');
         Route::post('igtoken', [BerandaController::class, 'igTokenUpdate'])->name('webcontent.igtoken.update');
+        // Hero
+        Route::get('hero', [HeroController::class, 'index'])->name('webcontent.hero');
+        Route::get('hero/edit/{id?}', [HeroController::class, 'edit'])->name('webcontent.hero.edit');
+        Route::put('hero/update/{id?}', [HeroController::class, 'update'])->name('webcontent.hero.update');
     });
 });
