@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\FungsiRB;
 use App\Models\User;
+use App\Models\WebContent;
+use Faker\Provider\Lorem;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,9 +27,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin2@example.com',
         ]);
 
+        WebContent::create(["video_desc" => "Video Profil Rumah BUMN Pekalongan"]);
+
         $this->call([
             ProductCategorySeeder::class,
-            EventSeeder::class,
+            // EventSeeder::class,
             HeroSeeder::class,
             FungsiRBSeeder::class,
             MitraSeeder::class

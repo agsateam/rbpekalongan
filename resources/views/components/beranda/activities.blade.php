@@ -3,7 +3,7 @@
     @if (count($igposts['data']) == 0)
         <span class="text-xl">Belum ada berita yang bisa ditampilkan...</span>
     @endif
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         @foreach ($igposts['data'] as $post)
             <div class="w-full flex flex-col">
                 @if ($post['media_type'] == 'VIDEO')

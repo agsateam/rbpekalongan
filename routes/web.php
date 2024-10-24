@@ -106,21 +106,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-testi/reject/{id?}', [ManageTestiController::class, 'reject'])->name('manage.testi.reject');
     Route::get('/manage-testi/delete/{id?}', [ManageTestiController::class, 'delete'])->name('manage.testi.delete');
     // Web Content
-
-    // Fungsi
-
     Route::prefix('webcontent')->group(function () {
+        // Fungsi
         Route::get('fungsi', [FungsiRBController::class, 'index'])->name('webcontent.fungsi');
         Route::get('fungsi/{id?}', [FungsiRBController::class, 'edit'])->name('webcontent.fungsiedit');
         Route::put('fungsi/{id?}', [FungsiRBController::class, 'update'])->name('webcontent.fungsiupdate');
-
+        // Mitra
         Route::get('mitra', [MitraController::class, 'index'])->name('webcontent.mitra');
         Route::get('mitra/create', [MitraController::class, 'create'])->name('webcontent.mitra.create');
         Route::post('mitra/create', [MitraController::class, 'store'])->name('webcontent.mitra.save');
         Route::get('mitra/edit/{id?}', [MitraController::class, 'edit'])->name('webcontent.mitra.edit');
         Route::put('mitra/update/{id?}', [MitraController::class, 'update'])->name('webcontent.mitra.update');
         Route::delete('mitra/delete/{id}', [MitraController::class, 'destroy'])->name('webcontent.mitra.delete');
-
+        // Video Profile
+        Route::get('profile-video', [BerandaController::class, 'videoEdit'])->name('webcontent.video');
+        Route::post('profile-video', [BerandaController::class, 'videoUpdate'])->name('webcontent.video.update');
+        // IG Token
+        Route::get('igtoken', [BerandaController::class, 'igTokenEdit'])->name('webcontent.igtoken');
+        Route::post('igtoken', [BerandaController::class, 'igTokenUpdate'])->name('webcontent.igtoken.update');
+        // Hero
         Route::get('hero', [HeroController::class, 'index'])->name('webcontent.hero');
         Route::get('hero/edit/{id?}', [HeroController::class, 'edit'])->name('webcontent.hero.edit');
         Route::put('hero/update/{id?}', [HeroController::class, 'update'])->name('webcontent.hero.update');
