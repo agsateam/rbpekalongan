@@ -8,11 +8,11 @@ function convertLink($link){
 
     if(str_contains($link, "youtu.be")){
         $filter1 = explode("?", $link)[0];
-        $filter2 = explode("youtu.be/", $link)[1];
+        $filter2 = explode("youtu.be/", $filter1)[1];
         $video_id = $filter2;
     }else{
         $filter1 = explode("watch?v=", $link)[1];
-        $filter2 = explode("&", $link)[0];
+        $filter2 = explode("&", $filter1)[0];
         $video_id = $filter2;
     }
 
