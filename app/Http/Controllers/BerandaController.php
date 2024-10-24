@@ -7,8 +7,7 @@ use App\Models\Product;
 use App\Models\Umkm;
 use App\Models\FungsiRB;
 use App\Models\Mitra;
-
-
+use App\Models\WebContent;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -50,6 +49,25 @@ class BerandaController extends Controller
             'jumlahevent' => $jumlahevent
         ]);
     }
+
+    public function videoEdit()
+    {
+        $data = WebContent::select(["video_link", "video_desc"])->first();
+        
+        return view('backend.webcontent.video.index', ["data" => $data]);
+    }
+
+    public function videoUpdate(Request $req)
+    {
+        WebContent::where('id', 1)->update([
+            "video_link" => $req->video_link,
+            "video_desc" => $req->video_desc,
+        ]);
+
+        return back()->with('success', 'Berhasil diperbarui.');
+    }
+
+
 
 
     // IG API
