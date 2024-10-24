@@ -43,7 +43,7 @@
                 </label>
                 <button type="submit" class="btn bg-[#195770] text-white mt-5">Simpan</button>
             </form>
-            <div class="w-full flex justify-center">
+            <div class="w-full flex justify-center mt-5 md:mt-0">
                 <iframe id="video_iframe" class="w-full aspect-video border border-gray-300" src="" title="Video Profile RB Pekalongan" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>

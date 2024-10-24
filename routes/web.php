@@ -117,8 +117,11 @@ Route::middleware('auth')->group(function () {
         Route::get('mitra/edit/{id?}', [MitraController::class, 'edit'])->name('webcontent.mitra.edit');
         Route::put('mitra/update/{id?}', [MitraController::class, 'update'])->name('webcontent.mitra.update');
         Route::delete('mitra/delete/{id}', [MitraController::class, 'destroy'])->name('webcontent.mitra.delete');
-        // Mitra
+        // Video Profile
         Route::get('profile-video', [BerandaController::class, 'videoEdit'])->name('webcontent.video');
         Route::post('profile-video', [BerandaController::class, 'videoUpdate'])->name('webcontent.video.update');
+        // IG Token
+        Route::get('igtoken', [BerandaController::class, 'igTokenEdit'])->name('webcontent.igtoken');
+        Route::post('igtoken', [BerandaController::class, 'igTokenUpdate'])->name('webcontent.igtoken.update');
     });
 });
