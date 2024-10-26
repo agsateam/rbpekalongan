@@ -34,7 +34,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mt-5">
             @if (count($umkm) < 1)
-                <span class="text-center md:text-left">Belum ada UMKM yang dapat ditampilkan</span>
+                <span class="text-center md:text-left md:col-span-2">Belum ada UMKM yang dapat ditampilkan</span>
             @endif
             @foreach ($umkm as $d)
             <a target="_blank" href="{{ route('umkm.detail') ."/". $d->id }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">

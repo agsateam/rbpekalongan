@@ -38,7 +38,7 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-5">
             @if (count($products) < 1)
-                <span class="text-center md:text-left">Belum ada produk yang tersedia</span>
+                <span class="text-center md:text-left col-span-2">Belum ada produk yang tersedia</span>
             @endif
             @foreach ($products as $p)
             <a target="_blank" href="{{ route('product.detail') ."/". $p->id }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">

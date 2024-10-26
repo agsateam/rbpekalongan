@@ -51,7 +51,7 @@
                 </div>
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Ingin Booking Tempat Untuk Aktivitas Produktif Anda?</h5>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Manfaatkan fasilitas ruang publik yang nyaman untuk mendukung kreativitas dan Pekerjaan anda.</p>
-                <a href="#" class="btn btn-sm text-white bg-[#195770] mt-2">Booking Disini</a>
+                <a href="{{route('booking')}}" class="btn btn-sm text-white bg-[#195770] mt-2">Booking Disini</a>
             </div>
 
 
