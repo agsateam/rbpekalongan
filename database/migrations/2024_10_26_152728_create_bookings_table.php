@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('booking_rooms', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
+            $table->integer('booking_room_id');
+            $table->integer('booking_time_id');
+            $table->integer('booking_seat');
             $table->string('name');
-            $table->integer('seat')->default(1);
-            $table->boolean('isMustFullBooking')->default(false);
-            $table->boolean('open_booking')->default(true);
+            $table->string('whatsapp');
+            $table->text('purpose');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('booking_rooms');
+        Schema::dropIfExists('bookings');
     }
 };

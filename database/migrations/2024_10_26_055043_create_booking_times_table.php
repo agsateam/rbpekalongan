@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('booking_room_id');
             $table->string('open');
             $table->string('close');
+            $table->integer('booked')->default(0);
             $table->timestamps();
         });
     }
