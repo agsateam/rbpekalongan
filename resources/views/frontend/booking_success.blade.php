@@ -1,3 +1,8 @@
+@php
+use App\Models\BookingTime;
+$time = BookingTime::findOrFail($time);
+@endphp
+
 @extends('layouts.master')
 @section('title', 'Booking Success')
 @section('content')
@@ -25,7 +30,7 @@
                     <tr>
                         <td>Waktu</td>
                         <td class="px-2">:</td>
-                        <td>{{$time}}</td>
+                        <td>{{$time->open ." - ". $time->close}} WIB</td>
                     </tr>
                 </table>
             </div>

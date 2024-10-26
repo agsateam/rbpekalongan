@@ -1,6 +1,6 @@
 @php
-    function getTime($time){
-        return json_encode($time);
+    function getTime($times){
+        return json_encode($times);
     }
 @endphp
 
@@ -22,9 +22,11 @@
                     <select class="select select-bordered w-full" id="ruang">
                         <option value="null" disabled selected>Pilih Ruangan</option>
                         @foreach ($room as $item)
-                            <option
-                                value="{{$item['id']."|".$item['name']."|".($item['seat'] - $item['booked'])."|".($item['isMustFullBooking'] ? 'full-booking' : 'half-booking')."|".getTime($item['times'])}}"
-                            >{{$item['name']}}</option>
+                            @if ($item->times()->count() > 0)
+                                <option
+                                    value="{{$item->id."|".$item->name."|".($item->seat - $item->booked)."|".($item->isMustFullBooking ? 'full-booking' : 'half-booking')."|".getTime($item->times()->get()->toArray())}}"
+                                >{{$item->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                     <button
@@ -121,7 +123,7 @@
                 let room_time = JSON.parse(times);
                 document.getElementById("room_time").innerHTML = "";
                 room_time.forEach(item => {
-                    document.getElementById("room_time").innerHTML += "<option value='"+item.id+"'>"+item.time+"</option>";
+                    document.getElementById("room_time").innerHTML += "<option value='"+item.id+"'>"+item.open+" - "+item.close+" WIB</option>";
                 });
 
                 showForm(room_id, room_name, room_seat_ready);

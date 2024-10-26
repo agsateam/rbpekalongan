@@ -8,6 +8,9 @@
     <title>@yield('title') | RB Pekalongan</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{{url('images/icon.png')}}">
+
     {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

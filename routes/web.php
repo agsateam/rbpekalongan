@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\HeroController;
 use App\Http\Controllers\admin\InformasiController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
+use App\Http\Controllers\admin\ManageRoomController;
 use App\Http\Controllers\admin\ManageTestiController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\admin\MitraController;
@@ -105,6 +106,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-testi/accept/{id?}', [ManageTestiController::class, 'accept'])->name('manage.testi.accept');
     Route::get('/manage-testi/reject/{id?}', [ManageTestiController::class, 'reject'])->name('manage.testi.reject');
     Route::get('/manage-testi/delete/{id?}', [ManageTestiController::class, 'delete'])->name('manage.testi.delete');
+    // Manage Room
+    Route::get('/manage-room', [ManageRoomController::class, 'index'])->name('manage.room');
+    Route::get('/manage-room/detail/{id?}', [ManageRoomController::class, 'detail'])->name('manage.room.detail');
+    Route::get('/manage-room/add', [ManageRoomController::class, 'add'])->name('manage.room.add');
+    Route::post('/manage-room/add', [ManageRoomController::class, 'store'])->name('manage.room.save');
+    Route::get('/manage-room/edit/{id?}', [ManageRoomController::class, 'edit'])->name('manage.room.edit');
+    Route::post('/manage-room/update', [ManageRoomController::class, 'update'])->name('manage.room.update');
+    Route::get('/manage-room/delete/{id?}', [ManageRoomController::class, 'delete'])->name('manage.room.delete');
+    Route::get('/manage-room/booking-status/{id?}/{status?}', [ManageRoomController::class, 'status'])->name('manage.room.status');
+    // ---- Room Times
+    Route::post('/manage-room/time/add', [ManageRoomController::class, 'saveTime'])->name('manage.room.time.save');
+    Route::post('/manage-room/time/update', [ManageRoomController::class, 'updateTime'])->name('manage.room.time.update');
+    Route::get('/manage-room/time/drop/{id?}', [ManageRoomController::class, 'dropTime'])->name('manage.room.time.delete');
     // Web Content
     Route::prefix('webcontent')->group(function () {
         // Fungsi
