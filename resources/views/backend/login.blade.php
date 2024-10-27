@@ -23,6 +23,8 @@
                 <form action="{{ route('login.auth') }}" method="post">
                     @csrf
                     <h4 class="text-3xl md:text-4xl font-bold mb-5">Login</h4>
+                    @include('components.backend.alert')
+
                     <label class="form-control w-full">
                         <div class="label">
                           <span class="label-text text-base font-semibold">Email</span>

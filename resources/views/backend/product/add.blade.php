@@ -34,15 +34,21 @@ $umkm_id = request()->umkm ?? null;
                     <select name="umkm_id" class="input input-bordered w-full" required>
                         <option disabled selected>Pilih UMKM</option>
                         @foreach ($umkm as $item)
-                            <option value="{{$item->id}}" {{$umkm_id == $item->id ? 'selected' : ''}}>{{$item->name}}</option>
+                            <option value="{{$item->id}}" {{($umkm_id == $item->id) || (old('umkm_id') == $item->id) ? 'selected' : ''}}>{{$item->name}}</option>
                         @endforeach
                     </select>
+                    @error('umkm_id')
+                        <span class="text-red-600 text-xs mt-1 ml-1">{{ $message }}</span>
+                    @enderror
                 </label>
                 <label class="form-control w-full col-span-2">
                     <div class="label">
                       <span class="label-text text-base font-semibold">Nama Produk <span class="text-red-600 font-bold">*</span></span>
                     </div>
-                    <input type="text" name="name" placeholder="Nama" class="input input-bordered w-full" required/>
+                    <input type="text" name="name" placeholder="Nama" value="{{old('name')}}" class="input input-bordered w-full" required/>
+                    @error('name')
+                        <span class="text-red-600 text-xs mt-1 ml-1">{{ $message }}</span>
+                    @enderror
                 </label>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-2">
@@ -53,28 +59,37 @@ $umkm_id = request()->umkm ?? null;
                     <select name="product_category_id" class="input input-bordered w-full" required>
                         <option disabled selected>Pilih Kategori</option>
                         @foreach ($categories as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{$item->id}}" {{(old('product_category_id') == $item->id) ? 'selected' : '' }}>{{$item->name}}</option>
                         @endforeach
                     </select>
+                    @error('product_category_id')
+                        <span class="text-red-600 text-xs mt-1 ml-1">{{ $message }}</span>
+                    @enderror
                 </label>
                 <label class="form-control w-full">
                     <div class="label">
                       <span class="label-text text-base font-semibold">Harga <span class="text-red-600 font-bold">*</span></span>
                     </div>
-                    <input type="number" name="price" placeholder="Harga" class="input input-bordered w-full" required/>
+                    <input type="number" name="price" placeholder="Harga" value="{{old('price')}}" class="input input-bordered w-full" required/>
+                    @error('price')
+                        <span class="text-red-600 text-xs mt-1 ml-1">{{ $message }}</span>
+                    @enderror
                 </label>
                 <label class="form-control w-full">
                     <div class="label">
                       <span class="label-text text-base font-semibold">Link Marketplace</span>
                     </div>
-                    <input type="text" name="link" placeholder="Link (Opsional)" class="input input-bordered w-full"/>
+                    <input type="text" name="link" placeholder="Link (Opsional)" value="{{old('link')}}" class="input input-bordered w-full"/>
                 </label>
             </div>
             <label class="form-control w-full mt-2">
                 <div class="label">
                   <span class="label-text text-base font-semibold">Deskripsi Produk <span class="text-red-600 font-bold">*</span></span>
                 </div>
-                <textarea name="desc" placeholder="Isi deskripsi produk" class="input input-bordered w-full h-24"></textarea>
+                <textarea name="desc" placeholder="Isi deskripsi produk" class="input input-bordered w-full h-24" required>{{old('desc')}}</textarea>
+                @error('desc')
+                    <span class="text-red-600 text-xs mt-1 ml-1">{{ $message }}</span>
+                @enderror
             </label>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-2">
                 <label class="form-control w-full mt-2">

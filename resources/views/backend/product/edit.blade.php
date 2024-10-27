@@ -70,7 +70,7 @@
                 <div class="label">
                   <span class="label-text text-base font-semibold">Deskripsi Produk <span class="text-red-600 font-bold">*</span></span>
                 </div>
-                <textarea name="desc" placeholder="Isi deskripsi produk" class="input input-bordered w-full h-24">{{$data->desc}}</textarea>
+                <textarea name="desc" placeholder="Isi deskripsi produk" class="input input-bordered w-full h-24" required>{{$data->desc}}</textarea>
             </label>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-2">
                 <label class="form-control w-full mt-2">

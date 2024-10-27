@@ -78,7 +78,7 @@
                               <span class="label-text text-sm text-[#195770] font-semibold"> Kursi Tersedia</span>
                           </div>
                         </div>
-                        <input id="room_seat" type="number" name="jumlah_kursi" max="{{old('kursi_ready') ?? 0}}" placeholder="Jumlah Kursi" class="input input-bordered" value="{{old('jumlah_kursi')}}" required/>
+                        <input id="room_seat" type="number" inputmode="numeric" name="jumlah_kursi" max="{{old('kursi_ready') ?? 0}}" placeholder="Jumlah Kursi" class="input input-bordered" value="{{old('jumlah_kursi')}}" required/>
                         @error('jumlah_kursi')
                         <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
                         @enderror
@@ -93,7 +93,7 @@
                         <div class="label">
                           <span class="label-text text-base font-semibold">Nomor WhatsApp <span class="text-red-600 font-bold">*</span></span>
                         </div>
-                        <input id="input_wa" type="text" name="whatsapp" placeholder="Nomor WhatsApp" class="input input-bordered" value="{{old('whatsapp')}}" required/>
+                        <input id="input_wa" type="text" inputmode="numeric" name="whatsapp" placeholder="Nomor WhatsApp" class="input input-bordered" value="{{old('whatsapp')}}" required/>
                     </label>
                     <label class="form-control w-full md:col-span-2">
                         <div class="label">

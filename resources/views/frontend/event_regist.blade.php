@@ -63,7 +63,7 @@ function toDate($date){
                             <div class="label">
                               <span class="label-text text-base font-semibold">Umur</span>
                             </div>
-                            <input type="number" name="age" placeholder="Umur" value="{{old('age')}}" class="input input-bordered w-full">
+                            <input type="number" inputmode="numeric" name="age" placeholder="Umur" value="{{old('age')}}" class="input input-bordered w-full">
                         </label>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
@@ -80,7 +80,7 @@ function toDate($date){
                             <div class="label">
                               <span class="label-text text-base font-semibold">Nomor HP/WA <span class="text-red-600 font-bold">*</span></span>
                             </div>
-                            <input type="text" name="phone" placeholder="Nomor" value="{{old('phone')}}" class="input input-bordered w-full" required>
+                            <input type="text" inputmode="numeric" name="phone" placeholder="Nomor" value="{{old('phone')}}" class="input input-bordered w-full" required>
                             @error('phone')
                             <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
                             @enderror

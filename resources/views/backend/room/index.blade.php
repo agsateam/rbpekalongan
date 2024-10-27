@@ -22,17 +22,21 @@ $no = 1;
         @include('components.backend.alert')
     </div>
 
-    <a href="{{route('manage.room.add')}}" class="w-fit px-4 py-2 bg-[#195770] text-white rounded-lg">+ Tambah Data Ruangan</a>
+    <a href="{{route('manage.room.add')}}" class="w-fit px-4 py-2 bg-[#195770] text-white rounded-md">+ Tambah Data Ruangan</a>
     <div class="overflow-x-auto mt-4">
-        <table class="w-full table table-auto border border-gray-200 rounded-md mb-10">
-            <thead class="bg-gray-100">
+        <table class="w-full text-base table table-auto border border-gray-300 mb-10">
+            <thead class="bg-gray-100 text-sm uppercase">
                 <tr>
-                    <th class="py-3 text-left font-medium uppercase">No</th>
-                    <th class="py-3 text-left font-medium uppercase">Ruang</th>
-                    <th class="py-3 text-left font-medium uppercase">Jumlah Kursi</th>
-                    <th class="py-3 text-left font-medium uppercase">Kursi Tersedia</th>
-                    <th class="py-3 text-left font-medium uppercase">Waktu</th>
-                    <th class="py-3 text-left font-medium uppercase">#</th>
+                    <th class="py-3 text-left border border-gray-300" rowspan="2">No</th>
+                    <th class="py-3 text-left border border-gray-300 min-w-44" rowspan="2">Ruang</th>
+                    <th class="py-3 text-left border border-gray-300" rowspan="2">Jumlah Kursi</th>
+                    <th class="py-3 text-center border border-gray-300" colspan="3">Waktu Booking</th>
+                    <th class="py-3 text-center border border-gray-300" rowspan="2">Aksi</th>
+                </tr>
+                <tr>
+                    <th class="py-3 text-left border border-gray-300 min-w-28">Waktu</th>
+                    <th class="py-3 text-center border border-gray-300">Dibooking</th>
+                    <th class="py-3 text-center border border-gray-300">Tersedia</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -43,19 +47,37 @@ $no = 1;
                 @endif
                 @foreach ($data as $item)
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->seat}}</td>
-                    <td>{{$item->seat - $item->booked}}</td>
-                    <td>
-                        @if ($item->times()->count() < 1)
-                            <span class="text-red-600">Belum diatur</span>
-                        @endif
-                        @foreach ($item->times()->get() as $time)
-                            {{$time->open ." - ". $time->close}}<br/>
-                        @endforeach
-                    </td>
-                    <td class="flex gap-1">
+                    <td class="border">{{$no++}}</td>
+                    <td class="border">{{$item->name}}</td>
+                    <td class="border">{{$item->seat}}</td>
+                    @if ($item->times()->count() < 1)
+                        <td class="border text-center" colspan="3">
+                            <span class="text-red-600">Waktu Belum Diatur</span>
+                        </td>
+                    @else
+                        <td class="p-0 border">
+                            @foreach ($item->times()->get() as $time)
+                                <div class="py-2 px-3 border-t first:border-t-0">
+                                    {{$time->open ." - ". $time->close}}
+                                </div>
+                            @endforeach
+                        </td>
+                        <td class="p-0 border text-center font-bold">
+                            @foreach ($item->times()->get() as $time)
+                                <div class="py-2 px-3 border-t first:border-t-0">
+                                    {{$time->booked}} <br/>
+                                </div>
+                            @endforeach
+                        </td>
+                        <td class="p-0 border text-center font-bold">
+                            @foreach ($item->times()->get() as $time)
+                                <div class="py-2 px-3 border-t first:border-t-0">
+                                    {{$item->seat - $time->booked}} <br/>
+                                </div>
+                            @endforeach
+                        </td>
+                    @endif
+                    <td class="flex gap-1 justify-center">
                         <a href="{{route('manage.room.detail') .'/'. $item->id}}" class="btn btn-sm bg-emerald-600 text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
