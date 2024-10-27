@@ -109,7 +109,7 @@ $no = 1;
 <dialog id="modal_waktu" class="modal modal-middle">
     <div class="modal-box pb-8">
         <div class="w-full flex justify-between items-center border-b pb-3 mb-3 sticky top-0">
-            <h3 class="text-lg font-bold">Tambah Kesediaan Waktu</h3>
+            <h3 class="text-lg font-bold">Tambah Waktu Booking</h3>
             <button type="button" onclick="modalWaktu.close()" class="btn btn-sm bg-gray-500 text-white">Tutup</button>
         </div>
         <form class="w-full" action="{{route('manage.room.time.save')}}" method="post">
@@ -151,7 +151,7 @@ $no = 1;
 <dialog id="modal_waktu_edit" class="modal modal-middle">
     <div class="modal-box pb-8">
         <div class="w-full flex justify-between items-center border-b pb-3 mb-3 sticky top-0">
-            <h3 class="text-lg font-bold">Tambah Kesediaan Waktu</h3>
+            <h3 class="text-lg font-bold">Edit Waktu Booking</h3>
             <button type="button" onclick="modalWaktuEdit.close()" class="btn btn-sm bg-gray-500 text-white">Tutup</button>
         </div>
         <form class="w-full" action="{{route('manage.room.time.update')}}" method="post">
@@ -197,7 +197,7 @@ $no = 1;
     function confirmDelete(href){
         Swal.fire({
             title: 'Konfirmasi',
-            text: 'Tindakan ini tidak dapat dibatalkan, hapus kesediaan waktu ini? ',
+            text: 'Tindakan ini tidak dapat dibatalkan, hapus waktu booking ini? ',
             icon: 'question',
             iconColor: 'red',
             showCancelButton: true,

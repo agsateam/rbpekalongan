@@ -10,16 +10,16 @@ function toDate($date){
 
 <div class="py-16">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
-        <div class="flex flex-row justify-between items-center">
-            <h4 class="text-3xl md:text-4xl font-bold mb-5">Registrasi Event</h4>
+        <div class="flex flex-row justify-between items-center mb-5">
+            <h4 class="text-2xl md:text-4xl font-bold">Registrasi Event</h4>
             <a href="/event" class="btn btn-sm bg-[#195770] text-white">Kembali</a>
         </div>
 
-        <div class="bg-white border rounded-md p-5">
+        <div class="bg-white md:border md:rounded-md md:p-5">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="flex flex-col">
-                    <span class="text-2xl font-semibold mb-5">Detail Event</span>
-                    <img src="{{ $data['poster'] }}" class="rounded-md w-3/4 mb-3">
+                    <span class="hidden md:block text-2xl font-semibold mb-5">Detail Event</span>
+                    <img src="{{ $data['poster'] }}" class="rounded-md md:w-3/4 mb-3">
                     <span class="text-lg font-bold">{{ $data['name'] }}</span>
                     <span class="font-semibold mt-3 flex">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-3">
@@ -69,7 +69,7 @@ function toDate($date){
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
                         <label class="form-control w-full">
                             <div class="label">
-                              <span class="label-text text-base font-semibold">Alamat</span>
+                              <span class="label-text text-base font-semibold">Alamat <span class="text-red-600 font-bold">*</span></span>
                             </div>
                             <input type="text" name="address" placeholder="Alamat" value="{{old('address')}}" class="input input-bordered w-full" required>
                             @error('address')

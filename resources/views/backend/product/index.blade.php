@@ -98,6 +98,7 @@
             title: 'Konfirmasi',
             text: 'Yakin akan menghapus produk ini?',
             icon: 'question',
+            iconColor: 'red',
             showCancelButton: true,
             confirmButtonColor: "red",
             cancelButtonText: 'Batal',

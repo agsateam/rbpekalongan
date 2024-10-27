@@ -92,10 +92,11 @@
     function confirmDelete(href){
         Swal.fire({
             title: 'Konfirmasi',
-            text: 'Yakin akan menghapus data ini?',
+            text: 'Tindakan ini tidak dapat dibatalkan, yakin akan menghapus data event ini?',
             icon: 'question',
+            iconColor: 'red',
             showCancelButton: true,
-            confirmButtonColor: "#195770",
+            confirmButtonColor: "red",
             cancelButtonText: 'Batal',
             confirmButtonText: 'Ya',
         }).then((val) => {
