@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\FungsiRBController;
 use App\Http\Controllers\admin\HeroController;
 use App\Http\Controllers\admin\InformasiController;
+use App\Http\Controllers\admin\ManageBookingController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
 use App\Http\Controllers\admin\ManageRoomController;
@@ -119,6 +120,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/manage-room/time/add', [ManageRoomController::class, 'saveTime'])->name('manage.room.time.save');
     Route::post('/manage-room/time/update', [ManageRoomController::class, 'updateTime'])->name('manage.room.time.update');
     Route::get('/manage-room/time/drop/{id?}', [ManageRoomController::class, 'dropTime'])->name('manage.room.time.delete');
+    // Manage Bookings
+    Route::get('/manage-booking', [ManageBookingController::class, 'index'])->name('manage.booking');
+    Route::get('/manage-booking/history', [ManageBookingController::class, 'history'])->name('manage.booking.history');
+    Route::get('/manage-booking/data', [ManageBookingController::class, 'getData'])->name('manage.booking.data');
+    Route::get('/manage-booking/checkin/{id?}', [ManageBookingController::class, 'checkin'])->name('manage.booking.checkin');
+    Route::get('/manage-booking/cancel/{id?}', [ManageBookingController::class, 'cancel'])->name('manage.booking.cancel');
+
     // Web Content
     Route::prefix('webcontent')->group(function () {
         // Fungsi
