@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingTime;
+use App\Models\WebContent;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,20 +16,24 @@ class BookingController extends Controller
     public function index()
     {
         $room = BookingRoom::where('open_booking', true)->with('times')->has('times')->get();
+        $open = WebContent::select(["open_booking"])->first()->toArray()['open_booking'];
 
         return view('frontend.booking', [
-            "room" => $room
+            "room" => $room,
+            "open" => $open,
         ]);
     }
 
     public function store(Request $req){
         $req->validate([
+            'room_time' => 'required',
             'jumlah_kursi' => 'required|numeric|max:' . $req->kursi_ready,
             'name' => 'required',
             'whatsapp' => 'required',
             'tujuan' => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ], [
+            'room_time.required' => 'Isi kolom yang diperlukan.',
             'jumlah_kursi.required' => 'Isi kolom yang diperlukan.',
             'jumlah_kursi.max' => 'Jumlah kursi yang tersedia hanya ' . $req->kursi_ready,
             'name.required' => 'Isi kolom yang diperlukan.',

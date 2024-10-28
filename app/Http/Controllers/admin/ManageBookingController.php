@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\WebContent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,6 +17,19 @@ class ManageBookingController extends Controller
 
     public function history(){
         return view('backend.booking.history');
+    }
+
+    public function open(){
+        return view('backend.booking.open', [
+            "open" => WebContent::select(["open_booking"])->first()->toArray()['open_booking']
+        ]);
+    }
+
+    public function openUpdate($open){
+        $data = WebContent::first();
+        $data->update(["open_booking" => ($open == 'close' ? false : true)]);
+
+        return back();
     }
 
     public function checkin($id){

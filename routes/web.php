@@ -124,6 +124,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-booking', [ManageBookingController::class, 'index'])->name('manage.booking');
     Route::get('/manage-booking/history', [ManageBookingController::class, 'history'])->name('manage.booking.history');
     Route::get('/manage-booking/data', [ManageBookingController::class, 'getData'])->name('manage.booking.data');
+    Route::get('/manage-booking/open', [ManageBookingController::class, 'open'])->name('manage.booking.open');
+    Route::get('/manage-booking/open/update/{status?}', [ManageBookingController::class, 'openUpdate'])->name('manage.booking.open.update');
     Route::get('/manage-booking/checkin/{id?}', [ManageBookingController::class, 'checkin'])->name('manage.booking.checkin');
     Route::get('/manage-booking/cancel/{id?}', [ManageBookingController::class, 'cancel'])->name('manage.booking.cancel');
 
