@@ -12,7 +12,7 @@
             <input type="hidden" name="id" value="{{ $fungsirb->id }}">
 
 
-            <div class="flex items-center justify-center w-full mb-4 gap-4">
+            <div class="flex flex-wrap items-center justify-center w-full mb-4 gap-4">
 
 
                 {{-- Foto1 --}}
