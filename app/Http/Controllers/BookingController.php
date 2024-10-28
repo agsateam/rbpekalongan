@@ -68,6 +68,28 @@ class BookingController extends Controller
         ]);
     }
 
+    public function checkin(){
+        return view('frontend.booking_checkin');
+    }
+
+    public function checkinUpdate(Request $req){
+        $data = Booking::where('code', "BC" . $req->code)->first();
+        
+        if($data){
+            if($data->check_in == null){
+                $data->update([
+                    "check_in" => Carbon::now()
+                ]);
+    
+                return back()->with('success', "Check-In Berhasil");
+            }else{
+                return back()->with('error', "Kode booking tersebut sudah check-in");
+            }
+        }
+
+        return back()->with('error', "Kode booking tidak valid");
+    }
+
 
     private function generateCode($room, $time)
     {

@@ -42,6 +42,8 @@ Route::post('/testimoni/send', [ManageTestiController::class, 'store'])->name('t
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.send');
 Route::get('/booking-success', [BookingController::class, 'success'])->name('booking.success');
+Route::get('/booking/checkin', [BookingController::class, 'checkin'])->name('booking.checkin');
+Route::post('/booking/checkin', [BookingController::class, 'checkinUpdate'])->name('booking.checkin.update');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -107,19 +109,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-testi/accept/{id?}', [ManageTestiController::class, 'accept'])->name('manage.testi.accept');
     Route::get('/manage-testi/reject/{id?}', [ManageTestiController::class, 'reject'])->name('manage.testi.reject');
     Route::get('/manage-testi/delete/{id?}', [ManageTestiController::class, 'delete'])->name('manage.testi.delete');
-    // Manage Room
-    Route::get('/manage-room', [ManageRoomController::class, 'index'])->name('manage.room');
-    Route::get('/manage-room/detail/{id?}', [ManageRoomController::class, 'detail'])->name('manage.room.detail');
-    Route::get('/manage-room/add', [ManageRoomController::class, 'add'])->name('manage.room.add');
-    Route::post('/manage-room/add', [ManageRoomController::class, 'store'])->name('manage.room.save');
-    Route::get('/manage-room/edit/{id?}', [ManageRoomController::class, 'edit'])->name('manage.room.edit');
-    Route::post('/manage-room/update', [ManageRoomController::class, 'update'])->name('manage.room.update');
-    Route::get('/manage-room/delete/{id?}', [ManageRoomController::class, 'delete'])->name('manage.room.delete');
-    Route::get('/manage-room/booking-status/{id?}/{status?}', [ManageRoomController::class, 'status'])->name('manage.room.status');
-    // ---- Room Times
-    Route::post('/manage-room/time/add', [ManageRoomController::class, 'saveTime'])->name('manage.room.time.save');
-    Route::post('/manage-room/time/update', [ManageRoomController::class, 'updateTime'])->name('manage.room.time.update');
-    Route::get('/manage-room/time/drop/{id?}', [ManageRoomController::class, 'dropTime'])->name('manage.room.time.delete');
     // Manage Bookings
     Route::get('/manage-booking', [ManageBookingController::class, 'index'])->name('manage.booking');
     Route::get('/manage-booking/history', [ManageBookingController::class, 'history'])->name('manage.booking.history');
@@ -128,6 +117,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-booking/open/update/{status?}', [ManageBookingController::class, 'openUpdate'])->name('manage.booking.open.update');
     Route::get('/manage-booking/checkin/{id?}', [ManageBookingController::class, 'checkin'])->name('manage.booking.checkin');
     Route::get('/manage-booking/cancel/{id?}', [ManageBookingController::class, 'cancel'])->name('manage.booking.cancel');
+    // Manage Room
+    Route::get('/manage-booking/room', [ManageRoomController::class, 'index'])->name('manage.room');
+    Route::get('/manage-booking/room/detail/{id?}', [ManageRoomController::class, 'detail'])->name('manage.room.detail');
+    Route::get('/manage-booking/room/add', [ManageRoomController::class, 'add'])->name('manage.room.add');
+    Route::post('/manage-booking/room/add', [ManageRoomController::class, 'store'])->name('manage.room.save');
+    Route::get('/manage-booking/room/edit/{id?}', [ManageRoomController::class, 'edit'])->name('manage.room.edit');
+    Route::post('/manage-booking/room/update', [ManageRoomController::class, 'update'])->name('manage.room.update');
+    Route::get('/manage-booking/room/delete/{id?}', [ManageRoomController::class, 'delete'])->name('manage.room.delete');
+    Route::get('/manage-booking/room/booking-status/{id?}/{status?}', [ManageRoomController::class, 'status'])->name('manage.room.status');
+    // ---- Room Times
+    Route::post('/manage-booking/room/time/add', [ManageRoomController::class, 'saveTime'])->name('manage.room.time.save');
+    Route::post('/manage-booking/room/time/update', [ManageRoomController::class, 'updateTime'])->name('manage.room.time.update');
+    Route::get('/manage-booking/room/time/drop/{id?}', [ManageRoomController::class, 'dropTime'])->name('manage.room.time.delete');
 
     // Web Content
     Route::prefix('webcontent')->group(function () {
