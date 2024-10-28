@@ -32,6 +32,20 @@ class ManageProductController extends Controller
     }
 
     public function store(Request $req){
+        $req->validate([
+            'umkm_id' => 'required',
+            'product_category_id' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'desc' => 'required',
+        ], [
+            'umkm_id.required' => 'Pilih UMKM!',
+            'product_category_id.required' => 'Pilih kategori produk!',
+            'name.required' => 'Nama harus diisi!',
+            'price.required' => 'Harga harus diisi!',
+            'desc.required' => 'Deskripsi produk harus diisi!',
+        ]);
+
         $data = $req->all();
         $data['price'] = intval(str_replace([".", ","], ["", ""], $req->price));
 
@@ -80,8 +94,7 @@ class ManageProductController extends Controller
     }
 
     public function destroy($id){
-        $data = Product::where('id', $id)->first();
-        dd($data->toArray());
+        Product::find($id)->delete();
         
         return redirect(route('manage.product'))->with('success', 'Produk dihapus.');
     }

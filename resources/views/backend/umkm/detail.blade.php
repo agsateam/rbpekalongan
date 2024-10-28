@@ -87,6 +87,7 @@
             title: 'Konfirmasi',
             text: 'Setelah dihapus data tidak dapat dikembalikan, yakin akan menghapus data UMKM ini?',
             icon: 'question',
+            iconColor: 'red',
             showCancelButton: true,
             confirmButtonColor: "red",
             cancelButtonText: 'Batal',

@@ -89,7 +89,9 @@ class ManageEventController extends Controller
         $path = explode("uploaded/event", $data->poster);
         unlink(public_path('uploaded/event') . $path[1]);
 
+        // remove data event & registration
         $data->delete();
+        EventRegistration::where('event_id', $id)->delete();
 
         return redirect(route('manage.event'))->with('success', 'Data event berhasil dihapus.');
     }

@@ -1,31 +1,36 @@
 @extends('layouts.admin')
-@section('title', 'Kelola Event')
+@section('title', 'Booking')
 @section('content')
 
 <div class="md:px-5">
     <div class="flex flex-col md:flex-row justify-between">
-        <h4 class="text-2xl md:text-3xl font-bold mb-5">Kelola Event</h4>
+        <h4 class="text-2xl md:text-3xl font-bold mb-5">Booking</h4>
         <div class="breadcrumbs text-sm">
             <ul>
                 <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                <li>Event</li>
+                <li>Booking</li>
             </ul>
         </div>
     </div>
 
-    <a href="{{route('manage.event.new')}}" class="btn bg-[#195770] text-white mb-5">+ Buat Event</a>
-    
+    <div class="w-full flex justify-center md:justify-start my-5">
+        <a href="{{route('manage.booking')}}" class="pb-3 px-3 md:px-5 md:text-xl font-bold border-b-4 border-gray-200">Booking Hari Ini</a>
+        <a href="{{route('manage.booking.history')}}" class="pb-3 px-3 md:px-5 md:text-xl font-bold border-b-4 border-[#195770]">Booking History</a>
+    </div>
+
     @include('components.backend.alert')
 
-    <table id="event-table" class="w-full table table-auto border border-gray-200 rounded-md">
+    <table id="booking-table" class="w-full table table-auto border border-gray-200 rounded-md">
         <thead class="bg-gray-100">
             <tr>
+                <th class="py-3 text-left font-medium uppercase">No</th>
+                <th class="py-3 text-left font-medium uppercase">Tanggal Booking</th>
+                <th class="py-3 text-left font-medium uppercase">Kode</th>
+                <th class="py-3 text-left font-medium uppercase">Tempat</th>
+                <th class="py-3 text-left font-medium uppercase">Kursi</th>
                 <th class="py-3 text-left font-medium uppercase">Nama</th>
-                <th class="py-3 text-left font-medium uppercase">Tanggal</th>
-                <th class="py-3 text-left font-medium uppercase">Waktu</th>
-                <th class="py-3 text-left font-medium uppercase">Lokasi</th>
+                <th class="py-3 text-left font-medium uppercase">WhatsApp</th>
                 <th class="py-3 text-left font-medium uppercase">Status</th>
-                <th class="py-3 text-left font-medium uppercase">Aksi</th>
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200"></tbody>
@@ -40,20 +45,22 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#event-table').DataTable({
+        $('#booking-table').DataTable({
             processing: true,
             serverSide: true,
             lengthChange: false,
             info: false,
-            order: [[ 1, 'desc' ]],
-            ajax: '{{ route('manage.event.data') }}',
+            // order: [[ 1, 'desc' ]],
+            ajax: "{{ route('manage.booking.data') . '?history=1' }}",
             columns: [
+                { data: 'DT_RowIndex', orderable: false, searchable: false },
+                { data: 'created_at', name: 'created_at', searchable: false },
+                { data: 'code', name: 'code' },
+                { data: 'room', name: 'room.name', orderable: false },
+                { data: 'booking_seat', name: 'booking_seat' },
                 { data: 'name', name: 'name' },
-                { data: 'date', name: 'date' },
-                { data: 'time', name: 'time' },
-                { data: 'location', name: 'location' },
+                { data: 'whatsapp', name: 'whatsapp' },
                 { data: 'status', name: 'status' },
-                { data: 'action', name: 'action', orderable: false, searchable: false },
             ],
             language: {
                 search: "",
@@ -63,7 +70,7 @@
                 }
             },
             drawCallback: function () {
-                $('#event-table').removeClass('dataTable').addClass('w-full table table-auto border border-gray-200 rounded-md');
+                $('#booking-table').removeClass('dataTable').addClass('w-full table table-auto border border-gray-200 rounded-md');
                 $('a.paginate_button.current').addClass('bg-[#195770] text-white hover:text-gray-600');
                 $('a.paginate_button').addClass('btn btn-sm mr-1');
             },
@@ -79,7 +86,7 @@
                 let div = document.createElement('div');
                 div.classList.add("w-full")
                 div.classList.add("overflow-x-auto")
-                wrap(document.getElementById('event-table'), div);
+                wrap(document.getElementById('booking-table'), div);
             }
         });
     });
@@ -89,10 +96,24 @@
         wrapper.appendChild(el);
     }
 
-    function confirmDelete(href){
+    function confirmCheckIn(href){
         Swal.fire({
             title: 'Konfirmasi',
-            text: 'Tindakan ini tidak dapat dibatalkan, yakin akan menghapus data event ini?',
+            text: 'Tandai data booking ini sudah check-in?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: "#195770",
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Ya',
+        }).then((val) => {
+            val['isConfirmed'] && (window.location.href = href)
+        })
+    }
+
+    function confirmCancel(href){
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Batalkan booking ini?',
             icon: 'question',
             iconColor: 'red',
             showCancelButton: true,

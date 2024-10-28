@@ -14,11 +14,11 @@ class Booking extends Model
 
     public function room(): BelongsTo
     {
-        return $this->belongsTo(BookingRoom::class);
+        return $this->belongsTo(BookingRoom::class, "booking_room_id");
     }
 
     public function time(): BelongsTo
     {
-        return $this->belongsTo(BookingTime::class);
+        return $this->belongsTo(BookingTime::class, "booking_time_id");
     }
 }

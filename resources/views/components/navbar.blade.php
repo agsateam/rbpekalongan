@@ -32,21 +32,21 @@
                     <a href="{{ url('/') }}/" class="block px-3 py-4 md:px-6" aria-current="page">Beranda</a>
                 </li>
                 <li
-                    class="{{ request()->is('/event') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
+                    class="{{ str_contains(url()->current(), 'event') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
                     <a href="{{ url('/') }}/event" class="block px-3 py-4 md:px-6" aria-current="page">Event</a>
                 </li>
                 <li
-                    class="{{ request()->is('/booking') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
+                    class="{{ str_contains(url()->current(), 'booking') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
                     <a href="{{ url('/') }}/booking" class="block px-3 py-4 md:px-6"
                         aria-current="page">Booking</a>
                 </li>
                 <li
-                    class="{{ request()->is('/product') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
+                    class="{{ (str_contains(url()->current(), 'product') || str_contains(url()->current(), 'umkm')) ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
                     <a href="{{ url('/') }}/product" class="block px-3 py-4 md:px-6"
                         aria-current="page">Produk</a>
                 </li>
                 <li
-                    class="{{ request()->is('/contact') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
+                    class="{{ str_contains(url()->current(), 'contact') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">
                     <a href="{{ url('/') }}/contact" class="block px-3 py-4 md:px-6" aria-current="page">Hubungi
                         Kami</a>
                 </li>

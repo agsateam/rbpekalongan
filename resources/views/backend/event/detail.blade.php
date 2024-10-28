@@ -25,16 +25,16 @@
     @include('components.backend.alert')
 
     <div class="flex flex-col border rounded-md p-5 mt-5">
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-5">
-            <div class="flex flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-5 border-b pb-5">
+            <div class="flex flex-col md:col-span-2">
                 <span class="font-semibold text-gray-500">Nama Event</span>
                 <span class="text-xl font-bold">{{ $data->name }}</span>
             </div>
-            <div class="flex flex-col md:items-center">
+            <div class="flex flex-col">
                 <span class="font-semibold text-gray-500">Tanggal</span>
                 <span class="text-xl font-bold">{{ $data->date }}</span>
             </div>
-            <div class="flex flex-col md:items-center">
+            <div class="flex flex-col">
                 <span class="font-semibold text-gray-500">Waktu</span>
                 <span class="text-xl font-bold">{{ $data->time }}</span>
             </div>
@@ -42,7 +42,7 @@
                 <span class="font-semibold text-gray-500">Lokasi</span>
                 <span class="text-xl font-bold">{{ $data->location }}</span>
             </div>
-            <div class="flex flex-col md:items-center">
+            <div class="flex flex-col">
                 <span class="font-semibold text-gray-500">Status</span>
                 <span class="text-xl font-bold">{{ $data->status == "done" ? "Selesai" : "Upcoming" }}</span>
                 @if ($data->status == "done")
