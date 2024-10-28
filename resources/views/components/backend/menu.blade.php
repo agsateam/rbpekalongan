@@ -141,7 +141,16 @@
         </svg>
     </button>
     <ul id="dropdown-room-{{ $screen ?? 'desktop' }}"
-        class="{{ str_contains(url()->current(), 'manage-room') ? '' : 'hidden' }} pb-2">
+        class="{{ str_contains(url()->current(), 'manage-booking') ? '' : 'hidden' }} pb-2">
+        <li class="text-base">
+            <a href="{{ route('manage.booking.open') }}"
+                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-3 group">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                    <path d="M18 1.5c2.9 0 5.25 2.35 5.25 5.25v3.75a.75.75 0 0 1-1.5 0V6.75a3.75 3.75 0 1 0-7.5 0v3a3 3 0 0 1 3 3v6.75a3 3 0 0 1-3 3H3.75a3 3 0 0 1-3-3v-6.75a3 3 0 0 1 3-3h9v-3c0-2.9 2.35-5.25 5.25-5.25Z" />
+                </svg>
+                Buka / Tutup
+            </a>
+        </li>
         <li class="text-base">
             <a href="{{ route('manage.room') }}"
                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-3 group">
@@ -152,13 +161,22 @@
             </a>
         </li>
         <li class="text-base">
-            <a href="{{ route('manage.umkm.regist') }}"
+            <a href="{{ route('manage.booking') }}"
                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-3 group">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                     <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z" clip-rule="evenodd" />
                     <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
                 </svg>
                 Booking
+            </a>
+        </li>
+        <li class="text-base">
+            <a href="{{ route('booking.checkin') }}"
+                class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-3 group">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                    <path fill-rule="evenodd" d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z" clip-rule="evenodd" />
+                </svg>
+                Booking Check-In
             </a>
         </li>
     </ul>

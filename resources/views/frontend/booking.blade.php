@@ -2,6 +2,13 @@
     function getTime($times){
         return json_encode($times);
     }
+
+    function isTimePassed($time){
+        $time = Carbon\Carbon::createFromTimeString($time);
+        $now = Carbon\Carbon::now();
+
+        return $time->lt($now);
+    }
 @endphp
 
 @extends('layouts.master')
@@ -12,13 +19,19 @@
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <div class="flex flex-col justify-center items-center mb-5">
             <h4 class="text-2xl md:text-5xl font-bold">Booking Ruangan</h4>
-            <span class="mt-5 md:text-lg">Ruangan yang dibooking hanya tersedia untuk hari tersebut, tidak dapat dibooking untuk hari lain.</span>
+            @if ($open)
+                <span class="mt-5 md:text-lg text-center">Ruangan yang dibooking hanya tersedia untuk hari tersebut, tidak dapat dibooking untuk hari lain.</span>
+            @else
+                <span class="mt-5 md:text-lg text-center">Booking ruangan untuk saat ini belum tersedia.</span>
+            @endif
         </div>
 
         <div class="flex justify-center md:pt-5">
             <div class="flex flex-col md:w-3/4">
 
                 <img src="{{url('images/denah.jpg')}}"/>
+
+                @if ($open)
                 <div class="flex mt-5">
                     <select class="select select-bordered w-full" id="ruang">
                         @if ($room->count() < 1)
@@ -63,12 +76,20 @@
                             onchange="changeTime('{{json_encode($room->select(['id','name','seat','isMustFullBooking','times'])->toArray())}}')"
                             required
                         >
-                            @if (old('room_time') != null)
+                            <option disabled selected>Pilih Waktu</option>
+                            @if (old('room_time') != null || $errors->has('room_time'))
                                 @foreach ($room->find(old('room_id'))->times as $item)
-                                    <option value="{{$item->id}}" @if(old('room_time') == $item->id) selected @endif>{{$item->open ." - ". $item->close}} WIB</option>
+                                    @if (isTimePassed($item->close))
+                                        <option disabled>{{$item->open ." - ". $item->close}} WIB</option>
+                                    @else
+                                        <option value="{{$item->id}}" @if(old('room_time') == $item->id) selected @endif>{{$item->open ." - ". $item->close}} WIB</option>
+                                    @endif
                                 @endforeach
                             @endif
                         </select>
+                        @error('room_time')
+                        <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
+                        @enderror
                     </label>
                     <label class="form-control w-full">
                         <div class="label flex justify-between">
@@ -78,7 +99,7 @@
                               <span class="label-text text-sm text-[#195770] font-semibold"> Kursi Tersedia</span>
                           </div>
                         </div>
-                        <input id="room_seat" type="number" name="jumlah_kursi" max="{{old('kursi_ready') ?? 0}}" placeholder="Jumlah Kursi" class="input input-bordered" value="{{old('jumlah_kursi')}}" required/>
+                        <input id="room_seat" type="number" inputmode="numeric" name="jumlah_kursi" max="{{old('kursi_ready') ?? 0}}" placeholder="Jumlah Kursi" class="input input-bordered" value="{{old('jumlah_kursi')}}" required/>
                         @error('jumlah_kursi')
                         <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
                         @enderror
@@ -93,7 +114,7 @@
                         <div class="label">
                           <span class="label-text text-base font-semibold">Nomor WhatsApp <span class="text-red-600 font-bold">*</span></span>
                         </div>
-                        <input id="input_wa" type="text" name="whatsapp" placeholder="Nomor WhatsApp" class="input input-bordered" value="{{old('whatsapp')}}" required/>
+                        <input id="input_wa" type="text" inputmode="numeric" name="whatsapp" placeholder="Nomor WhatsApp" class="input input-bordered" value="{{old('whatsapp')}}" required/>
                     </label>
                     <label class="form-control w-full md:col-span-2">
                         <div class="label">
@@ -110,6 +131,7 @@
                     </label>
                     <button id="button_submit" type="submit" class="btn bg-[#195770] text-white mt-5 md:col-span-2">Booking</button>
                 </form>
+                @endif
 
             </div>
         </div>
@@ -118,6 +140,8 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
+
     <script>
         function booking(){
             let room = document.querySelector("#ruang").value.split("|");
@@ -137,9 +161,16 @@
                 }
                 
                 let room_time = JSON.parse(times);
-                document.getElementById("room_time").innerHTML = "";
+                document.getElementById("room_time").innerHTML = "<option disabled selected>Pilih Waktu</option>";
                 room_time.forEach(item => {
-                    document.getElementById("room_time").innerHTML += "<option value='"+item.id+"'>"+item.open+" - "+item.close+" WIB</option>";
+                    let now = moment();
+                    let checkTime = moment(item.close, 'HH:mm');
+                    let isTimePassed = now.isAfter(checkTime);
+                    if(isTimePassed){
+                        document.getElementById("room_time").innerHTML += "<option disabled>"+item.open+" - "+item.close+" WIB | Lewat</option>";
+                    }else{
+                        document.getElementById("room_time").innerHTML += "<option value='"+item.id+"'>"+item.open+" - "+item.close+" WIB</option>";
+                    }
                 });
 
                 disableBooking(room_seat, room_time[0].booked, (full_booking == 'full-booking' ? true : false));

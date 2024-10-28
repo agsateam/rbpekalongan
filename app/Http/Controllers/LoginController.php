@@ -22,9 +22,7 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        return back()->withErrors([
-            'email' => 'Data yang anda inputkan tidak cocok.',
-        ])->onlyInput('email');
+        return back()->with('error', 'Data yang anda inputkan tidak cocok.');
     }
 
     public function logout(Request $request){

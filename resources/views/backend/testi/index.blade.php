@@ -86,6 +86,7 @@ const modalMore = document.getElementById('modal_more');
             title: 'Konfirmasi',
             text: 'Setelah dihapus data tidak dapat dikembalikan, hapus testimoni ini?',
             icon: 'question',
+            iconColor: 'red',
             showCancelButton: true,
             confirmButtonColor: "red",
             cancelButtonText: 'Batal',

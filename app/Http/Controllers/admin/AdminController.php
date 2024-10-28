@@ -29,12 +29,12 @@ class AdminController extends Controller
         $req->validate(
             [
                 'email' => [Rule::unique('users')->ignore($req->id)],
-                'phone' => 'min_digits:11|max_digits:14|numeric'
+                'phone' => 'numeric|min_digits:11|max_digits:14'
             ],
             [
                 'email.unique' => 'Email sudah terdaftar di sistem.',
-                'phone.min' => 'Nomor minimal 11 karakter.',
-                'phone.max' => 'Nomor maksimal 14 karakter.',
+                'phone.min_digits' => 'Nomor minimal 11 karakter.',
+                'phone.max_digits' => 'Nomor maksimal 14 karakter.',
                 'phone.numeric' => 'Nomor harus berupa angka.',
             ]
         );

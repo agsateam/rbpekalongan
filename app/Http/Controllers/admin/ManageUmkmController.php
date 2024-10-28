@@ -104,8 +104,6 @@ class ManageUmkmController extends Controller
     public function destroy($id){
         $umkm = Umkm::where('id', $id)->first();
 
-        dd($umkm);
-
         // remove umkm files from storage
         if($umkm->ktp_image != null){
             $ktp = explode("uploaded/umkm", $umkm->ktp_image);
@@ -122,7 +120,7 @@ class ManageUmkmController extends Controller
         // delete data
         $umkm->delete();
         
-        return back()->with('success', 'Data UMKM dihapus.');
+        return redirect()->route('manage.umkm')->with('success', 'Data UMKM dihapus.');
     }
  
     public function manageRegist(){
