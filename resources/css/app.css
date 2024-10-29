@@ -1,7 +1,11 @@
+@import 'animate.css';
 @import 'swiper/css/bundle';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 
 /* width */
 ::-webkit-scrollbar {

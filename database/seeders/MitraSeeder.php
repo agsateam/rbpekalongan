@@ -16,11 +16,7 @@ class MitraSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [
-                'nama_mitra' => 'Google',
-                'link' => 'www.google.com',
-
-            ],
+            [],
         ];
         DB::table('mitras')->insert($data);
     }
