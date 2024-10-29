@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
             // EventSeeder::class,
             HeroSeeder::class,
             FungsiRBSeeder::class,
-            MitraSeeder::class
+
+
         ]);
     }
 }
