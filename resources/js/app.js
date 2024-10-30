@@ -3,6 +3,16 @@ import './bootstrap';
 import 'flowbite';
 import { initSwiper } from '../../public/javascript/swiper';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init({
+    duration: 3000, // Durasi animasi dalam milidetik
+    once: true,     // Animasi berjalan sekali saat pertama kali muncul
+});
+
+
+
 document.addEventListener('DOMContentLoaded',function(){
     // initSwiper();
     const swiper = new Swiper('.swiper', {
