@@ -1,5 +1,5 @@
 <div class="my-16 py-16">
-    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
+    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto" data-aos="fade-up">
         <h4 class="text-xl md:text-4xl font-bold mb-16 text-center">Mitra Rumah BUMN</h4>
 
         @if ($mitra->isEmpty())

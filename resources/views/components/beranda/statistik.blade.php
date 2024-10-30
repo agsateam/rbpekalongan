@@ -3,11 +3,12 @@
         <div class="flex flex-col lg:flex-row w-full justify-between items-center">
 
             <div class="text-white font-bold text-3xl text-center md:text-left md:text-5xl mb-8 lg:mb-0 w-1/2 line">
-                <h3 class="leading-normal">Informasi Pembinaan Rumah BUMN</h3>
+                <h3 class="leading-normal" data-aos="fade-right" data-aos-duration="3000">Informasi Pembinaan Rumah BUMN
+                </h3>
 
             </div>
 
-            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-16" data-aos="fade-left" data-aos-duration="3000">
 
                 <div class="card flex flex-row items-center gap-4">
                     <div class="bg-white rounded-full"><svg width="60" height="60" viewBox="0 0 48 48"

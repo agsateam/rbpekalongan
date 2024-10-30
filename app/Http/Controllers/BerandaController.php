@@ -60,7 +60,7 @@ class BerandaController extends Controller
     public function videoEdit()
     {
         $data = WebContent::select(["video_link", "video_desc"])->first();
-        
+
         return view('backend.webcontent.video.index', ["data" => $data]);
     }
 
@@ -77,7 +77,7 @@ class BerandaController extends Controller
     public function igTokenEdit()
     {
         $data = WebContent::select(["instagram_token"])->first();
-        
+
         return view('backend.webcontent.igtoken.index', ["data" => $data]);
     }
 
@@ -101,7 +101,7 @@ class BerandaController extends Controller
         try {
             $response = Http::get('https://graph.instagram.com/me/media', [
                 'fields' => 'id,caption,media_url,media_type,permalink,thumbnail_url,timestamp',
-                'limit' => 10,
+                'limit' => 12,
                 'access_token' => $token->instagram_token,
             ]);
 

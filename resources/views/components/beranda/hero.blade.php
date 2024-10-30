@@ -1,7 +1,8 @@
 <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex justify-center">
 
-    <div class="flex flex-col w-full md:gap-10 md:flex-row items-center justify-between mt-10">
-        <div class="flex flex-col w-full px-5 lg:w-1/3 lg:px-0">
+    <div class="flex flex-col w-full md:gap-10 md:flex-row items-center justify-between mt-10" data-aos="fade-up">
+        <div
+            class="flex flex-col w-full px-5 lg:w-1/3 lg:px-0 animate-fade-up animate-once animate-duration-[400ms] animate-delay-300 animate-ease-in">
             <div class="w-full flex flex-col lg:justify-start">
 
                 <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">

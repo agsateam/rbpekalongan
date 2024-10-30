@@ -17,17 +17,17 @@ class FungsiRBSeeder extends Seeder
         $data = [
             [
                 'nama_fungsi' => 'PENGEMBANGAN UMKM',
-                'deskripsi' => 'Deskripsi Pengembangan UMKM',
+                'deskripsi' => 'Rumah BUMN berperan dalam membina UMKM, GO MODERN (Registrasi UMKM). GO DIGITAL (Menggunakan Sosial Media), GO ONLINE (Menggunakan Marketplace / E-Commerce), dan GO GLOBAL (UMKM Siap Export)',
 
             ],
             [
                 'nama_fungsi' => 'BASECAMP MILENIAL',
-                'deskripsi' => 'Deskripsi BASECAMP MILENIAL',
+                'deskripsi' => 'Rumah BUMN berperan dalam mengelola, mendidik, dan membimbing Millenials untuk menjadi entrepreneurs. Millennials adalah lokomotif kemjauan Indonesia',
 
             ],
             [
                 'nama_fungsi' => 'COWORKING SPACE',
-                'deskripsi' => 'Deskripsi COWORKING SPACE',
+                'deskripsi' => 'Rumah BUMN berperan menjadi tempat berkumpulnya Komunitas UMKM dan Millenials untuk belajar dan sharing bisnis dengan dukungan akses internet',
 
             ],
             [
