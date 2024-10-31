@@ -4,6 +4,16 @@
 
 
     <div class="">
+        <div class="flex flex-col md:flex-row justify-between w-full">
+            <h4 class="text-2xl md:text-3xl font-bold mb-5">Fungsi</h4>
+            <div class="breadcrumbs text-sm">
+                <ul>
+                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li>Web Content</li>
+                    <li>Fungsi</li>
+                </ul>
+            </div>
+        </div>
         <form class="p-4 md:p-5" action="{{ route('webcontent.fungsiupdate', $fungsirb->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
@@ -114,6 +124,8 @@
                     <input id="dropzone-file5" type="file" class="hidden" name="foto5"
                         accept="image/png, image/jpeg" />
                 </label>
+
+                <div class="text-sm">Note: Foto direkomendasikan berskala 1:1, maksimal 2 mb</div>
 
 
             </div>

@@ -32,12 +32,12 @@ class FungsiRBSeeder extends Seeder
             ],
             [
                 'nama_fungsi' => 'INFORMASI TANGGAP BENCANA',
-                'deskripsi' => 'Deskripsi INFORMASI TANGGAP BENCANA',
+                'deskripsi' => 'Rumah BUMN berperan sebagai media koordinasi dengan satgas bencana setempat',
 
             ],
             [
                 'nama_fungsi' => 'PENYALURAN PK/BL & KUR',
-                'deskripsi' => 'Deskripsi PENYALURAN PK/BL & KUR',
+                'deskripsi' => 'Rumah BUMN berperan sebagai pusat informasi Program Kemitraan dan Penyaluran KUR',
 
             ],
         ];
