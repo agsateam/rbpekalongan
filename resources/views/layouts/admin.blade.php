@@ -30,8 +30,8 @@
 
 <body class="font-manrope">
     <main class="flex flex-row relative">
-        <menu class="hidden lg:block sticky top-0 h-screen bg-[#195770] text-white lg:w-3/12 shadow-lg">
-            <div class="w-full py-5 px-5">
+        <menu class="hidden lg:block h-screen sticky top-0 overflow-y-auto bg-[#195770] text-white lg:w-3/12 shadow-lg">
+            <div class="w-full py-5 px-5 sticky top-0 bg-[#195770] z-10">
                 <a href="{{ route('home') }}">
                     <img src="{{ url('images/logo-light.png') }}" class="w-3/5">
                 </a>
