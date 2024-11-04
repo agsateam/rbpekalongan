@@ -21,7 +21,6 @@ class BerandaController extends Controller
     public function index()
     {
         $events = Event::where('status', 'upcoming')->orderBy('date', 'desc')->get();
-        $products = Product::orderBy('created_date', 'desc')->with('umkm')->limit(4)->get();
 
         //statistik
         $gomodern = Umkm::count();
@@ -46,7 +45,6 @@ class BerandaController extends Controller
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
             'events' => $events,
-            'products' => $products,
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
             'gomodern' => $gomodern,
