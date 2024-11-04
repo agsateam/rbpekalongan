@@ -5,7 +5,6 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\FungsiRBController;
 use App\Http\Controllers\admin\HeroController;
-use App\Http\Controllers\admin\InformasiController;
 use App\Http\Controllers\admin\ManageBookingController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
@@ -13,6 +12,7 @@ use App\Http\Controllers\admin\ManageRoomController;
 use App\Http\Controllers\admin\ManageTestiController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\admin\MitraController;
+use App\Http\Controllers\admin\StatistikController;
 // use App\Http\Controllers\admin\MitraController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BookingController;
@@ -154,5 +154,8 @@ Route::middleware('auth')->group(function () {
         Route::get('hero', [HeroController::class, 'index'])->name('webcontent.hero');
         Route::get('hero/edit/{id?}', [HeroController::class, 'edit'])->name('webcontent.hero.edit');
         Route::put('hero/update/{id?}', [HeroController::class, 'update'])->name('webcontent.hero.update');
+        //Statistik
+        Route::get('statistik', [StatistikController::class, 'index'])->name('webcontent.statistik');
+        Route::get('statistik/edit/{id?}', [StatistikController::class, 'edit'])->name('webcontent.statistik.edit');
     });
 });

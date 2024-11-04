@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "aos": "^2.3.4",
+        "apexcharts": "^4.0.0",
         "flowbite": "^2.5.1",
         "swiper": "^11.1.14"
     }
