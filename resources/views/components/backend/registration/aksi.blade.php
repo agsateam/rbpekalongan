@@ -6,7 +6,9 @@
             '{{ $data->age }}',
             '{{ $data->phone }}',
             '{{ $data->address }}',
-            '{{ $data->umkm }}'
+            '{{ $data->umkm }}',
+            '{{ $data->instagram }}',
+            '{{ $data->email }}',
         )"
         class="btn btn-sm bg-[#195770] text-white"
     >
