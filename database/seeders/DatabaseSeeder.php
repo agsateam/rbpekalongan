@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             // EventSeeder::class,
             HeroSeeder::class,
             FungsiRBSeeder::class,
-
+            BookingRoomSeeder::class,
 
         ]);
     }

@@ -17,7 +17,7 @@ class ManageUmkmController extends Controller
     }
 
     public function detail($id){
-        $data = Umkm::where('id', $id)->with(['fasilitator', 'products'])->first();
+        $data = Umkm::where('id', $id)->with(['fasilitator'])->first();
         return view('backend.umkm.detail', [
             "data" => $data
         ]);

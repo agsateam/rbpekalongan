@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('video_link')->default('https://www.youtube.com/watch?v=SzvRG75Ep18');
             $table->string('video_desc')->nullable();
-            $table->string('instagram_token')->nullable();
+            $table->string('rb_token')->nullable();
+            $table->string('gerai_token')->nullable();
             $table->string('shopee_link')->nullable();
             $table->string('tokopedia_link')->nullable();
             $table->string('tiktok_link')->nullable();

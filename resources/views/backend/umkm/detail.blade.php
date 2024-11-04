@@ -60,7 +60,7 @@
                 {{$data->desc}}
             </div>
         </div>
-        <div class="flex justify-between items-center mt-10 mb-5 pt-10 border-t">
+        {{-- <div class="flex justify-between items-center mt-10 mb-5 pt-10 border-t">
             <span class="text-xl font-bold">Produk</span>
             <a href="{{route('manage.product.add') ."?umkm=". $data->id}}" class="btn btn-sm bg-[#195770] text-white">Tambah Data Produk</a>
         </div>
@@ -75,7 +75,7 @@
                     <span class="text-base">Rp {{number_format($item->price)}}</span>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

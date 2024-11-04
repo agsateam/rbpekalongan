@@ -113,7 +113,7 @@
                 @endif
             </a>
         </li>
-        <li class="text-base">
+        {{-- <li class="text-base">
             <a href="{{ route('manage.product') }}"
                 class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-3 group">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
@@ -123,7 +123,7 @@
                 </svg>
                 Produk
             </a>
-        </li>
+        </li> --}}
     </ul>
 </li>
 <li class="text-base">
