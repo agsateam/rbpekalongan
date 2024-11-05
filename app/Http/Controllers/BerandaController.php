@@ -24,6 +24,7 @@ class BerandaController extends Controller
 
         //statistik
         $statistik = Statistik::all();
+        $jumlahevent = Event::count();
 
 
         $fungsirb = FungsiRB::all();
@@ -39,6 +40,7 @@ class BerandaController extends Controller
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
             'statistik' => $statistik,
+            'jumlahevent' => $jumlahevent,
             'hero' => $hero,
         ]);
     }
