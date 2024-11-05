@@ -26,21 +26,21 @@
                 </div>
                 <input type="text" name="nama" placeholder="Nama" class="input input-bordered w-full" required/>
             </label>
-            <label class="form-control w-full">
+            <label class="form-control w-full mt-5">
                 <div class="label">
-                  <span class="label-text text-base font-semibold">Sertifikasi</span>
+                    <span class="label-text text-base font-semibold">Sertifikasi</span>
                 </div>
-                <textarea
-                    name="certification"
-                    placeholder="Pisahkan dengan koma, contoh:
-Nama Sertifikasi Satu,
-Nama Sertifikasi Dua,
-Nama Sertifikasi Tiga"
-                    class="input input-bordered w-full h-52"
-                ></textarea>
+                <div class="w-full flex flex-col gap-1">
+                    <input type="text" name="certification1" placeholder="Nama Sertifikasi" class="input input-bordered w-full" required/>
+                    @for ($i = 2; $i <= 20; $i++)
+                    <input type="hidden" id="cert{{$i}}" name="certification{{$i}}" placeholder="Nama Sertifikasi" class="input input-bordered w-full"/>
+                    @endfor
+                </div>
+                <input type="hidden" id="showedCount" value="1">
+                <input id="buttonAddRow" type="button" class="text-[#195770] font-bold w-fit mt-2 cursor-pointer" onclick="addRow()" value="+ Tambah Sertifikasi">
             </label>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-2">
-                <label class="form-control w-full mt-2">
+                <label class="form-control w-full mt-5">
                     <div class="label">
                       <span class="label-text text-base font-semibold">Foto <span class="text-red-600 font-bold">*</span></span>
                     </div>
@@ -58,6 +58,19 @@ Nama Sertifikasi Tiga"
 
 @section('script')
 <script>
+    function addRow(){
+        let rowCount = document.querySelector("#showedCount");
+        let nextInput = document.querySelector("#cert" + (parseInt(rowCount.value)+1));
+
+        nextInput.type = "text";
+        nextInput.focus();
+
+        rowCount.value = parseInt(rowCount.value) + 1;
+        if(parseInt(rowCount.value) == 20){
+            document.querySelector("#buttonAddRow").type = "hidden";
+        }
+    }
+
     var loadFile = function(event) {
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);

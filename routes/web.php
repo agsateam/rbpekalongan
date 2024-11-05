@@ -73,15 +73,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-umkm/edit/{id?}', [ManageUmkmController::class, 'edit'])->name('manage.umkm.edit');
     Route::post('/manage-umkm/update', [ManageUmkmController::class, 'update'])->name('manage.umkm.update');
     Route::get('/manage-umkm/delete/{id?}', [ManageUmkmController::class, 'destroy'])->name('manage.umkm.delete');
+    
+    // #### Produk UMKM jadinya ambil dari content IG Gerai UMKM
     // Manage UMKM Product
-    Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
-    Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');
-    Route::get('/manage-umkm/products/detail/{id?}', [ManageProductController::class, 'detail'])->name('manage.product.detail');
-    Route::get('/manage-umkm/products/add', [ManageProductController::class, 'create'])->name('manage.product.add');
-    Route::post('/manage-umkm/products/add', [ManageProductController::class, 'store'])->name('manage.product.save');
-    Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
-    Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
-    Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
+    // Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
+    // Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');
+    // Route::get('/manage-umkm/products/detail/{id?}', [ManageProductController::class, 'detail'])->name('manage.product.detail');
+    // Route::get('/manage-umkm/products/add', [ManageProductController::class, 'create'])->name('manage.product.add');
+    // Route::post('/manage-umkm/products/add', [ManageProductController::class, 'store'])->name('manage.product.save');
+    // Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
+    // Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
+    // Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
+    
     // Manage Fasilitator
     Route::get('/manage-fasilitator', [FasilitatorController::class, 'index'])->name('manage.fasilitator');
     Route::get('/manage-fasilitator/add', [FasilitatorController::class, 'create'])->name('manage.fasilitator.add');

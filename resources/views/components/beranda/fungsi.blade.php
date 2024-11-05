@@ -3,8 +3,7 @@
         <div class="text-4xl font-extrabold">PERAN RUMAH BUMN</div>
     </div>
 
-    <div class="wrap flex overflow-x-scroll gap-10 p-5" id="scrollable-container" data-aos="fade-left"
-        data-aos-duration="3000">
+    <div class="wrap flex overflow-x-scroll gap-10 p-5" id="scrollable-container" data-aos="fade-up">
 
         @php
             $no = 1;

@@ -37,7 +37,7 @@
 @section('script')
 <dialog id="modal_detail" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box pb-16 md:pb-8">
-        <div class="w-full flex justify-between sticky top-0">
+        <div class="w-full flex justify-between sticky top-0 z-10">
             <h3 class="text-lg font-bold">Berkas Pendukung</h3>
             <button type="button" onclick="modalDetail.close()" class="btn btn-sm bg-gray-500 text-white">Tutup</button>
         </div>

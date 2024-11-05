@@ -17,12 +17,4 @@
 
     <x-beranda.mitra :mitra="$mitra" />
 
-
-    @if (count($products) > 0)
-        <x-beranda.products :products="$products" />
-    @endif
-
-
-
-
 @endsection

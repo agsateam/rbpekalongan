@@ -4,8 +4,8 @@
 @endphp
 
 <div class="bg-gray-100 my-16 py-16">
-    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
-        <div class="flex justify-between items-start" data-aos="fade-up" data-aos-duration="3000">
+    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto" data-aos="fade-up" data-aos-duration="2000">
+        <div class="flex justify-between items-start">
             <h4 class="text-xl md:text-4xl font-bold mb-5">Testimoni</h4>
             <div class="hidden md:flex items-center">
                 <span class="text-lg mr-3">Punya testimoni untuk kami?</span>
@@ -15,8 +15,7 @@
         </div>
 
         @if ($testi->count() > 0)
-            <div id="default-carousel" class="relative w-full" data-carousel="slide" data-aos="fade-up"
-                data-aos-duration="3000">
+            <div id="default-carousel" class="relative w-full">
                 <div class="relative overflow-hidden rounded-lg h-[500px] lg:h-80 bg-white shadow-md">
                     @foreach ($testi as $t)
                         <div class="bg-white hidden duration-1000 ease-in-out" data-carousel-item>

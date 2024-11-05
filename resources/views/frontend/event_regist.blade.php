@@ -101,6 +101,18 @@ function toDate($date){
                         </div>
                         <input id="umkm" type="text" name="umkm" placeholder="UMKM" class="input input-bordered w-full" disabled/>
                     </label>
+                    <label class="form-control w-full mt-2">
+                        <div class="label">
+                          <span class="label-text text-base font-semibold">Email</span>
+                        </div>
+                        <input type="text" name="email" placeholder="Email (opsional)" class="input input-bordered w-full"/>
+                    </label>
+                    <label class="form-control w-full mt-2">
+                        <div class="label">
+                          <span class="label-text text-base font-semibold">Instagram</span>
+                        </div>
+                        <input type="text" name="instagram" placeholder="Username IG (opsional)" class="input input-bordered w-full"/>
+                    </label>
                     <label class="w-full flex flex-col items-center mt-5">
                         {!! NoCaptcha::renderJs() !!}
                         {!! NoCaptcha::display() !!}

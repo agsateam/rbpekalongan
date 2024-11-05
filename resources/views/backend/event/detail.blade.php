@@ -67,25 +67,62 @@
                         <th class="py-3 text-left font-medium uppercase">Nomor HP/WA</th>
                         <th class="py-3 text-left font-medium uppercase">Alamat</th>
                         <th class="py-3 text-left font-medium uppercase">UMKM</th>
+                        {{-- <th class="py-3 text-left font-medium uppercase">IG</th>
+                        <th class="py-3 text-left font-medium uppercase">Email</th> --}}
                         @if ($data->status == "upcoming")
                         <th class="py-3 text-left font-medium uppercase">Status</th>
-                        <th class="py-3 text-left font-medium uppercase">#</th>
                         @endif
+                        <th class="py-3 text-left font-medium uppercase">#</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($participants as $i)
                         <tr>
                             <td>{{$i['name']}}</td>
-                            <td>{{ $i['gender'] == 'lk' ? "Laki-Laki" : "Perempuan" }}</td>
+                            <td>{{ $i['gender'] == 'lk' ? "LK" : "PR" }}</td>
                             <td>{{$i['age']}}</td>
                             <td>{{$i['phone']}}</td>
                             <td>{{$i['address']}}</td>
                             <td>{{$i['is_have_umkm'] ? $i['umkm'] : "-"}}</td>
+                            {{-- <td>{{$i['instagram'] ?? "-"}}</td>
+                            <td>{{$i['email'] ?? "-"}}</td> --}}
                             @if ($data->status == "upcoming")
                             <td>@include('components.backend.registration.status', ["data" => $i])</td>
-                            <td>@include('components.backend.registration.aksi', ["data" => $i])</td>
                             @endif
+                            <td>
+                                <div class="flex gap-1">
+                                    <button
+                                        onclick="detail(
+                                            '{{ $i['name'] }}',
+                                            '{{ $i['gender'] }}',
+                                            '{{ $i['age'] }}',
+                                            '{{ $i['phone'] }}',
+                                            '{{ $i['address'] }}',
+                                            '{{ $i['umkm'] }}',
+                                            '{{ $i['instagram'] }}',
+                                            '{{ $i['email'] }}',
+                                        )"
+                                        class="btn btn-sm bg-[#195770] text-white"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        </svg>
+                                    </button>
+                                    @if ($data->status == "upcoming")
+                                    <button onclick="confirmAccept('{{ route('manage.eventregist.accept') . '/' . $data->id }}')" class="btn btn-sm bg-emerald-600 text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+                                    <button onclick="confirmReject('{{ route('manage.eventregist.reject') . '/' . $data->id }}')" class="btn btn-sm bg-red-600 text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </button>
+                                    @endif
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -149,6 +186,16 @@
                 <td>:</td>
                 <td id="umkm"></td>
             </tr>
+            <tr>
+                <td>Instagran</td>
+                <td>:</td>
+                <td id="ig"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td id="email"></td>
+            </tr>
         </table>
     </div>
 </dialog>
@@ -164,7 +211,7 @@
 {{-- Action Button --}}
 <script>
     const modalDetail = document.getElementById('modal_detail');
-    function detail(nama, jk, umur, phone, alamat, umkm){
+    function detail(nama, jk, umur, phone, alamat, umkm, ig, email){
         modalDetail.showModal();
         document.getElementById('nama').innerHTML = nama;
         document.getElementById('gender').innerHTML = (jk == 'lk') ? 'Laki-Laki' : 'Perempuan';
@@ -172,6 +219,8 @@
         document.getElementById('phone').innerHTML = phone;
         document.getElementById('alamat').innerHTML = alamat;
         document.getElementById('umkm').innerHTML = (umkm == "") ? "-" : umkm;
+        document.getElementById('ig').innerHTML = (ig == "") ? "-" : ig;
+        document.getElementById('email').innerHTML = (email == "") ? "-" : email;
     }
 
     function confirmReject(href){

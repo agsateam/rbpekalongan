@@ -7,38 +7,40 @@ use App\Models\EventRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
     public function front(Request $req){
-        $events = Event::orderBy('date', 'desc');
+        $title = "Semua Event";
+        $type = $req->type ?? "all";
+        if ($req->has('type')) {
+            $title = $req->type != "all" ? ($req->type == "done" ? "Event Selesai" : "Upcoming Event") : "Semua Event";
+        }
 
         $filterStatus = $req->has('type') ? ($req->type == "all" ? ["upcoming", "done"] : [$req->type]) : ["upcoming", "done"];
-        $filterDate = [];
-        if ($req->has("date") && $req->date != "") {
-            $filterDate = [
-                Carbon::createFromDate($req->date)->subDay()->endOfDay(),
-                Carbon::createFromDate($req->date)->endOfDay()
-            ];
-        } else {
-            $filterDate = [
-                Carbon::today()->subYear(1)->startOfDay(),
-                Carbon::today()->addMonth(6)->endOfDay()
-            ];
-        }
+        $events = Event::whereIn('status', $filterStatus)
+                    ->when(($req->has('keyword') && $req->keyword != ""), function($query) use($req){
+                        $query->whereLike('name', '%' . $req->keyword . '%')->get();
+                    })
+                    ->when(($req->has("date") && $req->date != ""), function($query) use($req){
+                        $date = explode("-", $req->date);
+                        $filterDate = [
+                            Carbon::createFromDate($date[0])->subDay()->endOfDay(),
+                            Carbon::createFromDate($date[1])->endOfDay()
+                        ];
 
-        $events = $events->whereIn('status', $filterStatus)->whereBetween('date', $filterDate);
+                        $query->whereBetween('date', $filterDate);
+                    })
+                    ->orderBy('date', 'desc')->get();
 
-        if($req->has('keyword')){
-            $events = $events->whereLike('name', '%' . $req->keyword . '%')->get();
-        }else{
-            $events = $events->get();
-        }
-        
         $isFiltered = $req->has('keyword') || $req->has('type') || $req->has('date');
         return view('frontend.event', [
+            "title" => $title,
             "events" => $events,
-            "isFiltered" => $isFiltered
+            "isFiltered" => $isFiltered,
+            "type" => $type,
+            "req" => $req->all(),
         ]);
     }
 
@@ -69,6 +71,7 @@ class EventController extends Controller
         ]);
 
         $data = $req->all();
+        $data['name'] = Str::title($data['name']);
         $data['is_have_umkm'] = $data['is_have_umkm'] ? true : false;
 
         EventRegistration::create($data);
