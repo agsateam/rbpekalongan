@@ -21,8 +21,9 @@
             </div>
         </div>
 
-        {{-- <a href="{{ route('webcontent.mitra.create') }}" class="btn bg-[#195770] text-white mb-5">+ Tambah Mitra</a> --}}
-
+        @php
+            $no = 1;
+        @endphp
 
         <div class="flex flex-wrap justify-center items-center p-4 gap-4">
             @foreach ($statistik as $s)
@@ -31,8 +32,8 @@
                     <div class="flex justify-end px-4 pt-4">
                     </div>
                     <div class="flex flex-col items-center pb-10">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg"
-                            alt="Bonnie image" />
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                            src="../images/informasi/statistik-{{ $no++ }}.png" alt="statistik" />
                         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $s->jumlah }}</h5>
                         <span class="text-sm text-gray-500 dark:text-gray-400">{{ $s->jenis_statistik }}</span>
                         <div class="flex mt-4 md:mt-6">

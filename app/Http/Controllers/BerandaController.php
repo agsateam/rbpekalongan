@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Product;
-use App\Models\Umkm;
 use App\Models\FungsiRB;
 use App\Models\Mitra;
 use App\Models\WebContent;
 use App\Models\Hero;
+use App\Models\Statistik;
 
 
 use Illuminate\Support\Facades\DB;
@@ -24,16 +24,7 @@ class BerandaController extends Controller
         $products = Product::orderBy('created_date', 'desc')->with('umkm')->limit(4)->get();
 
         //statistik
-        $gomodern = Umkm::count();
-        $godigital = DB::table('umkms')->where(function ($query) {
-            $query->whereNotNull('instagram')
-                ->orWhereNotNull('facebook');
-        })
-            ->count();
-        $goonline = DB::table('umkms')->where(function ($query) {
-            $query->whereNotNull('marketplace');
-        })->count();
-        $jumlahevent = Event::count();
+        $statistik = Statistik::all();
 
 
         $fungsirb = FungsiRB::all();
@@ -49,10 +40,7 @@ class BerandaController extends Controller
             'products' => $products,
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
-            'gomodern' => $gomodern,
-            'godigital' => $godigital,
-            'goonline' => $goonline,
-            'jumlahevent' => $jumlahevent,
+            'statistik' => $statistik,
             'hero' => $hero,
         ]);
     }

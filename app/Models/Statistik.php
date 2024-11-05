@@ -13,7 +13,6 @@ class Statistik extends Model
     protected $table = 'statistiks';
 
     protected $fillable = [
-        'jenis_statistik',
         'jumlah',
     ];
 }

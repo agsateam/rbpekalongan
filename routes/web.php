@@ -157,5 +157,6 @@ Route::middleware('auth')->group(function () {
         //Statistik
         Route::get('statistik', [StatistikController::class, 'index'])->name('webcontent.statistik');
         Route::get('statistik/edit/{id?}', [StatistikController::class, 'edit'])->name('webcontent.statistik.edit');
+        Route::put('statistik/update/{id?}', [StatistikController::class, 'update'])->name('webcontent.statistik.update');
     });
 });

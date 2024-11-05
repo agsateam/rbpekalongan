@@ -16,8 +16,20 @@ class StatistikSeeder extends Seeder
     {
         $data = [
             [
+                'jenis_statistik' => 'Go Digital',
+                'jumlah' => 0,
+            ],
+            [
                 'jenis_statistik' => 'Go Modern',
-                'jumlah' => 200,
+                'jumlah' => 0,
+            ],
+            [
+                'jenis_statistik' => 'Go Online',
+                'jumlah' => 0,
+            ],
+            [
+                'jenis_statistik' => 'Jumlah Event',
+                'jumlah' => 0,
             ],
         ];
         DB::table('statistiks')->insert($data);

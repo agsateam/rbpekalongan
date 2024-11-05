@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Statistik;
+use Illuminate\Http\Request;
+
 
 class StatistikController extends Controller
 {
@@ -63,9 +65,23 @@ class StatistikController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($request, Statistik $statistik)
+    public function update(Request $request, $id)
     {
-        //
+
+        $validatedData = $request->validate([
+            'jumlah' => 'required|integer',
+        ]);
+
+        // Cari data statistik berdasarkan ID yang diberikan
+        $statistik = Statistik::findOrFail($id);
+
+        // Update field 'jumlah' dengan nilai yang divalidasi
+        $statistik->jumlah = $validatedData['jumlah'];
+
+        // Simpan perubahan
+        $statistik->save();
+
+        return redirect()->route('webcontent.statistik')->with('success', 'Statistik berhasil diupdate!');
     }
 
     /**
