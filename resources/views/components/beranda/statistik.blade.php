@@ -21,7 +21,7 @@
                             src="../images/informasi/statistik-{{ $no++ }}.png" alt="statistik" />
 
                         <div class="">
-                            @if ($s->jenis_statistik = 'Jumlah Event')
+                            @if ($s->jenis_statistik == 'Jumlah Event')
                                 <h2 class="font-semibold text-2xl">{{ $jumlahevent }}</h2>
                             @else
                                 <h2 class="font-semibold text-2xl">{{ $s->jumlah }}</h2>
