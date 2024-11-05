@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Statistik;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 
@@ -16,39 +17,18 @@ class StatistikController extends Controller
     {
 
         $statistik = Statistik::all();
+        $jumlahevent = Event::count();
+
 
 
         $data = [
-            'statistik' => $statistik
+            'statistik' => $statistik,
+            'jumlahevent' => $jumlahevent
         ];
 
 
 
         return view('backend.webcontent.statistik.viewstatistik', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store($request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Statistik $statistik)
-    {
-        //
     }
 
     /**
@@ -82,13 +62,5 @@ class StatistikController extends Controller
         $statistik->save();
 
         return redirect()->route('webcontent.statistik')->with('success', 'Statistik berhasil diupdate!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Statistik $statistik)
-    {
-        //
     }
 }

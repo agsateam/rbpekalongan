@@ -4,7 +4,7 @@
 
     <x-beranda.hero :hero="$hero" />
     <x-beranda.services />
-    <x-beranda.statistik :statistik="$statistik" />
+    <x-beranda.statistik :statistik="$statistik" :jumlahevent="$jumlahevent" />
     <x-beranda.video />
     <x-beranda.fungsi :fungsirb="$fungsirb" />
 
