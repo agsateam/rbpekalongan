@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Booking')
-@section('content')
 
+@section('content')
 <div class="md:px-5">
     <div class="flex flex-col md:flex-row justify-between">
         <h4 class="text-2xl md:text-3xl font-bold mb-5">Booking</h4>
@@ -36,7 +36,6 @@
         <tbody class="bg-white divide-y divide-gray-200"></tbody>
     </table>
 </div>
-
 @endsection
 
 @section('script')
@@ -45,16 +44,19 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        let urlParams = new URLSearchParams(window.location.search);
         $('#booking-table').DataTable({
             processing: true,
             serverSide: true,
             lengthChange: false,
             info: false,
-            // order: [[ 1, 'desc' ]],
+            search: {
+                search: urlParams.get('search')
+            },
             ajax: "{{ route('manage.booking.data') . '?history=1' }}",
             columns: [
                 { data: 'DT_RowIndex', orderable: false, searchable: false },
-                { data: 'created_at', name: 'created_at', searchable: false },
+                { data: 'created_at', name: 'created_at' },
                 { data: 'code', name: 'code' },
                 { data: 'room', name: 'room.name', orderable: false },
                 { data: 'booking_seat', name: 'booking_seat' },
@@ -76,11 +78,13 @@
             },
             initComplete: function() {
                 // Customizing Search Input
-                $('div.dataTables_filter input').addClass('w-full md:max-w-xs rounded-sm focus:ring-[#195770] focus:border-[#195770] border-gray-300 px-2 mb-5').attr('placeholder','Cari ...');
+                $('div.dataTables_filter input').addClass('w-full h-10 md:max-w-xs rounded-sm focus:ring-[#195770] focus:border-[#195770] border-gray-300 px-2 mb-2 md:mb-5').attr('placeholder','Cari ...');
                 // Customizing Pagination
                 $('div.dataTables_paginate').addClass('my-4');
                 $('a.paginate_button.current').addClass('bg-[#195770] text-white hover:text-gray-600');
                 $('a.paginate_button').addClass('btn btn-sm mr-1');
+                // Customizing Filter Month
+                $('#booking-table_filter').addClass('flex flex-col md:flex-row').append("<div class='w-full md:w-fit flex'><input id='month' type='month' class='grow h-10 rounded-ss-sm rounded-es-sm focus:ring-[#195770] focus:border-[#195770] border-gray-300 px-2 mb-5 md:ml-3' autocomplete='off' value='"+urlParams.get('search')+"' /><button class='bg-[#195770] text-white text-sm h-10 px-3 rounded-se-sm rounded-ee-sm' onclick='monthChange()'>GO<button></div>");
 
                 // add scrollable table
                 let div = document.createElement('div');
@@ -90,6 +94,18 @@
             }
         });
     });
+
+    function monthChange(){
+        let value = document.querySelector("#month").value;
+
+        let url = window.location.origin + window.location.pathname;
+        if(value != ""){
+            let to = url + "?search=" + value;
+            window.location = to;
+        }else{
+            window.location = url;
+        }
+    }
 
     function wrap(el, wrapper) {
         el.parentNode.insertBefore(wrapper, el);
