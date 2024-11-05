@@ -12,7 +12,7 @@
         <x-beranda.upcomingEvent :events="$events" />
     @endif
 
-    <x-beranda.testimonies />
+    <x-beranda.testimonies :testi="$testi" />
     <x-beranda.activities :igposts="$igPosts" />
 
     <x-beranda.mitra :mitra="$mitra" />

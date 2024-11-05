@@ -9,8 +9,7 @@ use App\Models\Mitra;
 use App\Models\WebContent;
 use App\Models\Hero;
 use App\Models\Statistik;
-
-
+use App\Models\Testimoni;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -25,16 +24,14 @@ class BerandaController extends Controller
         //statistik
         $statistik = Statistik::all();
 
-
         $fungsirb = FungsiRB::all();
         $mitra = Mitra::all();
         $hero = Hero::all();
-
-        // dd($hero);
-
+        $testi = Testimoni::where('status', 'accepted')->get();
 
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
+            'testi' => $testi,
             'events' => $events,
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
