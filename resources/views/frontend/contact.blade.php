@@ -131,6 +131,9 @@
                       <span class="label-text text-base font-semibold">Nomor KTP <span class="text-red-600 font-bold">*</span></span>
                     </div>
                     <input type="text" inputmode="numeric" minlength="16" maxlength="16" name="ktp" placeholder="Nomor KTP" value="{{old('ktp')}}" class="input input-bordered w-full" required/>
+                    @error('ktp')
+                    <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                    @enderror
                 </label>
                 <label class="form-control w-full lg:col-span-3">
                     <div class="label">
