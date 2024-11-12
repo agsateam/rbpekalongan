@@ -98,13 +98,13 @@ class ProductController extends Controller
 
     public function umkmDetail($id){
         $data = Umkm::where('id', $id)->first();
-        $products = Product::where('umkm_id', $id)->orderBy('created_at', 'desc')->limit(4)->get();
-        $productCount = Product::where('umkm_id', $id)->count();
+        // $products = Product::where('umkm_id', $id)->orderBy('created_at', 'desc')->limit(4)->get();
+        // $productCount = Product::where('umkm_id', $id)->count();
 
         return view('frontend.umkm_detail', [
             "data" => $data,
-            "products" => $products,
-            "productCount" => $productCount,
+            // "products" => $products,
+            // "productCount" => $productCount,
         ]);
     }
 }
