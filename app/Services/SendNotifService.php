@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\BookingRoom;
 use App\Models\BookingTime;
 use App\Models\Event;
+use App\Models\Fasilitator;
 use App\Models\NotificationLog;
 use App\Models\WebContent;
 use Illuminate\Support\Str;
@@ -12,8 +13,30 @@ use Illuminate\Support\Facades\Http;
 
 class SendNotifService
 {
-    const EVENT_TEMPLATE = "Notifikasi Pendaftaran Event\n\nEvent : ?\nNama Pendaftar : ?\nGender : ?\nUmur : ?\nNomor WA : ?\n\nSilahkan verifikasi pendaftaran di dashboard admin.\nhttps://rbpekalongan.id/manage-event/regist";
+    const EVENT_TEMPLATE = "Notifikasi Pendaftaran Event\n\nEvent : ?\nNama Pendaftar : ?\nGender : ?\nUmur : ?\nNomor WA : ?\n\nVerifikasi pendaftaran di dashboard admin.\nhttps://rbpekalongan.id/manage-event/regist";
     const BOOKING_TEMPLATE = "Notifikasi Booking Tempat\n\nTempat : ?\nWaktu : ?\nJumlah Kursi : ?\nNama : ?\nNomor WA : ?\nTujuan : ?\n\nSelengkapnya, cek di dashboard admin.\nhttps://rbpekalongan.id/manage-booking";
+    const UMKM_TEMPLATE = "Notifikasi Pendaftaran UMKM\n\nFasilitator : ?\nNama Usaha : ?\nOwner : ?\nTipe Usaha : ?\nNomor WA : ?\n\nSelengkapnya, cek di dashboard admin.\nhttps://rbpekalongan.id/manage-umkm/regist";
+
+    public static function notifUmkm($data){
+        $fasilitator = Fasilitator::find($data["fasilitator_id"]);
+        
+        $message = Str::replaceArray("?", [$fasilitator->name, $data["name"], $data["owner"], $data["type"], $data["phone"]], self::UMKM_TEMPLATE);
+
+        $response = self::send($message, $fasilitator->whatsapp);
+        if ($response) {
+            NotificationLog::create([
+                "send_for" => "UMKM Regist Notif",
+                "to" => "Fasilitator " . $fasilitator->name . " - " . $fasilitator->whatsapp,
+                "success" => true,
+            ]);
+        } else {
+            NotificationLog::create([
+                "send_for" => "UMKM Regist Notif",
+                "to" => "Fasilitator " . $fasilitator->name . " - " . $fasilitator->whatsapp,
+                "success" => false,
+            ]);
+        }
+    }
 
     public static function notifEvent($data){
         $event = Event::find($data["event_id"])->name;
@@ -61,6 +84,7 @@ class SendNotifService
             ]);
         }
     }
+
 
 
 
