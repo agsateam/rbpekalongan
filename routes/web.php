@@ -153,6 +153,9 @@ Route::middleware('auth')->group(function () {
         // IG Token
         Route::get('igtoken', [BerandaController::class, 'igTokenEdit'])->name('webcontent.igtoken');
         Route::post('igtoken', [BerandaController::class, 'igTokenUpdate'])->name('webcontent.igtoken.update');
+        // Whatsapp Notif
+        Route::get('notif-wa', [BerandaController::class, 'notifNumberEdit'])->name('webcontent.notif');
+        Route::post('notif-wa', [BerandaController::class, 'notifNumberUpdate'])->name('webcontent.notif.update');
         // Hero
         Route::get('hero', [HeroController::class, 'index'])->name('webcontent.hero');
         Route::get('hero/edit/{id?}', [HeroController::class, 'edit'])->name('webcontent.hero.edit');

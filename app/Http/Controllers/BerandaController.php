@@ -76,6 +76,22 @@ class BerandaController extends Controller
         return back()->with('success', 'Berhasil diperbarui.');
     }
 
+    public function notifNumberEdit()
+    {
+        $data = WebContent::select(["whatsapp_notif"])->first();
+
+        return view('backend.webcontent.notif.index', ["data" => $data]);
+    }
+
+    public function notifNumberUpdate(Request $req)
+    {
+        WebContent::where('id', 1)->update([
+            "whatsapp_notif" => $req->number,
+        ]);
+
+        return back()->with('success', 'Berhasil diperbarui.');
+    }
+
 
 
 
