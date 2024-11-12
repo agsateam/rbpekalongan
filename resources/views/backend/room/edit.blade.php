@@ -50,15 +50,26 @@
                     required
                 />
             </label>
-            <label class="form-control w-full">
+            <div class="form-control w-full">
                 <div class="label">
-                    <span class="label-text text-base font-semibold">Full Booking <span class="text-red-600 font-bold">*</span></span>
+                    <div class="label-text text-base font-semibold flex items-center">
+                        Full Booking <span class="text-red-600 font-bold">*</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 ml-1" data-popover-target="popover-booking">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                        </svg>
+                    </div>
+                    <div data-popover id="popover-booking" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-white transition-opacity duration-300 bg-gray-600 rounded-lg shadow-sm opacity-0">
+                        <div class="px-3 py-2">
+                            <p>Ruangan hanya bisa dibooking secara full?</p>
+                        </div>
+                        <div data-popper-arrow></div>
+                    </div>
                 </div>
                 <select name="isMustFullBooking" class="input input-bordered w-full" required>
                     <option value="1" {{$data->isMustFullBooking == 1 ? 'selected' : ''}}>Ya</option>
                     <option value="0" {{$data->isMustFullBooking == 0 ? 'selected' : ''}}>Tidak</option>
                 </select>
-            </label>
+            </div>
             <button type="submit" class="btn bg-[#195770] text-white md:col-span-2 mt-5">Simpan</button>
         </form>
     </div>

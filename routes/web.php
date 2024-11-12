@@ -5,7 +5,6 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\FungsiRBController;
 use App\Http\Controllers\admin\HeroController;
-use App\Http\Controllers\admin\InformasiController;
 use App\Http\Controllers\admin\ManageBookingController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
@@ -13,6 +12,7 @@ use App\Http\Controllers\admin\ManageRoomController;
 use App\Http\Controllers\admin\ManageTestiController;
 use App\Http\Controllers\admin\ManageUmkmController;
 use App\Http\Controllers\admin\MitraController;
+use App\Http\Controllers\admin\StatistikController;
 // use App\Http\Controllers\admin\MitraController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BookingController;
@@ -73,15 +73,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-umkm/edit/{id?}', [ManageUmkmController::class, 'edit'])->name('manage.umkm.edit');
     Route::post('/manage-umkm/update', [ManageUmkmController::class, 'update'])->name('manage.umkm.update');
     Route::get('/manage-umkm/delete/{id?}', [ManageUmkmController::class, 'destroy'])->name('manage.umkm.delete');
+    
+    // #### Produk UMKM jadinya ambil dari content IG Gerai UMKM
     // Manage UMKM Product
-    Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
-    Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');
-    Route::get('/manage-umkm/products/detail/{id?}', [ManageProductController::class, 'detail'])->name('manage.product.detail');
-    Route::get('/manage-umkm/products/add', [ManageProductController::class, 'create'])->name('manage.product.add');
-    Route::post('/manage-umkm/products/add', [ManageProductController::class, 'store'])->name('manage.product.save');
-    Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
-    Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
-    Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
+    // Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
+    // Route::get('/manage-umkm/products/data', [ManageProductController::class, 'data'])->name('manage.product.data');
+    // Route::get('/manage-umkm/products/detail/{id?}', [ManageProductController::class, 'detail'])->name('manage.product.detail');
+    // Route::get('/manage-umkm/products/add', [ManageProductController::class, 'create'])->name('manage.product.add');
+    // Route::post('/manage-umkm/products/add', [ManageProductController::class, 'store'])->name('manage.product.save');
+    // Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
+    // Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
+    // Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
+    
     // Manage Fasilitator
     Route::get('/manage-fasilitator', [FasilitatorController::class, 'index'])->name('manage.fasilitator');
     Route::get('/manage-fasilitator/add', [FasilitatorController::class, 'create'])->name('manage.fasilitator.add');
@@ -154,5 +157,9 @@ Route::middleware('auth')->group(function () {
         Route::get('hero', [HeroController::class, 'index'])->name('webcontent.hero');
         Route::get('hero/edit/{id?}', [HeroController::class, 'edit'])->name('webcontent.hero.edit');
         Route::put('hero/update/{id?}', [HeroController::class, 'update'])->name('webcontent.hero.update');
+        //Statistik
+        Route::get('statistik', [StatistikController::class, 'index'])->name('webcontent.statistik');
+        Route::get('statistik/edit/{id?}', [StatistikController::class, 'edit'])->name('webcontent.statistik.edit');
+        Route::put('statistik/update/{id?}', [StatistikController::class, 'update'])->name('webcontent.statistik.update');
     });
 });

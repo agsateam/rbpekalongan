@@ -35,12 +35,15 @@
                                     class="font-semibold">Click</span>
                             </p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">PNG or JPG</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">max 2 MB</p>
+
                         </div>
                         <img id="image-preview1" src="" alt="Preview"
                             class="hidden w-full h-full object-cover rounded-lg" />
                         <input id="dropzone-file1" type="file" class="hidden" name="logo"
                             accept="image/png, image/jpeg" />
                     </label>
+
 
 
                 </div>
@@ -51,7 +54,7 @@
                             Mitra</label>
                         <input type="text" id="nama_mitra"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            name="nama_mitra" required />
+                            name="nama_mitra" placeholder="Nama Mitra" required />
                     </div>
 
                     <div class="mb-5">
@@ -59,7 +62,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link</label>
                         <input type="text" id="link"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            name="link" required />
+                            name="link" placeholder="https://rbpekalongan.id" required />
                     </div>
                 </div>
 

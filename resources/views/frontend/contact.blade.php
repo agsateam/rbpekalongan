@@ -104,9 +104,9 @@
                 </label>
                 <label class="form-control w-full">
                     <div class="label">
-                        <span class="label-text text-base font-semibold">Nama Instagram</span>
+                        <span class="label-text text-base font-semibold">Akun Instagram</span>
                     </div>
-                    <input type="text" name="instagram" placeholder="Instagram (Opsional)" value="{{old('instagram')}}" class="input input-bordered w-full"/>
+                    <input type="text" name="instagram" placeholder="Username IG (Opsional)" value="{{old('instagram')}}" class="input input-bordered w-full"/>
                 </label>
                 <label class="form-control w-full">
                     <div class="label">
@@ -130,7 +130,7 @@
                     <div class="label">
                       <span class="label-text text-base font-semibold">Nomor KTP <span class="text-red-600 font-bold">*</span></span>
                     </div>
-                    <input type="text" inputmode="numeric" name="ktp" placeholder="Nomor KTP" value="{{old('ktp')}}" class="input input-bordered w-full" required/>
+                    <input type="text" inputmode="numeric" minlength="16" maxlength="16" name="ktp" placeholder="Nomor KTP" value="{{old('ktp')}}" class="input input-bordered w-full" required/>
                 </label>
                 <label class="form-control w-full lg:col-span-3">
                     <div class="label">

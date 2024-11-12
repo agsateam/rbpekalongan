@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ManageTestiController extends Controller
 {
@@ -40,6 +41,7 @@ class ManageTestiController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
+        $data['name'] = Str::title($data['name']);
         $data['status'] = "send";
 
         Testimoni::create($data);

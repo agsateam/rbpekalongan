@@ -29,6 +29,7 @@ function testi($testimoni){
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-3 text-left font-medium uppercase">Nama</th>
+                    <th class="py-3 text-left font-medium uppercase">Gender</th>
                     <th class="py-3 text-left font-medium uppercase">UMKM</th>
                     <th class="py-3 text-left font-medium uppercase">Pesan</th>
                     <th class="py-3 text-left font-medium uppercase">#</th>
@@ -43,6 +44,7 @@ function testi($testimoni){
                 @foreach ($data as $item)
                 <tr>
                     <td>{{$item->name}}</td>
+                    <td>{{$item->gender == "lk" ? "Laki-laki" : "Perempuan"}}</td>
                     <td>{{$item->umkm}}</td>
                     <td>
                         {{Str::limit(Str::replace(["\r\n"], [" "], $item->testimoni), 50)}}<br/>

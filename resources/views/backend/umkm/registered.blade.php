@@ -187,7 +187,7 @@
         document.getElementById('desc').innerHTML = data.desc;
         document.getElementById('phone').innerHTML = data.phone;
         document.getElementById('address').innerHTML = data.address;
-        document.getElementById('instagram').innerHTML = data.instagram ?? "-";
+        document.getElementById('instagram').innerHTML = data.instagram ? (data.instagram + (` <a class="text-[#195770] font-bold" target="_blank" href="https://instagram.com/` + data.instagram + `">(Link)</a>`)) : "-";
         document.getElementById('facebook').innerHTML = data.facebook ?? "-";
         document.getElementById('marketplace').innerHTML = data.marketplace ?? "-";
         document.getElementById('marketplace_link').innerHTML = data.marketplace_link ?? "-";

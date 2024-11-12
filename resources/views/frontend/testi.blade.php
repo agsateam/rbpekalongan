@@ -4,8 +4,8 @@
 
 <div class="py-16">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
-        <div class="flex flex-row justify-between items-center">
-            <h4 class="text-3xl md:text-4xl font-bold mb-5">Kirim Testimoni</h4>
+        <div class="flex flex-row justify-between items-center mb-5">
+            <h4 class="text-xl md:text-4xl font-bold">Kirim Testimoni</h4>
             <a href="{{route('home')}}" class="btn btn-sm bg-[#195770] text-white">Kembali</a>
         </div>
 
@@ -24,6 +24,18 @@
                     </label>
                     <label class="form-control w-full mt-2">
                         <div class="label">
+                          <span class="label-text text-base font-semibold">Gender anda <span class="text-red-600 font-bold">*</span></span>
+                        </div>
+                        <select name="gender" class="input input-bordered w-full" required>
+                            <option value="lk" {{ old("gender") == "lk" ? "selected" : "" }}>Laki-laki</option>
+                            <option value="pr" {{ old("gender") == "pr" ? "selected" : "" }}>Perempuan</option>
+                        </select>
+                        @error('gender')
+                        <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <label class="form-control w-full mt-2">
+                        <div class="label">
                           <span class="label-text text-base font-semibold">UMKM <span class="text-red-600 font-bold">*</span></span>
                         </div>
                         <input type="text" name="umkm" placeholder="Nama Usaha" value="{{old('umkm')}}" class="input input-bordered w-full" required/>
@@ -36,7 +48,7 @@
                     <div class="label">
                       <span class="label-text text-base font-semibold">Pesan Testimoni <span class="text-red-600 font-bold">*</span></span>
                     </div>
-                    <textarea name="testimoni" placeholder="Pesan ..." class="input input-bordered w-full h-36" required>{{old('testimoni')}}</textarea>
+                    <textarea name="testimoni" placeholder="Pesan ..." class="input input-bordered w-full h-32 md:h-56" required>{{old('testimoni')}}</textarea>
                     @error('testimoni')
                     <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
                     @enderror

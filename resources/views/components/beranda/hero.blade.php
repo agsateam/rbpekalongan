@@ -5,10 +5,9 @@
             class="flex flex-col w-full px-5 lg:w-1/3 lg:px-0 animate-fade-up animate-once animate-duration-[400ms] animate-delay-300 animate-ease-in">
             <div class="w-full flex flex-col lg:justify-start">
 
-                <img src="./images/logorumahbumn.png" alt="Logo Rumah Bumn">
-                <h3 class="font-manrope text-center text-2xl font-bold md:text-5xl md:text-left">Kota Pekalongan</h3>
+                <img src="./images/rbpekalongan.png" alt="Logo Rumah Bumn">
                 <div class="w-full">
-                    <p class="text-center mt-2 md:text-left">{{ $hero[0]->deskripsi }}</p>
+                    <p class="text-justify mt-2">{{ $hero[0]->deskripsi }}</p>
                 </div>
             </div>
         </div>

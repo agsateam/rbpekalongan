@@ -10,12 +10,12 @@
 
         <div class="flex justify-between items-center mb-5">
             <h4 class="text-2xl md:text-5xl font-bold">Produk UMKM Binaan</h4>
-            @if ($isFiltered)
+            {{-- @if ($isFiltered)
             <a href="{{route('product')}}" class="hidden md:flex btn btn-sm md:btn-md btn-error text-white">Clear Filter</a>
-            @endif
+            @endif --}}
         </div>
 
-        <form method="get" class="md:mt-5">
+        {{-- <form method="get" class="md:mt-5">
             <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
                 <input type="text" name="keyword" placeholder="Cari Produk ..." class="col-span-2 md:col-span-3 input input-bordered w-full" />
                 <select class="select select-bordered w-full" name="category">
@@ -31,12 +31,12 @@
                 </select>
                 <button class="col-span-2 md:col-span-1 btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
             </div>
-        </form>
-        @if ($isFiltered)
+        </form> --}}
+        {{-- @if ($isFiltered)
             <a href="{{route('product')}}" class="md:hidden btn btn-error text-white w-full mt-2">Clear Filter</a>
-        @endif
+        @endif --}}
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-5">
+        {{-- <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-5">
             @if (count($products) < 1)
                 <span class="text-center md:text-left col-span-2">Belum ada produk yang tersedia</span>
             @endif
@@ -47,6 +47,25 @@
                 <span class="mt-3 text-base md:text-xl font-bold text-[#195770]">{{ $p->name }}</span>
                 <span class="mt-1 text-base text-gray-500">Rp {{ number_format($p->price) }}</span>
                 <span class="mt-1 text-sm text-gray-600 font-semibold">{{ $p->umkm->name }}</span>
+            </a>
+            @endforeach
+        </div> --}}
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mt-5">
+            @if (count($products["data"]) < 1)
+                <span class="text-center md:text-left col-span-2">Belum ada produk yang tersedia</span>
+            @endif
+            @foreach ($products["data"] as $p)
+            <a target="_blank" href="{{ $p['permalink'] }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">
+                @if ($p['media_type'] == 'VIDEO')
+                    <img loading="lazy" src="{{ $p['thumbnail_url'] }}" class="w-full aspect-square object-cover">
+                @else
+                    <img loading="lazy" src="{{ $p['media_url'] }}" class="w-full aspect-square object-cover">
+                @endif
+
+                <p class="mt-3 text-xl font-bold text-[#195770]">
+                    {{ Str::limit(Str::replace("\n", ' ', $p['caption'] ?? ''), 70, preserveWords: true) }}
+                </p>
             </a>
             @endforeach
         </div>

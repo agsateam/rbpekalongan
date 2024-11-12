@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\FungsiRB;
+
 use App\Models\User;
 use App\Models\WebContent;
 use Faker\Provider\Lorem;
@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
             // EventSeeder::class,
             HeroSeeder::class,
             FungsiRBSeeder::class,
-
+            StatistikSeeder::class,
+            BookingRoomSeeder::class,
 
         ]);
     }

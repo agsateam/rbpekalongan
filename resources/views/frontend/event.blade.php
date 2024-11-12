@@ -10,36 +10,35 @@ function toDate($date){
 @endphp
 
 @extends('layouts.master')
-@section('title', 'Event')
+@section('title', $title)
+
+@section('head')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+@endsection
+
 @section('content')
-
-
 <div class="py-16">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <div class="flex justify-between items-center mb-5">
-            <h4 class="text-4xl md:text-5xl font-bold">Event</h4>
+            <h4 class="text-4xl md:text-5xl font-bold">{{$title}}</h4>
             @if ($isFiltered)
             <a href="{{route('event')}}" class="btn btn-sm md:btn-md btn-error text-white">Clear Filter</a>
             @endif
         </div>
 
         <form method="get">
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
-            <input type="text" name="keyword" placeholder="Cari event ..." class="col-span-2 md:col-span-3 input input-bordered w-full" />
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+            <input type="text" name="keyword" placeholder="Cari event ..." value="{{$req['keyword'] ?? ""}}" class="md:col-span-2 input input-bordered w-full" />
             <select class="select select-bordered w-full" name="type">
-                <option value="all" selected>Semua event</option>
-                <option value="upcoming">Akan datang</option>
-                <option value="done">Selesai</option>
+                <option value="all" {{ $type == "all" ? 'selected' : '' }}>Semua event</option>
+                <option value="upcoming" {{ $type == "upcoming" ? 'selected' : '' }}>Akan datang</option>
+                <option value="done" {{ $type == "done" ? 'selected' : '' }}>Selesai</option>
             </select>
-            <input
-                name="date"
-                placeholder="Tanggal"
-                class="input input-bordered w-full"
-                type="text"
-                onfocus="(this.type='date')"
-                onblur="(this.type='text')"
-            />
-            <button class="col-span-2 md:col-span-1 btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
+            <input type="text" name="date" placeholder="Tanggal" value="{{$req['date'] ?? ""}}" class="input input-bordered w-full" autocomplete="off" />
+            <button class="btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
         </div>
         </form>
 
@@ -83,5 +82,27 @@ function toDate($date){
         </div>
     </div>
 </div>
+@endsection
 
+@section('script')
+<script type="text/javascript">
+    $(function() {
+    
+      $('input[name="date"]').daterangepicker({
+          autoUpdateInput: false,
+          locale: {
+              cancelLabel: 'Clear'
+          }
+      });
+    
+      $('input[name="date"]').on('apply.daterangepicker', function(ev, picker) {
+          $(this).val(picker.startDate.format('YYYY/MM/DD') + '-' + picker.endDate.format('YYYY/MM/DD'));
+      });
+    
+      $('input[name="date"]').on('cancel.daterangepicker', function(ev, picker) {
+          $(this).val('');
+      });
+    
+    });
+    </script>
 @endsection

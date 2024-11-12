@@ -71,6 +71,16 @@
                 <td>:</td>
                 <td id="umkm"></td>
             </tr>
+            <tr>
+                <td>Instagram</td>
+                <td>:</td>
+                <td id="ig"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td id="email"></td>
+            </tr>
         </table>
     </div>
 </dialog>
@@ -132,7 +142,7 @@
 {{-- Action Button --}}
 <script>
     const modalDetail = document.getElementById('modal_detail');
-    function detail(nama, jk, umur, phone, alamat, umkm){
+    function detail(nama, jk, umur, phone, alamat, umkm, ig, email){
         modalDetail.showModal();
         document.getElementById('nama').innerHTML = nama;
         document.getElementById('gender').innerHTML = (jk == 'lk') ? 'Laki-Laki' : 'Perempuan';
@@ -140,6 +150,8 @@
         document.getElementById('phone').innerHTML = phone;
         document.getElementById('alamat').innerHTML = alamat;
         document.getElementById('umkm').innerHTML = (umkm == "") ? "-" : umkm;
+        document.getElementById('ig').innerHTML = (ig == "") ? "-" : ig;
+        document.getElementById('email').innerHTML = (email == "") ? "-" : email;
     }
 
     function confirmReject(href){

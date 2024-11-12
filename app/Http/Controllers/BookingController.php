@@ -35,7 +35,7 @@ class BookingController extends Controller
         ], [
             'room_time.required' => 'Isi kolom yang diperlukan.',
             'jumlah_kursi.required' => 'Isi kolom yang diperlukan.',
-            'jumlah_kursi.max' => 'Jumlah kursi yang tersedia hanya ' . $req->kursi_ready,
+            'jumlah_kursi.max' => 'Jumlah kursi yang tersedia dibooking hanya ' . $req->kursi_ready,
             'name.required' => 'Isi kolom yang diperlukan.',
             'whatsapp.required' => 'Isi kolom yang diperlukan.',
             'tujuan.required' => 'Isi kolom yang diperlukan.',
@@ -53,9 +53,6 @@ class BookingController extends Controller
         ];
 
         Booking::create($data);
-        BookingTime::where('id', $req->room_time)->update([
-            "booked" => DB::raw('booked + ' . $req->jumlah_kursi)
-        ]);
 
         return redirect(route('booking.success') . "?code=" . $data['code'] . "&room=" . $req->room_name . "&time=" . $req->room_time);
     }
@@ -74,6 +71,10 @@ class BookingController extends Controller
 
     public function checkinUpdate(Request $req){
         $data = Booking::where('code', "BC" . $req->code)->first();
+
+        BookingTime::where('id', $data->booking_time_id)->update([
+            "booked" => DB::raw('booked + ' . $data->booking_seat)
+        ]);
         
         if($data){
             if($data->check_in == null){

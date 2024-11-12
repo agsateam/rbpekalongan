@@ -21,15 +21,27 @@
             @csrf
             <label class="form-control w-full">
                 <div class="label">
-                    <span class="label-text text-base font-semibold">Token <span class="text-red-600 font-bold">*</span></span>
+                    <span class="label-text text-base font-semibold">Akun RB Pekalongan <span class="text-red-600 font-bold">*</span></span>
                 </div>
                 <textarea
                     type="text"
-                    name="token"
+                    name="rb_token"
                     placeholder="Input Token..."
                     class="input input-bordered w-full h-20"
                     required
-                >{{$data->instagram_token}}</textarea>
+                >{{$data->rb_token}}</textarea>
+            </label>
+            <label class="form-control w-full mt-5">
+                <div class="label">
+                    <span class="label-text text-base font-semibold">Akun Gerai UMKM <span class="text-red-600 font-bold">*</span></span>
+                </div>
+                <textarea
+                    type="text"
+                    name="gerai_token"
+                    placeholder="Input Token..."
+                    class="input input-bordered w-full h-20"
+                    required
+                >{{$data->gerai_token}}</textarea>
             </label>
             <button type="submit" class="btn bg-[#195770] text-white mt-5">Simpan</button>
         </form>
@@ -56,7 +68,7 @@
                 <tr class="align-top">
                     <td>2.</td>
                     <td>
-                        <span>Scroll ke section "Generate your access token", kemudian pilih <i>personal account</i> atau <i>bussiness account</i> sesuai tipe akun instagram.</span>
+                        <span>Scroll ke section "Generate your access token", kemudian pilih <span class="font-semibold">Personal account</span>.</span>
                         <img src="{{url('/images/igtoken-step2.png')}}" class="md:w-1/2 my-1">
                     </td>
                 </tr>

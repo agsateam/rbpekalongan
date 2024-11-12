@@ -80,7 +80,7 @@
                             @if (old('room_time') != null || $errors->has('room_time'))
                                 @foreach ($room->find(old('room_id'))->times as $item)
                                     @if (isTimePassed($item->close))
-                                        <option disabled>{{$item->open ." - ". $item->close}} WIB</option>
+                                        <option disabled>{{$item->open ." - ". $item->close}} WIB | Lewat</option>
                                     @else
                                         <option value="{{$item->id}}" @if(old('room_time') == $item->id) selected @endif>{{$item->open ." - ". $item->close}} WIB</option>
                                     @endif
@@ -100,8 +100,9 @@
                           </div>
                         </div>
                         <input id="room_seat" type="number" inputmode="numeric" name="jumlah_kursi" max="{{old('kursi_ready') ?? 0}}" placeholder="Jumlah Kursi" class="input input-bordered" value="{{old('jumlah_kursi')}}" required/>
+                        <span class="text-[#195770] text-sm mt-1 ml-1">Untuk kondisi real jumlah kursi, cek lokasi.</span>
                         @error('jumlah_kursi')
-                        <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
+                        <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
                         @enderror
                     </label>
                     <label class="form-control w-full">

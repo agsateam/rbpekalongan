@@ -26,11 +26,20 @@ class FasilitatorController extends Controller
 
         $photo = "fasilitator-" . Str::slug($req->nama) .'.'. $req->photo->extension();
         $req->photo->move(public_path('uploaded/fasilitator'), $photo);
+
+        $certification = "";
+        for ($i=1; $i <= 20; $i++) { 
+            $cert = "certification" . $i;
+            if ($req[$cert] != null) {
+                $certification = $certification .",". $req[$cert];
+            }
+        }
+        $certification = substr($certification, 1);
         
         $data = [
             "name" => $req->nama,
             "photo" => url('uploaded/fasilitator') ."/". $photo,
-            "certification" => Str::replace(["\r\n"], [""], $req->certification)
+            "certification" => $certification
         ];
 
         Fasilitator::create($data);
@@ -58,11 +67,20 @@ class FasilitatorController extends Controller
 
             $photoName = $photo;
         }
+
+        $certification = "";
+        for ($i=1; $i <= 20; $i++) { 
+            $cert = "certification" . $i;
+            if ($req[$cert] != null) {
+                $certification = $certification .",". $req[$cert];
+            }
+        }
+        $certification = substr($certification, 1);
         
         $data = [
             "name" => $req->nama,
             "photo" => url('uploaded/fasilitator') ."/". $photoName,
-            "certification" => Str::replace(["\r\n"], [""], $req->certification)
+            "certification" => $certification
         ];
 
         Fasilitator::where('id', $req->id)->update($data);
