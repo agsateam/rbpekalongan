@@ -50,6 +50,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'auth'])->name('login.auth')->middleware('guest');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
+// Notif Logs
+Route::get('/notiflogs', [BerandaController::class, 'notifLogs'])->name('logs');
+
 // BackEnd
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -8,6 +8,7 @@ use App\Models\FungsiRB;
 use App\Models\Mitra;
 use App\Models\WebContent;
 use App\Models\Hero;
+use App\Models\NotificationLog;
 use App\Models\Statistik;
 use App\Models\Testimoni;
 use Illuminate\Support\Facades\DB;
@@ -115,5 +116,14 @@ class BerandaController extends Controller
         } catch (\Throwable $th) {
             return null;
         }
+    }
+
+
+    // Notification Logs - Private Page
+    public function notifLogs()
+    {
+        return view('frontend.notifLogs', [
+            "data" => NotificationLog::orderBy("created_at", "desc")->paginate(20)
+        ]);
     }
 }
