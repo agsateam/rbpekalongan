@@ -56,6 +56,8 @@ Route::get('/notiflogs', [BerandaController::class, 'notifLogs'])->name('logs');
 // BackEnd
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/api/booking-yearly/{year?}', [DashboardController::class, 'apiBookingYearly'])->name('api.booking.yearly');
+    Route::get('/api/booking-toproom/{date?}', [DashboardController::class, 'apiBookingTopRoom'])->name('api.booking.toproom');
     // Manage Users
     Route::get('/admin/password', [AdminController::class, 'changePassword'])->name('admin.password');
     Route::post('/admin/password', [AdminController::class, 'updatePassword'])->name('admin.password.save');
