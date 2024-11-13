@@ -119,8 +119,8 @@ $no = 1;
                             <span class="font-bold mt-1">Upload</span>
                             <span class="text-sm mt-1">PNG/JPG</span>
                         </div>
-                        <div class="group h-full relative">
-                            <img id="image-preview{{$i}}" src="{{ url("uploaded/room") ."/". $data["photo_".$i] }}" alt="Preview" class="{{ $data["photo_".$i] ? '' : 'hidden' }} h-full object-cover rounded-lg" />
+                        <div class="group w-full h-full relative">
+                            <img id="image-preview{{$i}}" src="{{ url("uploaded/room") ."/". $data["photo_".$i] }}" alt="Preview" class="{{ $data["photo_".$i] ? '' : 'hidden' }} w-full h-full object-cover rounded-lg" />
                             <div class="bg-[#00000090] hidden group-hover:block w-full h-full text-center content-center rounded-lg absolute top-0">
                                 <div class="text-white inline-flex flex-col items-center">
                                     <svg class="size-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
