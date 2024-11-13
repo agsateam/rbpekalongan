@@ -132,6 +132,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/manage-booking/room/update', [ManageRoomController::class, 'update'])->name('manage.room.update');
     Route::get('/manage-booking/room/delete/{id?}', [ManageRoomController::class, 'delete'])->name('manage.room.delete');
     Route::get('/manage-booking/room/booking-status/{id?}/{status?}', [ManageRoomController::class, 'status'])->name('manage.room.status');
+    Route::post('/manage-booking/room/photo', [ManageRoomController::class, 'photo'])->name('manage.room.photo');
     // ---- Room Times
     Route::post('/manage-booking/room/time/add', [ManageRoomController::class, 'saveTime'])->name('manage.room.time.save');
     Route::post('/manage-booking/room/time/update', [ManageRoomController::class, 'updateTime'])->name('manage.room.time.update');
