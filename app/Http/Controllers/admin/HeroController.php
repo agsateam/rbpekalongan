@@ -79,6 +79,6 @@ class HeroController extends Controller
 
         $hero->save();
 
-        return redirect()->route('webcontent.hero')->with('success', 'Data Hero berhasil diperbarui.');
+        return redirect()->route('webcontent.hero')->with('success', 'Data berhasil diperbarui.');
     }
 }

@@ -22,23 +22,22 @@
 
         @foreach ($fungsirb as $f)
             <a href="{{ route('webcontent.fungsiedit', $f->id) }}"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row w-full hover:bg-gray-100">
-                <div class="p-2 flex flex-row gap-2">
+                class="grid grid-cols-1 md:grid-cols-3 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row w-full p-2">
+                <div class="col-span-2 grid grid-cols-5 gap-2">
                     @foreach (range(1, 5) as $i)
                         @php $foto = 'foto'.$i; @endphp
                         @if ($f->$foto)
-                            <img class="object-cover rounded-t-lg h-40 w-40 md:rounded-none md:rounded-s-lg xl"
+                            <img class="object-cover h-full w-full rounded-md"
                                 src="{{ $f->$foto }}" alt="Foto fungsi {{ $i }}">
                         @else
-                            <p class="text-center">Belum Ada Foto</p>
+                            <img class="object-cover h-full w-full rounded-md"
+                                src="{{ url('images/preview-image.jpg') }}">
                         @endif
                     @endforeach
                 </div>
-                <div class="flex flex-col justify-between leading-normal ml-8">
-                    <h5 class="text-xl font-bold tracking-tight text-gray-900">
-                        {{ $f->nama_fungsi }}
-                    </h5>
-                </div>
+                <h5 class="text-xl font-bold text-gray-900 md:px-5 mt-2 md:mt-0">
+                    {{ $f->nama_fungsi }}
+                </h5>
             </a>
         @endforeach
     </div>

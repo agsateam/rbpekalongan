@@ -58,7 +58,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
         <div class="md:col-span-2 flex flex-col border-2 border-[#195770] rounded-md px-5 py-3">
-            <div class="flex justify-between h-8 mb-5">
+            <div class="flex justify-between h-8 mb-10">
                 <span class="text-sm md:text-lg font-semibold">Grafik Jumlah Booking Bulanan</span>
                 <select
                     class='w-fit h-full p-0 rounded-sm focus:ring-0 focus:border-[#195770] border-gray-300 px-2'
@@ -71,9 +71,9 @@
             </div>
             <div id="bookingYearlyChart"></div>
         </div>
-        <div class="flex flex-col border-2 border-[#195770] rounded-md px-5 py-3">
+        <div class="flex flex-col border-2 border-[#195770] rounded-md px-3 xl:px-5 py-3">
             <div class="flex flex-col gap-1 mb-5">
-                <span class="text-sm md:text-lg font-semibold">Top Booking Room</span>
+                <span class="text-lg font-semibold">Top Booking Room</span>
                 <input
                     type="month"
                     max="{{date("Y-m")}}"
@@ -92,6 +92,39 @@
             </div>
         </div>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+        <div class="md:col-span-2 flex flex-col border-2 border-[#195770] rounded-md px-5 py-3">
+            <div class="flex justify-between h-8 mb-10">
+                <span class="text-sm md:text-lg font-semibold">Grafik Event Terlaksana</span>
+                <select
+                    class='w-fit h-full p-0 rounded-sm focus:ring-0 focus:border-[#195770] border-gray-300 px-2'
+                    onchange="eventYearlyUpdate(this.value)"
+                >
+                    @for ($i = 0; $i < 5; $i++)
+                        <option value="{{ intval(date("Y"))-$i }}">{{ intval(date("Y"))-$i }}</option>
+                    @endfor
+                </select>
+            </div>
+            <div id="eventYearlyChart"></div>
+        </div>
+        <div class="flex flex-col border-2 border-[#195770] rounded-md px-3 xl:px-5 py-3">
+            <div class="flex flex-col gap-1 mb-5">
+                <span class="text-lg font-semibold">5 Event Peserta Terbanyak</span>
+                <select
+                    class='w-full h-full p-0 rounded-sm focus:ring-0 focus:border-[#195770] border-gray-300 px-2'
+                    onchange="eventTopUpdate(this.value)"
+                >
+                    <option value="all">Semua</option>
+                    @for ($i = 0; $i < 5; $i++)
+                        <option value="{{ intval(date("Y"))-$i }}">{{ intval(date("Y"))-$i }}</option>
+                    @endfor
+                </select>
+            </div>
+            <div id="eventTopChart"></div>
+            <div class="flex flex-col text-sm mt-5" id="eventTopList"></div>
+        </div>
+    </div>
 </div>
 
 @endsection
@@ -102,17 +135,28 @@
 
     function chartBookingYearly(series, months){
         var options = {
-            chart: {
-                type: 'line',
+            series: [{name: 'Jumlah Booking', data: series}],
+            chart: {type: 'bar'},
+            colors: ["#195770"],
+            plotOptions: {
+                bar: {
+                    dataLabels: { position: 'top' },
+                }
             },
-            series: [{
-                name: 'Jumlah Booking',
-                data: series
-            }],
+            dataLabels: {
+                enabled: true,
+                offsetY: 5,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#fff"]
+                }
+            },
             xaxis: {
-                categories: months
-            }
-        }
+                categories: months,
+                position: 'bottom',
+            },
+            yaxis: {labels: {show: false}}
+        };
     
         var chart = new ApexCharts(document.querySelector("#bookingYearlyChart"), options);
         chart.render();
@@ -134,6 +178,66 @@
     }
     chartBookingTopRoom(chartDatas.bookingTopRoom.series, chartDatas.bookingTopRoom.rooms);
 
+    function chartEventYearly(series, months){
+        var options = {
+            series: [{name: 'Jumlah Event', data: series}],
+            chart: {type: 'bar'},
+            plotOptions: {
+                bar: {
+                    dataLabels: { position: 'top' },
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                offsetY: 5,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#fff"]
+                }
+            },
+            xaxis: {
+                categories: months,
+                position: 'bottom',
+            },
+            yaxis: {labels: {show: false}}
+        };
+
+        var chart = new ApexCharts(document.querySelector("#eventYearlyChart"), options);
+        chart.render();
+    }
+    chartEventYearly(chartDatas.eventYearly.series, chartDatas.eventYearly.months);
+
+
+    function chartEventTop(series, events){
+        const countData = series.reduce((total, item) => total + item, 0);
+        if (countData > 0) {
+            document.querySelector("#eventTopChart").classList.remove("hidden");
+            document.querySelector("#eventTopChart").innerHTML = "";
+
+            // render chart
+            var options = {
+                series: series,
+                chart: {
+                    type: 'pie'
+                },
+                labels: events,
+                legend: {show: false},
+            };
+            var chart = new ApexCharts(document.querySelector("#eventTopChart"), options);
+            chart.render();
+
+            // render list
+            document.querySelector("#eventTopList").innerHTML = "";
+            series.forEach((item, index) => {
+                return document.querySelector("#eventTopList").innerHTML += "<div class='flex justify-between'><span>"+events[index]+"</span><span class='font-bold'>"+item+"</span></div>";
+            });
+        } else {
+            document.querySelector("#eventTopChart").classList.add("hidden");
+            document.querySelector("#eventTopList").innerHTML = "<span class='text-sm'>Tidak ada data di periode ini.</span>";
+        }
+    }
+    chartEventTop(chartDatas.eventTop.series, chartDatas.eventTop.events);
+
 
     // update data
     async function bookingYearlyUpdate(value){
@@ -148,6 +252,23 @@
             const json = await response.json();
             document.querySelector("#bookingYearlyChart").innerHTML = "";
             chartBookingYearly(json.series, json.months);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    async function eventYearlyUpdate(value){
+        const endpoint = "{{route('api.event.yearly')}}" +"/"+ value;
+
+        try {
+            const response = await fetch(endpoint);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            document.querySelector("#eventYearlyChart").innerHTML = "";
+            chartEventYearly(json.series, json.months);
         } catch (error) {
             console.error(error.message);
         }
@@ -179,7 +300,22 @@
                 document.querySelector("#bookingTopRoomChart").classList.add("hidden");
                 document.querySelector("#bookingTopRoomList").innerHTML = "<span class='text-sm'>Tidak ada data di periode ini.</span>";
             }
-            
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    async function eventTopUpdate(value){
+        const endpoint = "{{route('api.event.top')}}" +"/"+ value;
+
+        try {
+            const response = await fetch(endpoint);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            chartEventTop(json.series, json.events);
         } catch (error) {
             console.error(error.message);
         }
