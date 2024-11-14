@@ -26,7 +26,7 @@
 
                     {{-- Foto1 --}}
                     <label for="dropzone-file1"
-                        class="flex flex-col items-center justify-center w-40 h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ">
+                        class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6 {{ $mitra->logo ? 'hidden' : '' }}"
                             id="default-dropzone1">
                             <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -41,7 +41,7 @@
                         </div>
                         @if ($mitra->logo)
                             <img id="image-preview1" src="{{ asset($mitra->logo) }}" alt="Preview"
-                                class="w-full h-full object-cover rounded-lg" />
+                                class="w-full h-full object-contain rounded-lg" />
                         @else
                             <p></p>
                         @endif

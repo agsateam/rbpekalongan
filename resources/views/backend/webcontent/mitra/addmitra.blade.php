@@ -24,7 +24,7 @@
 
                     {{-- Foto1 --}}
                     <label for="dropzone-file1"
-                        class="flex flex-col items-center justify-center w-40 h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ">
+                        class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6 'hidden'" id="default-dropzone1">
                             <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -39,7 +39,7 @@
 
                         </div>
                         <img id="image-preview1" src="" alt="Preview"
-                            class="hidden w-full h-full object-cover rounded-lg" />
+                            class="hidden w-full h-full object-contain rounded-lg" />
                         <input id="dropzone-file1" type="file" class="hidden" name="logo"
                             accept="image/png, image/jpeg" />
                     </label>
