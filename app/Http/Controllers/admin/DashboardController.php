@@ -24,6 +24,8 @@ class DashboardController extends Controller
         $charts = [
             "bookingYearly" => $this->getBookingByYear(date("Y")),
             "bookingTopRoom" => $this->getBookingTopRoom(date("Y-m")),
+            "eventYearly" => $this->getEventByYear(date("Y")),
+            "eventTop" => $this->getEventTop(),
         ];
 
         return view('backend.dashboard', [
@@ -34,6 +36,20 @@ class DashboardController extends Controller
 
 
     // Chart
+    private function getMonths($year)
+    {
+        $thisMonth = date("Y") == $year ? intval(date("m")) : 12;
+        $months = [];
+        for ($i=$thisMonth; $i >= 1; $i--) { 
+            array_push($months, [
+                "name" => Carbon::createFromDate($year ."-". $i . "-1")->format("M"),
+                "date" => Carbon::createFromDate($year ."-". $i . "-1")->format("Y-m")
+            ]);
+        }
+
+        return $months;
+    }
+
     private function getBookingByYear($year){
         $months = $this->getMonths($year);
         $datas = [];
@@ -81,18 +97,43 @@ class DashboardController extends Controller
         ];
     }
 
-    private function getMonths($year)
-    {
-        $thisMonth = date("Y") == $year ? intval(date("m")) : 12;
-        $months = [];
-        for ($i=$thisMonth; $i >= 1; $i--) { 
-            array_push($months, [
-                "name" => Carbon::createFromDate($year ."-". $i . "-1")->format("M"),
-                "date" => Carbon::createFromDate($year ."-". $i . "-1")->format("Y-m")
-            ]);
-        }
+    private function getEventByYear($year){
+        $months = $this->getMonths($year);
+        $datas = [];
+        foreach (collect($months)->reverse()->values() as $i) {
+            $month = Carbon::createFromDate($i["date"]);
+            $count = Event::where("status", "done")
+                        ->whereMonth("date", $month->format("m"))
+                        ->whereYear("date", $month->format("Y"))
+                        ->count();
 
-        return $months;
+            array_push($datas, $count);
+        }
+        
+        return [
+            "months" => collect($months)->map(function ($i){ return $i["name"]; })->reverse()->values()->toArray(),
+            "series" => $datas
+        ];
+    }
+
+    private function getEventTop($year = null){
+        $events = Event::where("status", "done")
+            ->when(($year != null), function($query) use($year){
+                $query->whereYear("date", $year);
+            })
+            ->orderByRaw("CAST(participant AS INT) desc")
+            ->limit(5)
+            ->get();
+
+        $datas = [];
+        foreach ($events as $i) {
+            array_push($datas, intval($i->participant));
+        }
+        
+        return [
+            "events" => collect($events)->map(function ($i){ return $i->name; })->values()->toArray(),
+            "series" => $datas,
+        ];
     }
 
 
@@ -106,6 +147,24 @@ class DashboardController extends Controller
     
     public function apiBookingTopRoom($date){
         $data = $this->getBookingTopRoom($date);
+
+        return json_encode($data);
+    }
+
+    public function apiEventYearly($year){
+        $data = $this->getEventByYear($year);
+
+        return json_encode($data);
+    }
+
+    public function apiEventTop($year){
+        $data = [];
+
+        if ($year == "all") {
+            $data = $this->getEventTop();
+        }else{
+            $data = $this->getEventTop($year);
+        }
 
         return json_encode($data);
     }
