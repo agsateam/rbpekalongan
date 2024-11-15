@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('statistiks', function (Blueprint $table) {
+        Schema::create('jenis_statistiks', function (Blueprint $table) {
             $table->id();
-            // $table->string('jenis_statistik')->nullable();
-            $table->foreignId('jenis_statistiks_id')->constrained('jenis_statistiks')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('jumlah');
-            $table->integer('tahun');
+            $table->string('jenis_statistik');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('statistiks');
+        Schema::dropIfExists('jenis_statistiks');
     }
 };

@@ -27,7 +27,7 @@
 
 
             <div class="p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center"
-                data-aos="fade-up" data-aos-duration="2000">
+                data-aos="fade-up" data-aos-duration="1500">
 
                 <div class="bg-[#195770] rounded-full mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -45,7 +45,7 @@
             </div>
 
             <div class="p-6 bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center text-center"
-                data-aos="fade-up" data-aos-duration="3000">
+                data-aos="fade-up" data-aos-duration="2000">
 
                 <div class="bg-[#195770] rounded-full mb-4"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-20 p-3 text-white">

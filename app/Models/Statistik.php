@@ -15,4 +15,9 @@ class Statistik extends Model
     protected $fillable = [
         'jumlah',
     ];
+
+    public function statistiks()
+    {
+        return $this->belongsTo(JenisStatistik::class);
+    }
 }

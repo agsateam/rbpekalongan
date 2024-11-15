@@ -10,6 +10,8 @@ use App\Models\WebContent;
 use App\Models\Hero;
 use App\Models\Statistik;
 use App\Models\Testimoni;
+use App\Models\LinkMedsos;
+
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -30,6 +32,8 @@ class BerandaController extends Controller
         $hero = Hero::all();
         $testi = Testimoni::where('status', 'accepted')->get();
 
+        $link = LinkMedsos::all();
+
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
             'testi' => $testi,
@@ -39,6 +43,7 @@ class BerandaController extends Controller
             'statistik' => $statistik,
             'jumlahevent' => $jumlahevent,
             'hero' => $hero,
+            'link' => $link,
         ]);
     }
 
