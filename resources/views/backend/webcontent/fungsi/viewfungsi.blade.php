@@ -27,7 +27,7 @@
                     @foreach (range(1, 5) as $i)
                         @php $foto = 'foto'.$i; @endphp
                         @if ($f->$foto)
-                            <img class="object-cover h-full w-full rounded-md"
+                            <img class="aspect-square object-cover h-full w-full rounded-md"
                                 src="{{ $f->$foto }}" alt="Foto fungsi {{ $i }}">
                         @else
                             <img class="object-cover h-full w-full rounded-md"
