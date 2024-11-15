@@ -106,8 +106,8 @@ class AdminController extends Controller
 
     public function resetPassword($id)
     {
-        dd($id, Str::password(8, true, true, false, false));
-        User::where('id', $id)->update(['password' => Hash::make(Str::password(8, true, true, false, false))]);
+        // dd($id, Str::password(8, true, true, false, false));
+        User::where('id', $id)->update(['password' => Hash::make('password123')]);
         return back()->with('success', 'Password pengguna berhasil direset');
     }
 }
