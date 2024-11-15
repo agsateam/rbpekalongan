@@ -56,7 +56,7 @@
     function resetPw(href){
         Swal.fire({
             title: 'Reset Password',
-            text: 'Password baru akan dikirim ke nomor pengguna, konfirmasi tindakan ini?',
+            text: 'Setelah direset, password baru adalah "password123"',
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: "#195770",
