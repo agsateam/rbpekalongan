@@ -15,10 +15,10 @@ class LinkSeeder extends Seeder
     {
         $data = [
             [
-                'shoppe' => 'https://shoppe.com',
-                'tokopedia' => '#',
-                'tiktok' => '#',
-                'instagram' => '#'
+                'shoppe' => 'https://www.shoppe.com',
+                'tokopedia' => 'https://www.tokopedia.com',
+                'tiktok' => 'https://www.tiktok.com',
+                'instagram' => 'https://www.instagram.com'
 
             ],
         ];

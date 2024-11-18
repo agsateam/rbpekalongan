@@ -11,6 +11,7 @@ use App\Models\Hero;
 use App\Models\Statistik;
 use App\Models\Testimoni;
 use App\Models\LinkMedsos;
+use App\Models\JenisStatistik;
 
 use Illuminate\Support\Facades\DB;
 
@@ -23,8 +24,12 @@ class BerandaController extends Controller
     {
         $events = Event::where('status', 'upcoming')->orderBy('date', 'desc')->get();
 
-        //statistik
-        $statistik = Statistik::all();
+        $jenisstatistik = JenisStatistik::all();
+        $jumlahStatistik = Statistik::select('jenis_statistiks_id', DB::raw('SUM(jumlah) as total_jumlah'))
+            ->groupBy('jenis_statistiks_id')
+            ->get();
+
+        // dd($jumlahStatistik);
         $jumlahevent = Event::count();
 
         $fungsirb = FungsiRB::all();
@@ -40,10 +45,11 @@ class BerandaController extends Controller
             'events' => $events,
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
-            'statistik' => $statistik,
+            'jenisstatistik' => $jenisstatistik,
             'jumlahevent' => $jumlahevent,
             'hero' => $hero,
             'link' => $link,
+            'jumlahstatistik' => $jumlahStatistik
         ]);
     }
 

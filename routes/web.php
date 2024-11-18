@@ -163,6 +163,11 @@ Route::middleware('auth')->group(function () {
         Route::put('hero/update/{id?}', [HeroController::class, 'update'])->name('webcontent.hero.update');
         //Statistik
         Route::get('statistik', [StatistikController::class, 'index'])->name('webcontent.statistik');
+        Route::get('statistik/detail/{id?}', [StatistikController::class, 'getData'])->name('webcontent.statistik.getdata');
+        Route::get('statistik/data/{id}', [StatistikController::class, 'ambilData'])->name('webcontent.statistik.data');
+        Route::get('statistik/create', [StatistikController::class, 'create'])->name('webcontent.statistik.create');
+        Route::post('statistik/store', [StatistikController::class, 'store'])->name('webcontent.statistik.store');
+        Route::delete('statistik/delete/{id}', [StatistikController::class, 'destroy'])->name('webcontent.statistik.delete');
         Route::get('statistik/edit/{id?}', [StatistikController::class, 'edit'])->name('webcontent.statistik.edit');
         Route::put('statistik/update/{id?}', [StatistikController::class, 'update'])->name('webcontent.statistik.update');
         //Link

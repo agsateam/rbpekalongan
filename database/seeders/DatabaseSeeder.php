@@ -34,9 +34,10 @@ class DatabaseSeeder extends Seeder
             // EventSeeder::class,
             HeroSeeder::class,
             FungsiRBSeeder::class,
-            // StatistikSeeder::class,
             BookingRoomSeeder::class,
-            LinkSeeder::class
+            LinkSeeder::class,
+            JenisStatistikSeeder::class,
+            StatistikSeeder::class,
         ]);
     }
 }

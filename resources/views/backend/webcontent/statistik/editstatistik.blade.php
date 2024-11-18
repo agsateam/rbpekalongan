@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Mitra')
+@section('title', 'Edit Statistik')
 @section('content')
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -25,8 +25,6 @@
                 <div class="flex items-center  w-full mb-4 gap-4">
 
 
-
-
                 </div>
 
                 <div class="grid gap-4 mb-4 grid-cols-2">
@@ -47,7 +45,7 @@
                         Update
                     </button>
 
-                    <a href="{{ route('webcontent.statistik') }}"
+                    <a href="{{ route('webcontent.statistik.getdata', $statistik->jenis_statistiks_id) }}"
                         class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Kembali</a>
                 </div>
 

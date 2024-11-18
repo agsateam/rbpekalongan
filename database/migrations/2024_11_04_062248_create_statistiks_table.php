@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('statistiks', function (Blueprint $table) {
             $table->id();
             // $table->string('jenis_statistik')->nullable();
-            $table->foreignId('jenis_statistiks_id')->constrained('jenis_statistiks')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('jenis_statistiks_id')->constrained('jenis_statistiks')->onDelete('cascade');
             $table->integer('jumlah');
             $table->integer('tahun');
             $table->timestamps();
