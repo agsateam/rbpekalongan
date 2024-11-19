@@ -147,13 +147,13 @@ class StatistikController extends Controller
         // ]);
 
         if ($id == 1) {
-            $data = Statistik::where('jenis_statistiks_id', 1)->paginate(8);
+            $data = Statistik::where('jenis_statistiks_id', 1)->orderBy('tahun', 'desc')->paginate(5);
         } elseif ($id == 2) {
-            $data = Statistik::where('jenis_statistiks_id', 2)->paginate(8);
+            $data = Statistik::where('jenis_statistiks_id', 2)->orderBy('tahun', 'desc')->paginate(5);
         } elseif ($id == 3) {
-            $data = Statistik::where('jenis_statistiks_id', 3)->paginate(8);
+            $data = Statistik::where('jenis_statistiks_id', 3)->orderBy('tahun', 'desc')->paginate(5);
         } elseif ($id == 4) {
-            $data = Statistik::where('jenis_statistiks_id', 4)->paginate(8);
+            $data = Statistik::where('jenis_statistiks_id', 4)->orderBy('tahun', 'desc')->paginate(5);
         }
 
         $datafilter = [
