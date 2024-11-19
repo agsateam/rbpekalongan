@@ -8,7 +8,7 @@
             <div class="flex gap-10 items-center md:justify-center overflow-x-scroll px-8 md:px-0 md:flex-wrap scrollbar-hide"
                 id="scrollable-container">
                 @foreach ($mitra as $m)
-                    <a href="{{ $m->link }}" class="flex-shrink-0">
+                    <a target="_blank" href="{{ $m->link }}" class="flex-shrink-0">
                         <img loading="lazy" src="{{ $m->logo }}" class="w-32 md:w-40 lg:w-48" alt="{{ $m->nama_mitra }}">
                     </a>
                 @endforeach

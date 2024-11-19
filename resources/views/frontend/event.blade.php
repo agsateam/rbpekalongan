@@ -37,7 +37,7 @@ function toDate($date){
                 <option value="upcoming" {{ $type == "upcoming" ? 'selected' : '' }}>Akan datang</option>
                 <option value="done" {{ $type == "done" ? 'selected' : '' }}>Selesai</option>
             </select>
-            <input type="text" name="date" placeholder="Tanggal" value="{{$req['date'] ?? ""}}" class="input input-bordered w-full" autocomplete="off" />
+            <input type="text" name="date" placeholder="Tanggal" value="{{$req['date'] ?? ""}}" class="input input-bordered w-full" autocomplete="off" readonly/>
             <button class="btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
         </div>
         </form>
@@ -48,7 +48,7 @@ function toDate($date){
             @endif
             @foreach ($events as $item)
             <div class="bg-white border rounded-md flex flex-col md:flex-row p-5">
-                <img src="{{ $item['poster'] }}" class="w-full md:w-56 rounded-md">
+                <img src="{{ $item['poster'] }}" class="w-full aspect-square object-cover md:w-56 rounded-md">
                 <div class="flex flex-col md:ml-10 mt-3 md:mt-0">
                     <span class="text-3xl">{{ $item['name'] }}</span>
                     <span class="mt-2">{{ $item['deskripsi'] }}</span>

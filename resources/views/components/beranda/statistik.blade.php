@@ -2,13 +2,11 @@
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <div class="flex flex-col lg:flex-row w-full justify-between items-center">
 
-            <div class="text-white font-bold text-3xl text-center md:text-left md:text-5xl mb-8 lg:mb-0 w-1/2 line">
-                <h3 class="leading-normal" data-aos="fade-right">Informasi Pembinaan Rumah BUMN
-                </h3>
-
+            <div class="text-white font-bold text-2xl text-center md:text-left md:text-5xl mb-8 lg:mb-0 md:w-1/2 line">
+                <h3 class="leading-normal" data-aos="fade-up">Informasi Pembinaan Rumah BUMN</h3>
             </div>
 
-            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-16" data-aos="fade-left">
+            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-16" data-aos="fade-up">
                 @php
                     $no = 1;
                 @endphp
@@ -35,9 +33,7 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap w-full justify-between gap-4 mt-8" data-aos="fade-up">
-
-
+        <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 mt-8" data-aos="fade-up">
             {{-- Go Digital --}}
             <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Digital</h3>

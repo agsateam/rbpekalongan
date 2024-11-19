@@ -51,16 +51,16 @@
 
 
             <div class="mt-10 grow flex md:justify-end items-end">
-                <a id="shoppe-link" href="{{ $data->shoppe }}" class="mx-2">
+                <a target="_blank" id="shoppe-link" href="{{ $data->shoppe }}" class="mx-2">
                     <img src="/images/icon-shopee.svg" class="w-10">
                 </a>
-                <a id="tokopedia-link" href="{{ $data->tokopedia }}" class="mx-2">
+                <a target="_blank" id="tokopedia-link" href="{{ $data->tokopedia }}" class="mx-2">
                     <img src="/images/icon-tokped.svg" class="w-10">
                 </a>
-                <a id="tiktok-link" href="{{ $data->tiktok }}" class="mx-2">
+                <a target="_blank" id="tiktok-link" href="{{ $data->tiktok }}" class="mx-2">
                     <img src="/images/icon-tiktok.svg" class="w-10">
                 </a>
-                <a id="instagram-link" href="{{ $data->instagram }}" class="mx-2">
+                <a target="_blank" id="instagram-link" href="{{ $data->instagram }}" class="mx-2">
                     <img src="/images/icon-ig.svg" class="w-10">
                 </a>
             </div>
