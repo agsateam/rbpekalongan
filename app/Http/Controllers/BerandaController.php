@@ -11,6 +11,9 @@ use App\Models\Hero;
 use App\Models\NotificationLog;
 use App\Models\Statistik;
 use App\Models\Testimoni;
+use App\Models\LinkMedsos;
+use App\Models\JenisStatistik;
+
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -22,8 +25,12 @@ class BerandaController extends Controller
     {
         $events = Event::where('status', 'upcoming')->orderBy('date', 'desc')->get();
 
-        //statistik
-        $statistik = Statistik::all();
+        $jenisstatistik = JenisStatistik::all();
+        $jumlahStatistik = Statistik::select('jenis_statistiks_id', DB::raw('SUM(jumlah) as total_jumlah'))
+            ->groupBy('jenis_statistiks_id')
+            ->get();
+
+        // dd($jumlahStatistik);
         $jumlahevent = Event::count();
 
         $fungsirb = FungsiRB::all();
@@ -31,15 +38,19 @@ class BerandaController extends Controller
         $hero = Hero::all();
         $testi = Testimoni::where('status', 'accepted')->get();
 
+        $link = LinkMedsos::all();
+
         return view('frontend.beranda', [
             'igPosts' => $this->getInstagramPosts() ?? ["data" => []],
             'testi' => $testi,
             'events' => $events,
             'fungsirb' => $fungsirb,
             'mitra' => $mitra,
-            'statistik' => $statistik,
+            'jenisstatistik' => $jenisstatistik,
             'jumlahevent' => $jumlahevent,
             'hero' => $hero,
+            'link' => $link,
+            'jumlahstatistik' => $jumlahStatistik
         ]);
     }
 

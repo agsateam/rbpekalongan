@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FasilitatorController;
 use App\Http\Controllers\admin\FungsiRBController;
 use App\Http\Controllers\admin\HeroController;
+use App\Http\Controllers\admin\LinkMedsosController;
 use App\Http\Controllers\admin\ManageBookingController;
 use App\Http\Controllers\admin\ManageEventController;
 use App\Http\Controllers\admin\ManageProductController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\admin\StatistikController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FungsiController;
 use App\Http\Controllers\LoginController;
@@ -44,6 +46,8 @@ Route::post('/booking', [BookingController::class, 'store'])->name('booking.send
 Route::get('/booking-success', [BookingController::class, 'success'])->name('booking.success');
 Route::get('/booking/checkin', [BookingController::class, 'checkin'])->name('booking.checkin');
 Route::post('/booking/checkin', [BookingController::class, 'checkinUpdate'])->name('booking.checkin.update');
+
+Route::get('api/statistik', [DataController::class, 'getData']);
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -80,7 +84,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-umkm/edit/{id?}', [ManageUmkmController::class, 'edit'])->name('manage.umkm.edit');
     Route::post('/manage-umkm/update', [ManageUmkmController::class, 'update'])->name('manage.umkm.update');
     Route::get('/manage-umkm/delete/{id?}', [ManageUmkmController::class, 'destroy'])->name('manage.umkm.delete');
-    
+
     // #### Produk UMKM jadinya ambil dari content IG Gerai UMKM
     // Manage UMKM Product
     // Route::get('/manage-umkm/products', [ManageProductController::class, 'index'])->name('manage.product');
@@ -91,7 +95,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('/manage-umkm/products/edit/{id?}', [ManageProductController::class, 'edit'])->name('manage.product.edit');
     // Route::post('/manage-umkm/products/update', [ManageProductController::class, 'update'])->name('manage.product.update');
     // Route::get('/manage-umkm/products/delete/{id?}', [ManageProductController::class, 'destroy'])->name('manage.product.delete');
-    
+
     // Manage Fasilitator
     Route::get('/manage-fasilitator', [FasilitatorController::class, 'index'])->name('manage.fasilitator');
     Route::get('/manage-fasilitator/add', [FasilitatorController::class, 'create'])->name('manage.fasilitator.add');
@@ -170,7 +174,15 @@ Route::middleware('auth')->group(function () {
         Route::put('hero/update/{id?}', [HeroController::class, 'update'])->name('webcontent.hero.update');
         //Statistik
         Route::get('statistik', [StatistikController::class, 'index'])->name('webcontent.statistik');
+        Route::get('statistik/detail/{id?}', [StatistikController::class, 'getData'])->name('webcontent.statistik.getdata');
+        Route::get('statistik/data/{id}', [StatistikController::class, 'ambilData'])->name('webcontent.statistik.data');
+        Route::get('statistik/create', [StatistikController::class, 'create'])->name('webcontent.statistik.create');
+        Route::post('statistik/store', [StatistikController::class, 'store'])->name('webcontent.statistik.store');
+        Route::delete('statistik/delete/{id}', [StatistikController::class, 'destroy'])->name('webcontent.statistik.delete');
         Route::get('statistik/edit/{id?}', [StatistikController::class, 'edit'])->name('webcontent.statistik.edit');
         Route::put('statistik/update/{id?}', [StatistikController::class, 'update'])->name('webcontent.statistik.update');
+        //Link
+        Route::get('linkmedsos', [LinkMedsosController::class, 'index'])->name('webcontent.link');
+        Route::put('linkmedsos/update/{id?}', [LinkMedsosController::class, 'update'])->name('webcontent.link.update');
     });
 });

@@ -14,5 +14,12 @@ class Statistik extends Model
 
     protected $fillable = [
         'jumlah',
+        'tahun',
+        'jenis_statistiks_id'
     ];
+
+    public function statistiks()
+    {
+        return $this->belongsTo(JenisStatistik::class);
+    }
 }
