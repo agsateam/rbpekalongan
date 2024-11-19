@@ -38,8 +38,8 @@
             @endif
             @foreach ($umkm as $d)
             <a target="_blank" href="{{ route('umkm.detail') ."/". $d->id }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">
-                <div class="w-full h-56 flex items-center justify-center">
-                    <img src="{{ $d->logo ?? url('images/noimage.jpg') }}" class="w-4/5">
+                <div class="w-full flex items-center justify-center">
+                    <img src="{{ $d->logo ?? url('images/noimage.jpg') }}" class="aspect-square">
                 </div>
 
                 <span class="mt-3 text-base md:text-xl font-bold text-[#195770]">{{ $d->name }}</span>

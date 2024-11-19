@@ -19,7 +19,7 @@
                         <div
                             class="w-full h-full md:h-fit md:px-24 absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                             <div class="flex flex-col md:flex-row">
-                                <img src="{{ $item['poster'] }}" class="w-full md:w-64 rounded-md">
+                                <img src="{{ $item['poster'] }}" class="w-full aspect-square object-cover md:w-64 rounded-md">
                                 <div class="flex flex-col mt-5 md:mt-0 md:ml-10 px-5 md:px-0">
                                     <span class="text-2xl lg:text-4xl font-bold mb-3">{{ $item['name'] }}</span>
                                     <p class="text-lg">{{ sliceText($item['deskripsi']) }}</p>
@@ -43,7 +43,7 @@
                                         {{ $item['location'] }}
                                     </span>
                                     <div class="mt-5 md:mt-0 grow flex flex-col items-start justify-end">
-                                        <a href="{{ route('event.regist') . '/1' }}"
+                                        <a href="{{ route('event.regist') . '/' . $item['id'] }}"
                                             class="h-10 btn btn-sm bg-[#195770] text-white hover:text-black">
                                             Daftar Event Ini
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
