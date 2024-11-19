@@ -9,7 +9,7 @@
                 id="scrollable-container">
                 @foreach ($mitra as $m)
                     <a href="{{ $m->link }}" class="flex-shrink-0">
-                        <img src="{{ $m->logo }}" class="w-32 md:w-40 lg:w-48" alt="{{ $m->nama_mitra }}">
+                        <img loading="lazy" src="{{ $m->logo }}" class="w-32 md:w-40 lg:w-48" alt="{{ $m->nama_mitra }}">
                     </a>
                 @endforeach
             </div>

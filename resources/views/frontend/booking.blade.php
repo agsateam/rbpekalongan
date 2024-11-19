@@ -2,6 +2,11 @@
     function getTime($times){
         return json_encode($times);
     }
+    
+    function getPhoto($item){
+        $photos = [$item->photo_1, $item->photo_2, $item->photo_3, $item->photo_4, $item->photo_5];
+        return json_encode($photos);
+    }
 
     function isTimePassed($time){
         $time = Carbon\Carbon::createFromTimeString($time);
@@ -42,7 +47,14 @@
 
                         @foreach ($room as $item)
                             <option
-                                value="{{$item->id."|".$item->name."|".$item->seat."|".($item->isMustFullBooking ? 'full-booking' : 'half-booking')."|".getTime($item->times()->select(['id','open','close','booked'])->get()->toArray())}}"
+                                value="{{
+                                    $item->id ."|".
+                                    $item->name ."|".
+                                    $item->seat ."|".
+                                    ($item->isMustFullBooking ? 'full-booking' : 'half-booking') ."|".
+                                    getTime($item->times()->select(['id','open','close','booked'])->get()->toArray()) ."|".
+                                    getPhoto($item)
+                                }}"
                             >{{$item->name}}</option>
                         @endforeach
                     </select>
@@ -52,6 +64,10 @@
                     >Booking</button>
                 </div>
 
+                {{-- Photo List --}}
+                <div id="roomphotos" class="hidden grid-cols-1 md:grid-cols-5 gap-5 mt-10"></div>
+
+                {{-- Form --}}
                 <form id="form-booking" method="post" action="{{route('booking.send')}}" class="{{$errors->any() ? 'grid' : 'hidden'}} grid-cols-1 md:grid-cols-2 gap-3 border-t pt-3 mt-10">
                     @csrf
                     <input type="hidden" value="{{old('room_id')}}" name="room_id" id="room_id"/>
@@ -130,7 +146,7 @@
                         <span class="text-red-600 text-sm mt-1">{{ $message }}</span>
                         @enderror
                     </label>
-                    <button id="button_submit" type="submit" class="btn bg-[#195770] text-white mt-5 md:col-span-2">Booking</button>
+                    <button id="button_submit" type="submit" class="btn btn-lg bg-[#195770] text-white mt-5 md:col-span-2">Booking</button>
                 </form>
                 @endif
 
@@ -151,6 +167,7 @@
             let room_seat = room[2]
             let full_booking = room[3]
             let times = room[4]
+            let photos = room[5]
 
             if (room_id != "null") {
                 if(full_booking == 'full-booking'){
@@ -176,8 +193,28 @@
 
                 disableBooking(room_seat, room_time[0].booked, (full_booking == 'full-booking' ? true : false));
 
+                showPhotos(photos);
                 showForm(room_id, room_name, room_seat, room_time[0].booked);
             }
+        }
+
+        function showPhotos(photoList){
+            let div = document.querySelector("#roomphotos");
+            let photos = JSON.parse(photoList);
+            
+            div.classList.remove("hidden");
+            div.classList.add("grid");
+            div.innerHTML = "";
+
+            let classImage = "w-full h-full object-cover rounded-md hover";
+            photos.forEach((item) => {
+                if (item != null) {
+                    let imageElement = "<img class='"+ classImage +"' src='{{url('uploaded/room').'/'}}"+ item +"'>";
+                    let hoverElement = "<div class='bg-[#00000090] hidden group-hover:block w-full h-full text-center content-center rounded-md absolute top-0'><div class='text-white inline-flex flex-col items-center'><svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-8'><path stroke-linecap='round' stroke-linejoin='round' d='M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z' /><path stroke-linecap='round' stroke-linejoin='round' d='M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z' /></svg><span class='font-bold mt-1'>Lihat</span></div></div>";
+
+                    return div.innerHTML += "<a target='_blank' href='{{url('uploaded/room').'/'}}"+ item +"'><div class='w-full h-40 group relative'>"+ hoverElement + imageElement +"</div></a>"
+                }
+            });
         }
 
         function showForm(room_id, room_name, room_seat, booked){

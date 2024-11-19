@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\EventRegistration;
+use App\Services\SendNotifService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -73,6 +74,8 @@ class EventController extends Controller
         $data = $req->all();
         $data['name'] = Str::title($data['name']);
         $data['is_have_umkm'] = $data['is_have_umkm'] ? true : false;
+        
+        SendNotifService::notifEvent($data);
 
         EventRegistration::create($data);
         return redirect(route('event.regist.success'));

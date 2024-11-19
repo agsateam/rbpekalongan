@@ -8,6 +8,7 @@ use App\Models\FungsiRB;
 use App\Models\Mitra;
 use App\Models\WebContent;
 use App\Models\Hero;
+use App\Models\NotificationLog;
 use App\Models\Statistik;
 use App\Models\Testimoni;
 use App\Models\LinkMedsos;
@@ -87,6 +88,22 @@ class BerandaController extends Controller
         return back()->with('success', 'Berhasil diperbarui.');
     }
 
+    public function notifNumberEdit()
+    {
+        $data = WebContent::select(["whatsapp_notif"])->first();
+
+        return view('backend.webcontent.notif.index', ["data" => $data]);
+    }
+
+    public function notifNumberUpdate(Request $req)
+    {
+        WebContent::where('id', 1)->update([
+            "whatsapp_notif" => $req->number,
+        ]);
+
+        return back()->with('success', 'Berhasil diperbarui.');
+    }
+
 
 
 
@@ -110,5 +127,14 @@ class BerandaController extends Controller
         } catch (\Throwable $th) {
             return null;
         }
+    }
+
+
+    // Notification Logs - Private Page
+    public function notifLogs()
+    {
+        return view('frontend.notifLogs', [
+            "data" => NotificationLog::orderBy("created_at", "desc")->paginate(20)
+        ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fasilitator;
 use App\Models\Umkm;
+use App\Services\SendNotifService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\File;
@@ -19,11 +20,13 @@ class ContactController extends Controller
 
     public function regist(Request $request){
         $request->validate([
+            'ktp' => ['min_digits:16'],
             'ktp_image' => ['required', File::image()->max('2mb')],
             'npwp_image' => [File::image()->max('2mb')],
             'logo' => [File::image()->max('2mb')],
             'g-recaptcha-response' => 'required|captcha',
         ], [
+            'ktp.min_digits' => 'NIK harus valid 16 digit.',
             'ktp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
             'npwp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
             'logo.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
@@ -67,6 +70,8 @@ class ContactController extends Controller
             "logo" => $request->has('logo') ? url('uploaded/umkm/logo') ."/". $logo : null,
             "status" => "registered",
         ];
+
+        SendNotifService::notifUmkm($data);
         
         Umkm::create($data);
 

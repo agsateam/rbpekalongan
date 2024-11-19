@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingTime;
 use App\Models\WebContent;
+use App\Services\SendNotifService;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -47,10 +48,12 @@ class BookingController extends Controller
             "booking_room_id" => $req->room_id,
             "booking_time_id" => $req->room_time,
             "booking_seat" => $req->jumlah_kursi,
-            "name" => $req->name,
+            "name" => Str::title($req->name),
             "whatsapp" => $req->whatsapp,
             "purpose" => $req->tujuan,
         ];
+
+        SendNotifService::notifBooking($data);
 
         Booking::create($data);
 

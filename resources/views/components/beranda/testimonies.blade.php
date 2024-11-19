@@ -1,4 +1,4 @@
-<div class="bg-gray-100 my-16 py-16">
+<div class="bg-gray-100 py-28">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto" data-aos="fade-up" data-aos-duration="2000">
         <div class="flex justify-between items-start">
             <h4 class="text-xl md:text-4xl font-bold mb-5">Testimoni</h4>

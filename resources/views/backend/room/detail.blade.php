@@ -101,6 +101,43 @@ $no = 1;
                 </table>
             </div>
         </div>
+
+        <div class="mt-5 pt-5 border-t">
+            <div class="text-lg font-bold mb-2">Foto Ruang</div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 w-full mb-4 gap-4">
+                @for ($i = 1; $i <= 5; $i++)
+                <form id="form-photo-{{$i}}" action="{{ route('manage.room.photo') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="room_id" value="{{$data->id}}">
+                    <input type="hidden" name="photo_id" value="{{$i}}">
+                    <label for="dropzone-file{{$i}}" class="h-40 flex flex-col items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 ">
+                        <div class="text-gray-500 flex flex-col items-center mt-8 {{ $data["photo_".$i] ? 'hidden' : '' }}" id="default-dropzone{{$i}}">
+                            <svg class="size-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                            </svg>
+                            <span class="font-bold mt-1">Upload</span>
+                            <span class="text-sm mt-1">PNG/JPG</span>
+                        </div>
+                        <div class="group w-full h-full relative">
+                            <img id="image-preview{{$i}}" src="{{ url("uploaded/room") ."/". $data["photo_".$i] }}" alt="Preview" class="{{ $data["photo_".$i] ? '' : 'hidden' }} w-full h-full object-cover rounded-lg" />
+                            <div class="bg-[#00000090] hidden group-hover:block w-full h-full text-center content-center rounded-lg absolute top-0">
+                                <div class="text-white inline-flex flex-col items-center">
+                                    <svg class="size-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                    </svg>
+                                    <span class="font-bold mt-1">Ganti</span>
+                                    <span class="text-sm mt-1">PNG/JPG</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input id="dropzone-file{{$i}}" type="file" class="hidden" name="foto{{$i}}" accept="image/png,image/jpeg" />
+                    </label>
+                </form>
+                @endfor
+            </div>
+        </div>
+
     </div>
 </div>
 @endsection
@@ -232,5 +269,32 @@ $no = 1;
             val['isConfirmed'] && (window.location.href = route +"/"+ id +"/"+ status)
         })
     }
+</script>
+
+<script>
+    function previewImage(inputId, previewId, dropzoneId, form) {
+        document.getElementById(inputId).addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imagePreview = document.getElementById(previewId);
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    document.getElementById(dropzoneId).classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            document.getElementById(form).submit();
+        });
+    }
+
+    previewImage('dropzone-file1', 'image-preview1', 'default-dropzone1', 'form-photo-1');
+    previewImage('dropzone-file2', 'image-preview2', 'default-dropzone2', 'form-photo-2');
+    previewImage('dropzone-file3', 'image-preview3', 'default-dropzone3', 'form-photo-3');
+    previewImage('dropzone-file4', 'image-preview4', 'default-dropzone4', 'form-photo-4');
+    previewImage('dropzone-file5', 'image-preview5', 'default-dropzone5', 'form-photo-5');
 </script>
 @endsection

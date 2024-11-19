@@ -7,9 +7,9 @@
         @foreach ($igposts['data'] as $post)
             <div class="w-full flex flex-col">
                 @if ($post['media_type'] == 'VIDEO')
-                    <img src="{{ $post['thumbnail_url'] }}" class="w-full aspect-square object-cover">
+                    <img loading="lazy" src="{{ $post['thumbnail_url'] }}" class="w-full aspect-square object-cover">
                 @else
-                    <img src="{{ $post['media_url'] }}" class="w-full aspect-square object-cover">
+                    <img loading="lazy" src="{{ $post['media_url'] }}" class="w-full aspect-square object-cover">
                 @endif
 
                 <a target="_blank" href="{{ $post['permalink'] }}" class="mt-3 text-xl font-bold text-[#195770]">

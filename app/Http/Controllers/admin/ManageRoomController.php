@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BookingRoom;
 use App\Models\BookingTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ManageRoomController extends Controller
 {
@@ -59,6 +61,32 @@ class ManageRoomController extends Controller
     {
         BookingRoom::where('id', $id)->update(["open_booking" => ($status == "open" ? true : false)]);
         return back()->with('success', 'Booking ruangan ' . ($status == "open" ? 'dibuka' : 'ditutup'));
+    }
+
+    public function photo(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'foto1' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto2' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto3' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto4' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto5' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($validate->fails()) {
+            return back()->with("error", "Foto harus berupa file png/jpg dengan ukuran maksimal 2 mb");
+        }
+
+        $photo_id = "photo_" . $request->photo_id;
+        $room = BookingRoom::find($request->room_id);
+        $photo = Str::slug($room->name) . "-foto" . $request->photo_id .".". $request["foto" . $request->photo_id]->extension();
+        
+        $request["foto" . $request->photo_id]->move(public_path('uploaded/room'), $photo); // upload or replace
+        
+        $data = [$photo_id => $photo];
+        $room->update($data);
+        
+        return back();
     }
 
 

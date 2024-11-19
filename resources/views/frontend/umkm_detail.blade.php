@@ -25,10 +25,10 @@
                     <span>Kategori Usaha</span>
                     <span class="text-lg md:text-xl font-semibold">{{$data->type}}</span>
                 </div>
-                <div class="flex flex-col mt-3">
+                {{-- <div class="flex flex-col mt-3">
                     <span>Jumlah Produk</span>
                     <span class="text-lg md:text-xl font-semibold">{{$productCount}}</span>
-                </div>
+                </div> --}}
                 <div class="flex items-center mt-5">
                     <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" class="size-7">
                     <span class="font-bold ml-3">
@@ -38,7 +38,11 @@
                 <div class="flex items-center mt-2">
                     <img src="https://img.icons8.com/?size=100&id=nj0Uj45LGUYh&format=png&color=000000" class="size-7">
                     <span class="font-bold ml-3">
-                        {{$data->instagram ?? "-"}}
+                        {!!
+                            $data->instagram
+                            ? "<a class='text-[#195770]' href='http://instagram.com/".$data->instagram."' target='_blank'>@$data->instagram</a>"
+                            : "-"
+                        !!}
                     </span>
                 </div>
                 <div class="flex items-center mt-2">
@@ -57,7 +61,7 @@
         </div>
     </div>
 </div>
-<div class="bg-gray-100 py-10">
+{{-- <div class="bg-gray-100 py-10">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <h4 class="text-lg md:text-2xl font-bold mb-5 ml-2">Produk dari {{$data->name}}</h4>
         @if($productCount < 1)
@@ -77,5 +81,5 @@
             @endforeach
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

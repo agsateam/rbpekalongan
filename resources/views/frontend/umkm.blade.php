@@ -17,7 +17,7 @@
 
         <form method="get" class="md:mt-5">
             <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
-                <input type="text" name="keyword" placeholder="Cari Produk ..." class="md:col-span-3 input input-bordered w-full" />
+                <input type="text" name="keyword" placeholder="Cari UMKM ..." class="md:col-span-3 input input-bordered w-full" />
                 <select class="select select-bordered w-full" name="category">
                     <option disabled selected>Semua Kategori</option>
                     <option value="Fashion">Fashion</option>
@@ -44,7 +44,7 @@
 
                 <span class="mt-3 text-base md:text-xl font-bold text-[#195770]">{{ $d->name }}</span>
                 <span class="mt-1 text-base text-gray-500">{{$d->type}}</span>
-                <span class="mt-1 text-sm text-gray-600 font-semibold">{{ $d->products->count() }} Produk</span>
+                {{-- <span class="mt-1 text-sm text-gray-600 font-semibold">{{ $d->products->count() }} Produk</span> --}}
             </a>
             @endforeach
         </div>

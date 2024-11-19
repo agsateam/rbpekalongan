@@ -54,9 +54,16 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'auth'])->name('login.auth')->middleware('guest');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
+// Notif Logs
+Route::get('/notiflogs', [BerandaController::class, 'notifLogs'])->name('logs');
+
 // BackEnd
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/api/booking-yearly/{year?}', [DashboardController::class, 'apiBookingYearly'])->name('api.booking.yearly');
+    Route::get('/api/booking-toproom/{date?}', [DashboardController::class, 'apiBookingTopRoom'])->name('api.booking.toproom');
+    Route::get('/api/event-yearly/{year?}', [DashboardController::class, 'apiEventYearly'])->name('api.event.yearly');
+    Route::get('/api/event-top/{year?}', [DashboardController::class, 'apiEventTop'])->name('api.event.top');
     // Manage Users
     Route::get('/admin/password', [AdminController::class, 'changePassword'])->name('admin.password');
     Route::post('/admin/password', [AdminController::class, 'updatePassword'])->name('admin.password.save');
@@ -133,6 +140,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/manage-booking/room/update', [ManageRoomController::class, 'update'])->name('manage.room.update');
     Route::get('/manage-booking/room/delete/{id?}', [ManageRoomController::class, 'delete'])->name('manage.room.delete');
     Route::get('/manage-booking/room/booking-status/{id?}/{status?}', [ManageRoomController::class, 'status'])->name('manage.room.status');
+    Route::post('/manage-booking/room/photo', [ManageRoomController::class, 'photo'])->name('manage.room.photo');
     // ---- Room Times
     Route::post('/manage-booking/room/time/add', [ManageRoomController::class, 'saveTime'])->name('manage.room.time.save');
     Route::post('/manage-booking/room/time/update', [ManageRoomController::class, 'updateTime'])->name('manage.room.time.update');
@@ -157,6 +165,9 @@ Route::middleware('auth')->group(function () {
         // IG Token
         Route::get('igtoken', [BerandaController::class, 'igTokenEdit'])->name('webcontent.igtoken');
         Route::post('igtoken', [BerandaController::class, 'igTokenUpdate'])->name('webcontent.igtoken.update');
+        // Whatsapp Notif
+        Route::get('notif-wa', [BerandaController::class, 'notifNumberEdit'])->name('webcontent.notif');
+        Route::post('notif-wa', [BerandaController::class, 'notifNumberUpdate'])->name('webcontent.notif.update');
         // Hero
         Route::get('hero', [HeroController::class, 'index'])->name('webcontent.hero');
         Route::get('hero/edit/{id?}', [HeroController::class, 'edit'])->name('webcontent.hero.edit');

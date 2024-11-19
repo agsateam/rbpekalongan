@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\BookingTime;
 use App\Models\WebContent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class ManageBookingController extends Controller
 {
@@ -35,6 +37,10 @@ class ManageBookingController extends Controller
     public function checkin($id){
         $data = Booking::find($id);
         $data->update(['check_in' => Carbon::now()->toDateTimeString()]);
+
+        BookingTime::where('id', $data->booking_time_id)->update([
+            "booked" => DB::raw('booked + ' . $data->booking_seat)
+        ]);
 
         return back()->with('success', 'Check-in '.$data->code.' berhasil.');
     }
