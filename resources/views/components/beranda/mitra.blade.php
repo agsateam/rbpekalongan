@@ -1,5 +1,5 @@
 <div class="my-16 py-16">
-    <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto" data-aos="fade-up">
+    <div class="md:max-w-screen-xl mx-0 md:mx-14 2xl:mx-auto" data-aos="fade-up">
         <h4 class="text-xl md:text-4xl font-bold mb-16 text-center">Mitra Rumah BUMN</h4>
 
         @if ($mitra->isEmpty())
@@ -9,7 +9,7 @@
                 id="scrollable-container">
                 @foreach ($mitra as $m)
                     <a target="_blank" href="{{ $m->link }}" class="flex-shrink-0">
-                        <img loading="lazy" src="{{ $m->logo }}" class="w-32 md:w-40 lg:w-48" alt="{{ $m->nama_mitra }}">
+                        <img loading="lazy" src="{{ $m->logo }}" class="h-32" alt="{{ $m->nama_mitra }}">
                     </a>
                 @endforeach
             </div>

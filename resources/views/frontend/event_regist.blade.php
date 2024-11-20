@@ -80,7 +80,7 @@ function toDate($date){
                             <div class="label">
                               <span class="label-text text-base font-semibold">Nomor HP/WA <span class="text-red-600 font-bold">*</span></span>
                             </div>
-                            <input type="text" inputmode="numeric" name="phone" placeholder="Nomor" value="{{old('phone')}}" class="input input-bordered w-full" required>
+                            <input type="number" inputmode="numeric" name="phone" placeholder="Nomor" value="{{old('phone')}}" class="input input-bordered w-full" required>
                             @error('phone')
                             <span class="text-red-600 text-sm mt-1 ml-1">{{ $message }}</span>
                             @enderror

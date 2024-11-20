@@ -1,12 +1,12 @@
 <div class="bg-[#195770] my-16 py-28">
     <div class="max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
-        <div class="flex flex-col lg:flex-row w-full justify-between items-center">
+        <div class="flex flex-col lg:flex-row w-full justify-between items-center md:items-start">
 
             <div class="text-white font-bold text-2xl text-center md:text-left md:text-5xl mb-8 lg:mb-0 md:w-1/2 line">
                 <h3 class="leading-normal" data-aos="fade-up">Informasi Pembinaan Rumah BUMN</h3>
             </div>
 
-            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-16" data-aos="fade-up">
+            <div class="text-white grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up">
                 @php
                     $no = 1;
                 @endphp
@@ -17,7 +17,7 @@
                     @endphp
 
                     <div class="card flex flex-row items-center gap-4">
-                        <img class="w-16 h-16 mb-3 rounded-full shadow-lg"
+                        <img class="w-16 h-16 rounded-full shadow-lg"
                             src="../images/informasi/statistik-{{ $loop->iteration }}.png" alt="statistik" />
 
                         <div>
@@ -33,21 +33,21 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 w-full gap-3 mt-8" data-aos="fade-up">
+        <div class="w-full flex flex-col md:flex-row justify-between gap-5 mt-10" data-aos="fade-up">
             {{-- Go Digital --}}
-            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Digital</h3>
                 <div id="statistik-chart"></div>
             </div>
 
             {{-- Go Modern --}}
-            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Modern</h3>
                 <div id="statistik-modern-chart"></div>
             </div>
 
             {{-- Go Online --}}
-            <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Online</h3>
                 <div id="statistik-online-chart"></div>
             </div>
