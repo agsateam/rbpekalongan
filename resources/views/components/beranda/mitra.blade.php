@@ -5,15 +5,14 @@
         @if ($mitra->isEmpty())
             <p class="text-center text-gray-500">Mitra Belum Ada</p>
         @else
-            {{-- <div class="flex gap-10 items-center md:justify-center overflow-x-scroll px-8 md:px-0 md:flex-wrap scrollbar-hide"
-                id="scrollable-container">
+            <div class="hidden md:flex flex-wrap gap-10 justify-center items-center">
                 @foreach ($mitra as $m)
-                    <a target="_blank" href="{{ $m->link }}" class="flex-shrink-0">
-                        <img loading="lazy" src="{{ $m->logo }}" class="h-32" alt="{{ $m->nama_mitra }}">
+                    <a target="_blank" href="{{ $m->link }}" class="h-28 max-w-44">
+                        <img loading="lazy" src="{{ $m->logo }}" class="w-full h-full object-contain" alt="{{ $m->nama_mitra }}">
                     </a>
                 @endforeach
-            </div> --}}
-            <div class="flex overflow-hidden gap-8 group">
+            </div>
+            <div class="md:hidden flex overflow-hidden gap-8 group">
                 <div class="flex gap-8 animate-infinite-scroll group-hover:paused">
                     @foreach ($mitra as $m)
                         <a href="{{$m->link}}" target="_blank" class="h-16 w-28 md:h-28 md:w-44">
@@ -32,15 +31,3 @@
         @endif
     </div>
 </div>
-
-<style>
-    /* Menghilangkan scrollbar untuk tampilan yang lebih bersih */
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-</style>
