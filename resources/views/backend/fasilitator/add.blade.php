@@ -30,7 +30,7 @@
                 <div class="label">
                   <span class="label-text text-base font-semibold">Nomor Whatsapp <span class="text-red-600 font-bold">*</span></span>
                 </div>
-                <input type="text" inputmode="numeric" name="whatsapp" placeholder="628..." class="input input-bordered w-full" required/>
+                <input type="number" inputmode="numeric" name="whatsapp" placeholder="628..." class="input input-bordered w-full" required/>
             </label>
             <label class="form-control w-full">
                 <div class="label">

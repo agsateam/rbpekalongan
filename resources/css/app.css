@@ -1,10 +1,13 @@
-
 @import 'swiper/css/bundle';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}
 
 
 /* width */
@@ -25,4 +28,16 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #8d8d8d;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -53,7 +53,7 @@
                     <label class="form-control w-full">
                         <div class="flex h-12">
                             <span class="inline-flex items-center px-5 text-gray-600 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md font-semibold text-xl">BC</span>
-                            <input type="number" inputmode="numeric" name="code" placeholder="Kode..." class="rounded-none rounded-e-lg border block flex-1 min-w-0 w-full text-xl border-gray-300 pl-3 focus:ring-0 focus:border-gray-300">
+                            <input type="number" inputmode="numeric" name="code" placeholder="Kode..." class="rounded-none rounded-e-lg border block flex-1 min-w-0 w-full text-xl border-gray-300 pl-3 focus:ring-0 focus:border-gray-300" required>
                         </div>
                         @error('code')
                         <div class="text-red-500 ml-1 text-sm mt-1 mb-2">

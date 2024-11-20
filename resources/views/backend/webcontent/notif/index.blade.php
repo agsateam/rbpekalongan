@@ -26,7 +26,7 @@
                     </span>
                 </div>
                 <input
-                    type="text"
+                    type="number"
                     inputmode="numeric"
                     name="number"
                     value="{{$data->whatsapp_notif}}"

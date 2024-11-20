@@ -35,7 +35,7 @@
             </label>
             <label class="form-control w-full">
                 <div class="label"><span class="label-text text-base font-semibold">Telepon/WA</span></div>
-                <input type="text" inputmode="numeric" id="input" name="phone" placeholder="08 ..." class="w-full focus:ring-0 border-none pl-1" value="{{$data->phone}}" required disabled/>
+                <input type="number" inputmode="numeric" id="input" name="phone" placeholder="628..." class="w-full focus:ring-0 border-none pl-1" value="{{$data->phone}}" required disabled/>
             </label>
             <div class="hidden flex-col md:flex-row justify-between gap-3" id="buttonSubmit">
                 <button type="submit" class="submit btn bg-[#195770] hover:bg-[#195770] mt-5 text-white md:w-2/3" disabled>Simpan</button>

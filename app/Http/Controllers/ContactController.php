@@ -20,13 +20,14 @@ class ContactController extends Controller
 
     public function regist(Request $request){
         $request->validate([
-            'ktp' => ['min_digits:16'],
+            'ktp' => ['min_digits:16','max_digits:16'],
             'ktp_image' => ['required', File::image()->max('2mb')],
             'npwp_image' => [File::image()->max('2mb')],
             'logo' => [File::image()->max('2mb')],
             'g-recaptcha-response' => 'required|captcha',
         ], [
             'ktp.min_digits' => 'NIK harus valid 16 digit.',
+            'ktp.max_digits' => 'NIK harus valid 16 digit.',
             'ktp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
             'npwp_image.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',
             'logo.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.',

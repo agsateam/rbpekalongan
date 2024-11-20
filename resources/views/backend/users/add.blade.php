@@ -36,7 +36,7 @@
             </label>
             <label class="form-control w-full">
                 <div class="label"><span class="label-text text-base font-semibold">Telepon/WA</span></div>
-                <input type="text" name="phone" value="{{old('phone')}}" placeholder="08 ..." class="input input-rounded border border-gray-300" required/>
+                <input type="number" inputmode="numeric" name="phone" value="{{old('phone')}}" placeholder="628..." class="input input-rounded border border-gray-300" required/>
                 @error('phone')
                 <span class="text-sm ml-1 mt-1 text-red-600">{{$message}}</span>
                 @enderror    
