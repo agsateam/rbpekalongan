@@ -4,11 +4,7 @@
 
     <div class="relative sm:rounded-lg">
 
-        @if (session('success'))
-            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-300" role="alert">
-                <span class="font-medium">{{ session('success') }}
-            </div>
-        @endif
+
 
         <div class="flex flex-col md:flex-row justify-between">
             <h4 class="text-2xl md:text-3xl font-bold mb-5">Mitra</h4>
@@ -20,6 +16,8 @@
                 </ul>
             </div>
         </div>
+
+        @include('components.backend.alert')
 
         <a href="{{ route('webcontent.mitra.create') }}" class="btn bg-[#195770] text-white mb-5">+ Tambah Mitra</a>
 
@@ -65,14 +63,14 @@
                             <td class="px-6 py-4 font-semibold text-gray-900 ">
                                 {{ $m->nama_mitra }}
                             </td>
-    
+
                             <td class="px-6 py-4 font-semibold text-gray-900 ">
                                 {{ $m->link }}
                             </td>
                             <td class="gap-4 justify-center items-center px-6 py-4">
                                 <a href="{{ route('webcontent.mitra.edit') . '/' . $m->id }}"
                                     class="px-6 py-4  font-medium text-green-600  hover:underline">Edit</a>
-    
+
                                 <form action="{{ route('webcontent.mitra.delete', $m->id) }}" method="POST"
                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus mitra ini?');">
                                     @csrf
@@ -80,10 +78,10 @@
                                     <button type="submit"
                                         class="px-6 py-4 font-medium text-red-600 hover:underline">Remove</button>
                                 </form>
-    
+
                             </td>
                         </tr>
-    
+
                     </tbody>
                 @endforeach
             </table>

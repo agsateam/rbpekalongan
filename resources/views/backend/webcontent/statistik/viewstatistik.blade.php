@@ -4,11 +4,7 @@
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-        @if (session('success'))
-            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-300" role="alert">
-                <span class="font-medium">{{ session('success') }}
-            </div>
-        @endif
+
 
         <div class="flex flex-col md:flex-row justify-between">
             <h4 class="text-2xl md:text-3xl font-bold mb-5">Statistik</h4>
@@ -22,6 +18,7 @@
         </div>
 
 
+        @include('components.backend.alert')
 
 
 
