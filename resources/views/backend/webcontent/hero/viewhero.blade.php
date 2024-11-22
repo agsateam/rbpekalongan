@@ -3,11 +3,7 @@
 @section('content')
 
     <div class="">
-        @if (session('success'))
-            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-300" role="alert">
-                <span class="font-medium">{{ session('success') }}
-            </div>
-        @endif
+
 
         <div class="flex flex-col md:flex-row justify-between">
             <h4 class="text-2xl md:text-3xl font-bold mb-5">Hero</h4>
@@ -19,6 +15,9 @@
                 </ul>
             </div>
         </div>
+
+        @include('components.backend.alert')
+
         <div class="">
 
 
@@ -37,9 +36,10 @@
 
                         <label for="{{ $inputId }}"
                             class="flex flex-col items-center justify-center w-96 h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            <a href="{{ route('webcontent.hero.edit', $h->id) }}" class="flex flex-col items-center justify-center pt-5 pb-6 {{ $h->$foto ? 'hidden' : '' }}"
+                            <a href="{{ route('webcontent.hero.edit', $h->id) }}"
+                                class="flex flex-col items-center justify-center pt-5 pb-6 {{ $h->$foto ? 'hidden' : '' }}"
                                 id="{{ $dropzoneId }}">
-                                <img src="{{url('images/preview-image.jpg')}}" class="w-1/3">
+                                <img src="{{ url('images/preview-image.jpg') }}" class="w-1/3">
                             </a>
                             <img id="{{ $previewId }}" src="{{ $h->$foto }}" alt="Preview"
                                 class="{{ $h->$foto ? '' : 'hidden' }} w-full h-full object-cover rounded-lg" />
