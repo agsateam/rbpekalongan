@@ -43,10 +43,12 @@ $certno = 1;
                 <td>{{$no++}}</td>
                 <td>{{$item->name}}</td>
                 <td>
-                    {{$item->umkm()->where('status', 'join')->count()}}
-                    @if($item->umkm()->where('status', 'join')->count() > 0)
-                        <a class="btn btn-xs bg-[#195770] text-white ml-3" href="{{route('manage.umkm') . "?search=" . $item->name}}">Lihat Daftar</a>
-                    @endif
+                    <div class="flex flex-col">
+                        {{$item->umkm()->where('status', 'join')->count()}}
+                        @if($item->umkm()->where('status', 'join')->count() > 0)
+                            <a class="w-fit btn btn-xs bg-[#195770] text-white mt-1" href="{{route('manage.umkm') . "?search=" . $item->name}}">Lihat Daftar</a>
+                        @endif
+                    </div>
                 </td>
                 <td>
                     @foreach (explode(",", $item->certification) as $cert)
