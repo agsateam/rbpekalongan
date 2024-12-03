@@ -33,21 +33,21 @@
             </div>
         </div>
 
-        <div class="w-full flex flex-col md:flex-row justify-between gap-5 mt-10" data-aos="fade-up">
+        <div class="w-full flex flex-col md:flex-row justify-between gap-5 mt-12">
             {{-- Go Digital --}}
-            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6">
+            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6" data-aos="fade-up" data-aos-duration="1000">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Digital</h3>
                 <div id="statistik-chart"></div>
             </div>
 
             {{-- Go Modern --}}
-            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6">
+            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6" data-aos="fade-up" data-aos-duration="1500">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Modern</h3>
                 <div id="statistik-modern-chart"></div>
             </div>
 
             {{-- Go Online --}}
-            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6">
+            <div class="w-full bg-white rounded-lg shadow p-4 md:p-6" data-aos="fade-up" data-aos-duration="2000">
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Go Online</h3>
                 <div id="statistik-online-chart"></div>
             </div>
@@ -58,66 +58,88 @@
 <script>
     async function fetchStatistik() {
         try {
+            // Ambil data dari API
             const response = await fetch('api/statistik');
             const data = await response.json();
 
-            // Filter data untuk jenis_statistiks_id tertentu
-            const digitalData = data.statistik.filter(item => item.jenis_statistiks_id === 1);
-            const modernData = data.statistik.filter(item => item.jenis_statistiks_id === 2);
-            const onlineData = data.statistik.filter(item => item.jenis_statistiks_id === 3);
 
-            // Fungsi untuk konfigurasi grafik
-            function renderChart(elementId, chartData, title) {
-                const years = chartData.map(item => item.tahun);
-                const jumlah = chartData.map(item => item.jumlah);
+            const statistikGroups = {
+                digital: calculateCumulativeData(filterDataByType(data.statistik, 1)),
+                modern: calculateCumulativeData(filterDataByType(data.statistik, 2)),
+                online: calculateCumulativeData(filterDataByType(data.statistik, 3)),
+            };
 
-                const options = {
-                    series: [{
-                        name: 'Jumlah',
-                        data: jumlah
-                    }],
-                    chart: {
-                        type: 'line',
-                        height: 320
-                    },
-                    xaxis: {
-                        categories: years,
-                        title: {
-                            text: 'Tahun'
-                        }
-                    },
-                    yaxis: {
-                        title: {
-                            text: 'Jumlah'
-                        }
-                    },
-                    colors: ['#1A56DB'],
-                    stroke: {
-                        curve: 'smooth',
-                        width: 2
-                    },
-                    markers: {
-                        size: 4,
-                        colors: ['#1A56DB']
-                    },
-                    tooltip: {
-                        theme: 'dark'
-                    }
-                };
 
-                const chart = new ApexCharts(document.querySelector(elementId), options);
-                chart.render();
-            }
 
-            // Render masing-masing grafik
-            renderChart("#statistik-chart", digitalData, 'Go Digital');
-            renderChart("#statistik-modern-chart", modernData, 'Go Modern');
-            renderChart("#statistik-online-chart", onlineData, 'Go Online');
+            renderChart("#statistik-chart", statistikGroups.digital, 'Go Digital');
+            renderChart("#statistik-modern-chart", statistikGroups.modern, 'Go Modern');
+            renderChart("#statistik-online-chart", statistikGroups.online, 'Go Online');
         } catch (error) {
             console.error('Gagal mengambil data:', error);
         }
     }
 
-    // Panggil fungsi fetch
+
+    function filterDataByType(data, typeId) {
+        return data.filter(item => item.jenis_statistiks_id === typeId);
+    }
+
+    function calculateCumulativeData(data) {
+        let cumulativeTotal = 0;
+        return data.map(item => {
+            cumulativeTotal += item.jumlah;
+            return {
+                tahun: item.tahun,
+                total: cumulativeTotal,
+            };
+        });
+    }
+
+    function renderChart(elementId, chartData, title) {
+        const years = chartData.map(item => item.tahun);
+        const totals = chartData.map(item => item.total);
+
+        const options = {
+            series: [{
+                name: 'Jumlah',
+                data: totals
+            }],
+            chart: {
+                type: 'bar',
+                height: 320,
+
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: years,
+                title: {
+                    text: 'Tahun'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Jumlah'
+                }
+            },
+            colors: ['#195770'],
+            stroke: {
+                curve: 'smooth',
+                width: 2
+            },
+            markers: {
+                size: 4,
+                colors: ['#1A56DB']
+            },
+            tooltip: {
+                theme: 'dark'
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector(elementId), options);
+        chart.render();
+    }
+
     fetchStatistik();
 </script>

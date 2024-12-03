@@ -36,7 +36,7 @@
                             </option>
                             <option value="3" {{ old('jenis_statistiks_id') == 3 ? 'selected' : '' }}>Go Online
                             </option>
-                            <option value="4" {{ old('jenis_statistiks_id') == 4 ? 'selected' : '' }}>Event</option>
+
                         </select>
                         @error('jenis_statistiks_id')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

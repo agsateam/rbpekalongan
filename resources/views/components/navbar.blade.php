@@ -1,9 +1,9 @@
 <div class="bg-white z-40 sticky top-0">
-    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center py-3 gap-4">
+    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex py-4 md:py-0 flex-wrap items-center gap-4">
 
-        <img src="{{ url('/') }}/images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
-        <img src="{{ url('/') }}/images/rbpekalongan.png" alt="Logo Rumah Bumn" class="h-6 md:h-12">
-        <img src="{{ url('/') }}/images/telkom.png" alt="Logo Telkom" class="h-6 md:h-12">
+        <img src="{{ url('/') }}/images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8 md:mt-1">
+        <img src="{{ url('/') }}/images/rbpekalongan.png" alt="Logo Rumah Bumn" class="h-8 md:h-16">
+        <img src="{{ url('/') }}/images/telkom.png" alt="Logo Telkom" class="h-8 md:h-16">
 
 
 
@@ -13,7 +13,7 @@
 </div>
 
 
-<nav class="bg-[#195770] z-50 bg-contain sticky top-12 md:top-16"
+<nav class="bg-[#195770] z-50 bg-contain sticky top-16 md:top-16"
     style="background-image: url('{{ url('/') }}/images/batik1.png')">
     <div class="max-w-screen-xl flex flex-wrap justify-end mx-auto">
         <button data-collapse-toggle="navbar-default" type="button"
