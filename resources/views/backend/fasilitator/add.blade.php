@@ -33,8 +33,9 @@
                 <input type="number" inputmode="numeric" name="whatsapp" placeholder="628..." class="input input-bordered w-full" required/>
             </label>
             <label class="form-control w-full">
-                <div class="label">
+                <div class="label justify-start items-center">
                     <span class="label-text text-base font-semibold">Sertifikasi</span>
+                    <span class="text-xs ml-3 font-semibold text-[#195770]">* hindari karakter koma (,)</span>
                 </div>
                 <div class="w-full flex flex-col gap-1">
                     <input type="text" name="certification1" placeholder="Nama Sertifikasi" class="input input-bordered w-full" required/>

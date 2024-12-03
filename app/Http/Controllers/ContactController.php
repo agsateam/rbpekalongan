@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Fasilitator;
 use App\Models\Umkm;
+use App\Models\WebContent;
 use App\Services\SendNotifService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,8 +14,11 @@ class ContactController extends Controller
 {
     public function index(){
         $facilitators = Fasilitator::all();
+        $whatsapp = WebContent::first()->whatsapp_notif ?? "082136643938";
+
         return view('frontend.contact', [
-            "facilitators" => $facilitators
+            "facilitators" => $facilitators,
+            "whatsapp" => $whatsapp
         ]);
     }
 

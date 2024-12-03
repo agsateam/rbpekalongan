@@ -13,15 +13,15 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-0">
             <div class="flex flex-col border-l-4 pl-5 border-[#195770]">
                 <span class="text-gray-500 font-semibold">HP/WhatsApp</span>
-                <span class="text-2xl font-bold text-[#195770]">08150021000</span>
+                <span class="text-xl font-bold text-[#195770]">{{$whatsapp}}</span>
             </div>
             <div class="flex flex-col border-l-4 pl-5 border-[#195770]">
                 <span class="text-gray-500 font-semibold">Email</span>
-                <span class="text-2xl font-bold text-[#195770]">example@mail.com</span>
+                <span class="text-xl font-bold text-[#195770]">rkbpekalongan1@gmail.com</span>
             </div>
             <div class="flex flex-col border-l-4 pl-5 border-[#195770]">
                 <span class="text-gray-500 font-semibold">Alamat</span>
-                <span class="text-2xl font-bold text-[#195770]">Jl. Merak No.2, Kandang Panjang</span>
+                <span class="text-xl font-bold text-[#195770]">Jl. Merak No.2, Kandang Panjang</span>
             </div>
         </div>
     </div>

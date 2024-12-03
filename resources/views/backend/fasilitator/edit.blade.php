@@ -39,8 +39,9 @@ $certs = explode(",", $data->certification);
                 <input type="number" inputmode="numeric" name="whatsapp" placeholder="628..." value="{{$data->whatsapp}}" class="input input-bordered w-full" required/>
             </label>
             <label class="form-control w-full">
-                <div class="label">
+                <div class="label justify-start items-center">
                     <span class="label-text text-base font-semibold">Sertifikasi</span>
+                    <span class="text-xs ml-3 font-semibold text-[#195770]">* hindari karakter koma (,)</span>
                 </div>
                 <div class="w-full flex flex-col gap-1">
                     @foreach ($certs as $index => $item)
