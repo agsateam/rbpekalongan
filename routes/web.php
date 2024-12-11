@@ -84,6 +84,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage-umkm/edit/{id?}', [ManageUmkmController::class, 'edit'])->name('manage.umkm.edit');
     Route::post('/manage-umkm/update', [ManageUmkmController::class, 'update'])->name('manage.umkm.update');
     Route::get('/manage-umkm/delete/{id?}', [ManageUmkmController::class, 'destroy'])->name('manage.umkm.delete');
+    Route::post('/manage-umkm/import', [ManageUmkmController::class, 'import'])->name('manage.umkm.import');
+    Route::get('/manage-umkm/export', [ManageUmkmController::class, 'export'])->name('manage.umkm.export');
+    Route::get('/manage-umkm/dropall', [ManageUmkmController::class, 'reset']); // todo: delete
 
     // #### Produk UMKM jadinya ambil dari content IG Gerai UMKM
     // Manage UMKM Product

@@ -13,35 +13,65 @@
         </div>
     </div>
 
-    <div class="mt-10 mb-5">
-        @include('components.backend.alert')
-    </div>
+    <button class="btn bg-[#195770] text-white mb-5" onclick="modalImport.showModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+        </svg>
+        Import Data
+    </button>
 
-        <table id="umkm-table"  class="w-full table table-auto border border-gray-200 rounded-md ">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="py-3 text-left font-medium uppercase">UMKM</th>
-                    <th class="py-3 text-left font-medium uppercase">Owner</th>
-                    <th class="py-3 text-left font-medium uppercase">HP/Whatsapp</th>
-                    <th class="py-3 text-left font-medium uppercase">Fasilitator</th>
-                    <th class="py-3 text-left font-medium uppercase">#</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200"></tbody>
-        </table>
+    @if ($total > 0)
+    <a href="{{route('manage.umkm.export')}}" class="btn bg-[#195770] text-white mb-5">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        Export Data
+    </a>
+    @endif
+    
+    @include('components.backend.alert')
+
+    <table id="umkm-table"  class="w-full table table-auto border border-gray-200 rounded-md ">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="py-3 text-left font-medium uppercase">UMKM</th>
+                <th class="py-3 text-left font-medium uppercase">Owner</th>
+                <th class="py-3 text-left font-medium uppercase">HP/Whatsapp</th>
+                <th class="py-3 text-left font-medium uppercase">Fasilitator</th>
+                <th class="py-3 text-left font-medium uppercase">#</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200"></tbody>
+    </table>
 </div>
 
 @endsection
 
 
 @section('script')
+<dialog id="modal_import" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box pb-16 md:pb-8">
+        <div class="w-full flex justify-between sticky top-0 z-10">
+            <h3 class="text-lg font-bold">Import Data UMKM</h3>
+            <button type="button" onclick="modalImport.close()" class="btn btn-sm bg-gray-500 text-white">Batal</button>
+        </div>
+        <form class="mt-10 w-full" action="{{route('manage.umkm.import')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="flex flex-col md:flex-row items-center w-full">
+                <input type="file" accept=".xlsx" name="file" class="input input-bordered h-11 w-full md:w-fit" required>
+                <button type="submit" class="bg-[#195770] px-3 py-1 text-white h-11 grow rounded-md md:ml-2 mt-3 md:mt-0 w-full md:w-fit">Import</button>
+            </div>
+        </form>
+    </div>
+</dialog>
+
 <dialog id="modal_detail" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box pb-16 md:pb-8">
         <div class="w-full flex justify-between sticky top-0 z-10">
             <h3 class="text-lg font-bold">Berkas Pendukung</h3>
             <button type="button" onclick="modalDetail.close()" class="btn btn-sm bg-gray-500 text-white">Tutup</button>
         </div>
-        <table class="table mt-5">
+        <table class="table mt-5 w-full">
             <tr>
                 <td>Nomor KTP</td>
                 <td>:</td>
@@ -50,9 +80,9 @@
             <tr>
                 <td>KTP</td>
                 <td>:</td>
-                <td>
+                <td class="w-2/3">
                     <a target="_blank" rel="noopener noreferrer" id="ktp_image_link">
-                        <img src="{{url('images/preview-image.jpg')}}" id="ktp_image" class="w-1/2">
+                        <img src="{{url('images/preview-image.jpg')}}" id="ktp_image" class="w-1/3">
                     </a>
                 </td>
             </tr>
@@ -66,7 +96,7 @@
                 <td>:</td>
                 <td>
                     <a target="_blank" rel="noopener noreferrer" id="npwp_image_link">
-                        <img src="{{url('images/preview-image.jpg')}}" id="npwp_image" class="w-1/2">
+                        <img src="{{url('images/preview-image.jpg')}}" id="npwp_image" class="w-1/3">
                     </a>
                 </td>
             </tr>
@@ -75,7 +105,7 @@
                 <td>:</td>
                 <td>
                     <a target="_blank" rel="noopener noreferrer" id="logo_link">
-                        <img src="{{url('images/preview-image.jpg')}}" id="logo" class="w-1/2">
+                        <img src="{{url('images/preview-image.jpg')}}" id="logo" class="w-1/3">
                     </a>
                 </td>
             </tr>
@@ -99,10 +129,10 @@
             },
             ajax: '{{ route('manage.umkm.data') }}',
             columns: [
-                { data: 'name', name: 'name' },
-                { data: 'owner', name: 'owner' },
-                { data: 'phone', name: 'phone' },
-                { data: 'fasilitator', name: 'fasilitator.name' },
+                { data: 'name', name: 'name', orderable: false },
+                { data: 'owner', name: 'owner', orderable: false },
+                { data: 'phone', name: 'phone', orderable: false },
+                { data: 'fasilitator', name: 'fasilitator.name', orderable: false },
                 { data: 'action', name: 'action', orderable: false, searchable: false },
             ],
             language: {
@@ -142,12 +172,14 @@
 
 {{-- Action Button --}}
 <script>
+    const modalImport = document.getElementById('modal_import');
     const modalDetail = document.getElementById('modal_detail');
+
     function detail(data){
         modalDetail.showModal();
-        document.getElementById('ktp').innerHTML = data.ktp;
-        document.getElementById('ktp_image').src = data.ktp_image;
-        document.getElementById('ktp_image_link').href = data.ktp_image;
+        document.getElementById('ktp').innerHTML = data.ktp ?? "-";
+        document.getElementById('ktp_image').src = data.ktp_image ?? '{{ url('images/preview-image.jpg') }}';
+        document.getElementById('ktp_image_link').href = data.ktp_image ?? '{{ url('images/preview-image.jpg') }}';
         document.getElementById('npwp').innerHTML = data.npwp ?? "-";
         document.getElementById('npwp_image').src = data.npwp_image ?? '{{ url('images/preview-image.jpg') }}';
         document.getElementById('npwp_image_link').href = data.npwp_image ?? '{{ url('images/preview-image.jpg') }}';

@@ -51,10 +51,10 @@
             @endforeach
         </div> --}}
 
+        @if ($products == null)
+            <span class="text-center md:text-left col-span-2">Belum ada produk yang tersedia</span>
+        @else
         <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mt-5">
-            @if (count($products["data"]) < 1)
-                <span class="text-center md:text-left col-span-2">Belum ada produk yang tersedia</span>
-            @endif
             @foreach ($products["data"] as $p)
             <a target="_blank" href="{{ $p['permalink'] }}" class="bg-white border rounded-md flex flex-col p-2 pb-5">
                 @if ($p['media_type'] == 'VIDEO')
@@ -69,6 +69,7 @@
             </a>
             @endforeach
         </div>
+        @endif
     </div>
 </div>
 @endsection

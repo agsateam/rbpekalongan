@@ -70,9 +70,10 @@ class ProductController extends Controller
     // }
 
     public function umkm(Request $req){
-        $umkm = Umkm::orderBy('created_at', 'desc')->with('products');
+        $umkm = Umkm::where('status', 'join');
 
-        $filterCategory = $req->has('category') ? [$req->category] : ["Fashion","Kuliner","Kerajinan","Jasa"];
+        $categories = collect(ProductCategory::select('name')->get()->toArray())->pluck('name')->concat(["LAINNYA"]);
+        $filterCategory = $req->has('category') ? [$req->category] : $categories;
         $umkm = $umkm->whereIn('type', $filterCategory);
 
         if($req->has('keyword')){
@@ -81,7 +82,7 @@ class ProductController extends Controller
 
         $isFiltered = $req->has('keyword') || $req->has('category');
         return view('frontend.umkm', [
-            "umkm" => $umkm->limit(50)->get(),
+            "umkm" => $umkm->paginate(104),
             "isFiltered" => $isFiltered
         ]);
     }

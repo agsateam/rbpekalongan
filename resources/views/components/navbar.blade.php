@@ -1,14 +1,13 @@
 <div class="bg-white z-40 sticky top-0">
-    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex py-4 md:py-0 flex-wrap items-center gap-4">
+    <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex py-2 flex-row justify-center items-center gap-4">
 
-        <img src="{{ url('/') }}/images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8 md:mt-1">
-        <img src="{{ url('/') }}/images/rbpekalongan.png" alt="Logo Rumah Bumn" class="h-8 md:h-16">
-        <img src="{{ url('/') }}/images/telkom.png" alt="Logo Telkom" class="h-8 md:h-16">
+        {{-- <img src="{{ url('/') }}/images/logobumn.png" alt="Logo Bumn" class="h-10">
+        <img src="{{ url('/') }}/images/rbpekalongan.png" alt="Logo Rumah Bumn" class="h-10">
+        <img src="{{ url('/') }}/images/telkom.png" alt="Logo Telkom" class="h-10"> --}}
 
-
-
-        <a href="{{ url('/') }}/login"
-            class="ml-auto border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 md:block">Masuk</a>
+        <img src="{{ url('/') }}/images/logos.png" alt="Logos" class="h-12">
+        
+        <a href="{{ url('/') }}/login" class="ml-auto border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 md:block">Masuk</a>
     </div>
 </div>
 
@@ -26,7 +25,7 @@
                     d="M1 1h15M1 7h15M1 13h15" />
             </svg>
         </button>
-        <div class="hidden md:block w-full md:mr-20 md:w-auto" id="navbar-default">
+        <div class="hidden md:block w-full md:mr-14 md:w-auto" id="navbar-default">
             <ul class="text-white font-medium flex flex-col md:flex-row">
                 <li
                     class="{{ request()->is('/') ? 'bg-[#1ba0db]' : 'bg-[#195770]' }} hover:bg-[#1ba0db] cursor-pointer">

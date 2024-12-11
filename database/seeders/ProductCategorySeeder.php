@@ -15,7 +15,7 @@ class ProductCategorySeeder extends Seeder
     {
         $data =[
             ["name" => "FASHION/BUSANA"],
-            ["name" => "MAKANAN/MINUMAN"],
+            ["name" => "MAKANAN & MINUMAN"],
             ["name" => "CRAFT/KERAJINAN TANGAN"],
             ["name" => "JASA"],
             ["name" => "INDUSTRI"],
