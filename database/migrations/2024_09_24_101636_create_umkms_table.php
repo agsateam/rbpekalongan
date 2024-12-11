@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->string('marketplace')->nullable();
-            $table->string('marketplace_link')->nullable();
+            $table->string('marketplace_link', length: 500)->nullable();
             $table->string('ktp')->nullable();
             $table->string('ktp_image')->nullable();
             $table->string('npwp')->nullable();

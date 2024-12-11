@@ -219,7 +219,7 @@ class ManageUmkmController extends Controller
         try {
             $this->processImport($file);
 
-            return back()->with('succes', 'Berhasil import data umkm');
+            return back()->with('success', 'Berhasil import data umkm');
         } catch (\Throwable $th) {
             return back()->with('error', 'Gagal import, periksa file kembali');
         }
@@ -292,12 +292,17 @@ class ManageUmkmController extends Controller
             $before = Str::before($after, 'Url');
 
             return $before;
-        }if(Str::contains($data, 'Tokopedia')){
+        }elseif(Str::contains($data, 'Tokopedia')){
             $after = Str::after($data, 'TokopediaNama : ');
             $before = Str::before($after, 'Url');
 
             return $before;
-        }if(Str::contains($data, 'bukalapak')){
+        }elseif(Str::contains($data, 'Lazada')){
+            $after = Str::after($data, 'LazadaNama : ');
+            $before = Str::before($after, 'Url');
+
+            return $before;
+        }elseif(Str::contains($data, 'bukalapak')){
             $after = Str::after($data, 'Url : ');
             $before = Str::before($after, ',Toko Online');
 
