@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('marketplace')->nullable();
             $table->string('marketplace_link')->nullable();
-            $table->string('ktp');
-            $table->string('ktp_image');
+            $table->string('ktp')->nullable();
+            $table->string('ktp_image')->nullable();
             $table->string('npwp')->nullable();
             $table->string('npwp_image')->nullable();
             $table->string('logo')->nullable();

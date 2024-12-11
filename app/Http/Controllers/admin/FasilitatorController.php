@@ -58,11 +58,18 @@ class FasilitatorController extends Controller
     public function update(Request $req){
         $req->validate(['photo' => [File::image()->max('2mb')]], ['photo.max' => 'Ukuran gambar terlalu besar, maksimal 2mb.']);
 
-        $photoName = explode("uploaded/fasilitator/", $req->old_photo)[1];
+        $photoName = "";
+        if(Str::contains($req->old_photo, 'preview-image')){
+            $photoName = $req->old_photo;
+        }else{
+            $photoName = explode("uploaded/fasilitator/", $req->old_photo)[1];
+        }
+
         if($req->has('photo')){
-            // remove old photo
-            unlink(public_path('uploaded/fasilitator') . $photoName);
-            // upload new photo
+            if(!Str::contains($req->old_photo, 'preview-image')){
+                unlink(public_path('uploaded/fasilitator') . $photoName);
+            }
+            
             $photo = "fasilitator-" . Str::slug($req->nama) .'.'. $req->photo->extension();
             $req->photo->move(public_path('uploaded/fasilitator'), $photo);
 
@@ -81,7 +88,7 @@ class FasilitatorController extends Controller
         $data = [
             "name" => $req->nama,
             "whatsapp" => $req->whatsapp,
-            "photo" => url('uploaded/fasilitator') ."/". $photoName,
+            "photo" => ($req->has('photo') && Str::contains($req->old_photo, 'preview-image')) ? url('uploaded/fasilitator') ."/". $photoName : $req->old_photo,
             "certification" => $certification
         ];
 

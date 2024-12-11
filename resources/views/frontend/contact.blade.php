@@ -71,11 +71,14 @@
                     <div class="label">
                         <span class="label-text text-base font-semibold">Jenis Usaha <span class="text-red-600 font-bold">*</span></span>
                     </div>
+                    @php
+                        $categories = App\Models\ProductCategory::all();
+                    @endphp
                     <select name="type" class="input input-bordered w-full" required>
-                        <option value="Fashion" {{ old("type") == "Fashion" ? "selected" : "" }}>Fashion</option>
-                        <option value="Kuliner" {{ old("type") == "Kuliner" ? "selected" : "" }}>Kuliner</option>
-                        <option value="Kerajinan" {{ old("type") == "Kerajinan" ? "selected" : "" }}>Kerajinan</option>
-                        <option value="Jasa" {{ old("type") == "Jasa" ? "selected" : "" }}>Jasa</option>
+                        @foreach ($categories as $item)
+                            <option value="{{$item->name}}" {{ old("type") == $item->name ? "selected" : "" }}>{{$item->name}}</option>
+                        @endforeach
+                        <option value="LAINNYA" {{ old("type") == "LAINNYA" ? "selected" : "" }}>LAINNYA</option>
                     </select>
                 </label>
                 <label class="form-control w-full">

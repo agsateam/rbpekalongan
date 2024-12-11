@@ -4,16 +4,28 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fasilitator;
+use App\Models\ProductCategory;
 use App\Models\Umkm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\File;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
 class ManageUmkmController extends Controller
 {
+    public function reset(){ // todo: delete
+        Umkm::truncate();
+
+        return redirect()->route('manage.umkm');
+    }
+
     public function index(){
-        return view('backend.umkm.index');
+        $total = Umkm::where('status', 'join')->count();
+
+        return view('backend.umkm.index', [
+            "total" => $total
+        ]);
     }
 
     public function detail($id){
@@ -175,7 +187,7 @@ class ManageUmkmController extends Controller
                                     <path stroke-linecap='round' stroke-linejoin='round' d='M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z' />
                                 </svg>
                             </a>
-                            <button onclick='detail(" . json_encode($data) . ")' class='flex items-center btn btn-sm bg-[#1ba0db] text-white tooltip' data-tip='Berkas'>
+                            <button onclick='detail(" . json_encode(collect($data)->only('ktp', 'ktp_image', 'npwp', 'npwp_image', 'logo')->toArray()) . ")' class='flex items-center btn btn-sm bg-[#1ba0db] text-white tooltip' data-tip='Berkas'>
                                 <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-5'>
                                     <path stroke-linecap='round' stroke-linejoin='round' d='M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z' />
                                 </svg>
@@ -184,5 +196,136 @@ class ManageUmkmController extends Controller
                     ";
             })
             ->toJson();
+    }
+
+    public function export(){
+        return fastexcel(Umkm::where('status', 'join')->get())->download('UMKM_'.date('dMY').'_rbpekalonganid.xlsx');
+    }
+
+    public function import(Request $request){
+        set_time_limit(180);
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('error', 'Gagal upload, periksa kembali format file');
+        }
+
+        $file = "data-to-import." . $request->file->extension();
+        $request->file->move(public_path('uploaded/import'), $file);
+
+        try {
+            $this->processImport($file);
+
+            return back()->with('succes', 'Berhasil import data umkm');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Gagal import, periksa file kembali');
+        }
+    }
+
+    private function processImport($file){
+        $collection = fastexcel()->import('uploaded/import/' . $file);
+        
+        $collection->chunk(1000)->each(function ($items) {
+            $datas = $items->map(function($item) {
+                return [
+                    'name' => Str::replace("aEUR", "", Str::replace("aEURoe", "", Str::ascii($item['ukm_name']))),
+                    'owner' => $item['pemilik_name'],
+                    'phone' => $item['ukm_nohp'],
+                    'fasilitator_id' => $this->getFasilId(Str::title($item['fasil_godigital_name'])),
+                    'type' => ProductCategory::where('name', $item['kategori_name'])->first()->name ?? 'LAINNYA',
+                    'desc' => $item['ukm_deskripsi_usaha'],
+                    'address' => $item['ukm_alamat'],
+                    'instagram' => $this->getMedsos($item['sosial_media'], 'ig'),
+                    'facebook' => $this->getMedsos($item['sosial_media'], 'fb'),
+                    'marketplace' => $this->getMarketplace($item['toko_online']),
+                    'marketplace_link' => $this->getMarketplaceLink($item['toko_online']),
+                    'ktp' => $this->ktpValidation($item['ukm_noktp']),
+                    'ktp_image' => null,
+                    'npwp' => $item['npwp'] == "" ? null : $item['npwp'],
+                    'npwp_image' => null,
+                    'logo' => null,
+                    'status' => 'join',
+                ];
+            });
+
+            Umkm::insert($datas->all());
+        });
+
+        unlink(public_path('uploaded/import/') . $file);
+    }
+
+
+    // helper
+    private function getFasilId($name){
+        return Fasilitator::where('name', $name)->first()->id ?? Fasilitator::where('name', 'Dwina Nugraheni')->first()->id;
+    }
+
+    private function getMedsos($data, $type){
+        if ($type == 'ig') {
+            if(Str::contains($data, 'Instagram')){
+                $after = Str::after($data, 'InstagramNama : ');
+                $before = Str::before($after, 'Url');
+    
+                return $before;
+            }else{
+                return null;
+            }
+        } else {
+            if(Str::contains($data, 'Facebook')){
+                $after = Str::after($data, 'FacebookNama : ');
+                $before = Str::before($after, 'Url');
+    
+                return $before;
+            }else{
+                return null;
+            }
+        }
+        
+    }
+
+    private function getMarketplace($data){
+        if(Str::contains($data, 'Shopee')){
+            $after = Str::after($data, 'ShopeeNama : ');
+            $before = Str::before($after, 'Url');
+
+            return $before;
+        }if(Str::contains($data, 'Tokopedia')){
+            $after = Str::after($data, 'TokopediaNama : ');
+            $before = Str::before($after, 'Url');
+
+            return $before;
+        }if(Str::contains($data, 'bukalapak')){
+            $after = Str::after($data, 'Url : ');
+            $before = Str::before($after, ',Toko Online');
+
+            return $before;
+        }else{
+            return null;
+        }
+    }
+
+    private function getMarketplaceLink($data){
+        if(Str::contains($data, 'Toko Online')){
+            $after = Str::after($data, 'Url : ');
+            $before = Str::before($after, ',Toko Online');
+
+            return $before;
+        }else{
+            return null;
+        }
+    }
+
+    private function ktpValidation($ktp){
+        if($ktp == ""){
+            return null;
+        }
+        if(Str::length($ktp) != 16){
+            return null;
+        }
+
+        return $ktp;
     }
 }

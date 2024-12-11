@@ -18,12 +18,15 @@
         <form method="get" class="md:mt-5">
             <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
                 <input type="text" name="keyword" placeholder="Cari UMKM ..." class="md:col-span-3 input input-bordered w-full" />
+                @php
+                    $categories = App\Models\ProductCategory::all();
+                @endphp
                 <select class="select select-bordered w-full" name="category">
                     <option disabled selected>Semua Kategori</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Kuliner">Kuliner</option>
-                    <option value="Kerajinan">Kerajinan</option>
-                    <option value="Jasa">Jasa</option>
+                    @foreach ($categories as $item)
+                        <option value="{{$item->name}}">{{$item->name}}</option>
+                    @endforeach
+                    <option value="LAINNYA">LAINNYA</option>
                 </select>
                 <button class="btn bg-[#195770] text-white hover:bg-[#1ba0db]">Cari</button>
             </div>

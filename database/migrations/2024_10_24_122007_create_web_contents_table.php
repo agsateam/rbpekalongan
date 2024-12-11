@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('web_contents', function (Blueprint $table) {
             $table->id();
-            $table->string('video_link')->default('https://www.youtube.com/watch?v=SzvRG75Ep18');
+            $table->string('video_link')->default('https://www.youtube.com/watch?v=DWI8h5F0GHU');
             $table->string('video_desc')->nullable();
             $table->string('rb_token')->nullable();
             $table->string('gerai_token')->nullable();

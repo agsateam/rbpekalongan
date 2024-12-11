@@ -5,7 +5,7 @@
         <img src="{{ url('/') }}/images/rbpekalongan.png" alt="Logo Rumah Bumn" class="h-10">
         <img src="{{ url('/') }}/images/telkom.png" alt="Logo Telkom" class="h-10"> --}}
 
-        <img src="https://i.ibb.co/QNzx1W9/logos.png" alt="Logos" class="h-12">
+        <img src="{{ url('/') }}/images/logos.png" alt="Logos" class="h-12">
         
         <a href="{{ url('/') }}/login" class="ml-auto border p-1 hidden font-semibold border-[#195770] rounded-md hover:bg-[#195770] hover:text-white hover:font-bold md:px-4 md:py-2 md:block">Masuk</a>
     </div>
