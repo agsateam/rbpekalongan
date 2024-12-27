@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="mt-5 md:mt-10 text-md md:text-xl text-white pl-2">
-                    <p>Jl. Merak No.2, Kandang Panjang, Kec. Pekalongan Utara<br>Kota Pekalongan, Jawa Tengah</p>
+                    <p>Jl. Diponegoro No.41, Dukuh, Kec. Pekalongan Utara<br>Kota Pekalongan, Jawa Tengah 51146</p>
                 </div>
 
             </div>

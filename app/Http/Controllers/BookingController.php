@@ -100,7 +100,7 @@ class BookingController extends Controller
         $template = "BC????";
 
         $date = Carbon::today();
-        $lastData = Booking::whereMonth('created_at', $date->format('m'))->whereYear('created_at', $date->format('Y'))->count();
+        $lastData = Booking::whereMonth('created_at', $date->format('m'))->whereYear('created_at', $date->format('Y'))->count()+1;
         
         $result = Str::replaceArray("?", [str_pad(($lastData < 1 ? 1 : $lastData), 3, '0', STR_PAD_LEFT), $date->format('dmy'), $room, $time], $template);
 

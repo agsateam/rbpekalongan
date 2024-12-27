@@ -21,7 +21,7 @@
             </div>
             <div class="flex flex-col border-l-4 pl-5 border-[#195770]">
                 <span class="text-gray-500 font-semibold">Alamat</span>
-                <span class="text-xl font-bold text-[#195770]">Jl. Merak No.2, Kandang Panjang</span>
+                <span class="text-xl font-bold text-[#195770]">Jl. Diponegoro No.41, Dukuh</span>
             </div>
         </div>
     </div>
@@ -30,7 +30,11 @@
 <div class="pt-10 pb-16">
     <div class="flex flex-col max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto">
         <h4 class="text-3xl font-bold">Bergabung Bersama Kami</h4>
-        <span class="text-xl my-5">Ingin bergabung menjadi UMKM binaan Rumah BUMN Pekalongan? fasilitator berikut akan membimbing anda.</span>
+        <span class="text-xl my-5">
+            Ingin bergabung menjadi UMKM binaan Rumah BUMN Pekalongan? fasilitator berikut akan membimbing anda.
+            <br/>Pilih fasilitator dibawah, isi dan kirim form registrasi sesuai dengan data yang diperlukan
+            <br/>Jika data yang dikirim valid, anda akan dihubungi lebih lanjut oleh fasilitator.
+        </span>
         @if(count($facilitators) < 1) <span class="text-2xl font-semibold">Belum ada data fasilitator</span> @endif
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             @foreach ($facilitators as $item)

@@ -238,10 +238,10 @@ class ManageUmkmController extends Controller
                     'type' => ProductCategory::where('name', $item['kategori_name'])->first()->name ?? 'LAINNYA',
                     'desc' => $item['ukm_deskripsi_usaha'],
                     'address' => $item['ukm_alamat'],
-                    'instagram' => $this->getMedsos($item['sosial_media'], 'ig'),
-                    'facebook' => $this->getMedsos($item['sosial_media'], 'fb'),
-                    'marketplace' => $this->getMarketplace($item['toko_online']),
-                    'marketplace_link' => $this->getMarketplaceLink($item['toko_online']),
+                    'instagram' => $item['instagram'] ?? $this->getMedsos($item['sosial_media'], 'ig'),
+                    'facebook' => $item['facebook'] ?? $this->getMedsos($item['sosial_media'], 'fb'),
+                    'marketplace' => $item['marketplace'] ?? $this->getMarketplace($item['toko_online']),
+                    'marketplace_link' => $item['marketplace_link'] ?? $this->getMarketplaceLink($item['toko_online']),
                     'ktp' => $this->ktpValidation($item['ukm_noktp']),
                     'ktp_image' => null,
                     'npwp' => $item['npwp'] == "" ? null : $item['npwp'],
@@ -260,7 +260,7 @@ class ManageUmkmController extends Controller
 
     // helper
     private function getFasilId($name){
-        return Fasilitator::where('name', $name)->first()->id ?? Fasilitator::where('name', 'Dwina Nugraheni')->first()->id;
+        return Fasilitator::where('name', $name)->first()->id ?? Fasilitator::where('name', 'Muhammad Saebani')->first()->id;
     }
 
     private function getMedsos($data, $type){

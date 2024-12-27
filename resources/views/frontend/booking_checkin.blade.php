@@ -19,14 +19,9 @@
 
 <body class="font-manrope">
     <div class="bg-white z-40 sticky top-0">
-        <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex flex-wrap items-center py-3 gap-2">
-    
-            <img src="{{ url('/') }}/images/logobumn.png" alt="Logo Bumn" class="h-4 md:h-8">
-            <img src="{{ url('/') }}/images/logorumahbumn.png" alt="Logo Rumah Bumn"
-                class="h-6 md:h-12 border-r-2 border-black">
-    
+        <div class="header max-w-screen-xl mx-8 md:mx-14 2xl:mx-auto flex py-2 flex-row justify-start items-center gap-4">
+            <img src="{{ url('/') }}/images/logos.png" alt="Logos" class="h-12">
             <div class="font-bold text-sm mt-2 md:text-xl">Pekalongan</div>
-
         </div>
     </div>
     
@@ -78,7 +73,7 @@
                     <div class="ml-2 mt-3 md:ml-0 md:mt-0 font-bold text-md text-xl md:text-5xl text-white">Pekalongan</div>
                 </div>
                 <div class="mt-5 md:mt-10 text-md md:text-xl text-white pl-2">
-                    <p>Jl. Merak No.2, Kandang Panjang, Kec. Pekalongan Utara<br>Kota Pekalongan, Jawa Tengah</p>
+                    <p>Jl. Diponegoro No.41, Dukuh, Kec. Pekalongan Utara<br>Kota Pekalongan, Jawa Tengah 51146</p>
                 </div>
             </div>
             <div class="mt-10 grow flex md:justify-end items-end">
