@@ -5,7 +5,7 @@
 
     <div class="">
         <div class="flex flex-col md:flex-row justify-between w-full">
-            <h4 class="text-2xl md:text-3xl font-bold mb-5">Fungsi</h4>
+            <h4 class="text-2xl md:text-3xl font-bold mb-5">{{$fungsirb->nama_fungsi}}</h4>
             <div class="breadcrumbs text-sm">
                 <ul>
                     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

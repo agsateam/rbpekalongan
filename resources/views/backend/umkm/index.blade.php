@@ -55,13 +55,24 @@
             <h3 class="text-lg font-bold">Import Data UMKM</h3>
             <button type="button" onclick="modalImport.close()" class="btn btn-sm bg-gray-500 text-white">Batal</button>
         </div>
-        <form class="mt-10 w-full" action="{{route('manage.umkm.import')}}" method="POST" enctype="multipart/form-data">
+        <div class="w-full mt-8">
+            <a href="{{ asset('template-import.xlsx') }}" class="flex flex-row items-center bg-emerald-700 text-white px-3 py-2 rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 mr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                Download Template Import
+            </a>
+        </div>
+        <form id="formImport" class="mt-5 w-full" action="{{route('manage.umkm.import')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col md:flex-row items-center w-full">
-                <input type="file" accept=".xlsx" name="file" class="input input-bordered h-11 w-full md:w-fit" required>
-                <button type="submit" class="bg-[#195770] px-3 py-1 text-white h-11 grow rounded-md md:ml-2 mt-3 md:mt-0 w-full md:w-fit">Import</button>
+                <input id="inputFileImport" type="file" accept=".xlsx" name="file" class="input input-bordered h-11 w-full md:w-fit" required>
+                <button id="submitImport" type="button" onclick="showLoading()" class="bg-[#195770] px-3 py-1 text-white h-11 grow rounded-md md:ml-2 mt-3 md:mt-0 w-full md:w-fit">Import</button>
             </div>
         </form>
+        <div class="w-full mt-5 text-sm text-justify">
+            <span>** Import data excel bersifat duplicate, jika terdapat data yang sama sebelumnya, data baru tetap akan ditambahkan. Maka dari itu cek kembali data yang akan diimport.</span>
+        </div>
     </div>
 </dialog>
 
@@ -185,6 +196,21 @@
         document.getElementById('npwp_image_link').href = data.npwp_image ?? '{{ url('images/preview-image.jpg') }}';
         document.getElementById('logo').src = data.logo ?? '{{ url('images/preview-image.jpg') }}';
         document.getElementById('logo_link').href = data.logo ?? '{{ url('images/preview-image.jpg') }}';
+    }
+
+    function showLoading(){
+        var form = document.getElementById('formImport');
+        var file = document.getElementById('inputFileImport');
+        var button = document.getElementById('submitImport');
+
+        if(file.files.length == 0){
+            return;
+        }
+
+        button.innerHTML = "Load...";
+        button.disabled = true;
+
+        form.submit();
     }
 </script>
 @endsection
