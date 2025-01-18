@@ -13,7 +13,7 @@
             <div id="default-carousel" class="relative w-full" data-carousel="slide">
                 <div class="relative overflow-hidden rounded-lg h-[500px] lg:h-80 bg-white shadow-md">
                     @foreach ($testi as $t)
-                        <div class="bg-white hidden duration-1000 ease-in-out" data-carousel-item>
+                        <div class="bg-white hidden duration-10000 ease-in-out" data-carousel-item>
                             {{-- <div class="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-2/3"> --}}
                             <div class="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-2/3">
                                 <div class="flex flex-row justify-center">
